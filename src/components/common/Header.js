@@ -1,69 +1,72 @@
+import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faBagShopping, faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, NavLink } from 'react-router-dom';
 
 function Header() {
 	const active = 'on';
 	return (
 		<header>
-			<div class='header_inner'>
-				<h1 class='logo'>
+			<div className='header_inner'>
+				<h1 className='logo'>
 					<Link to='/'>LOGO</Link>
 				</h1>
 
 				<nav>
-					<ul class='gnb'>
+					<ul className='gnb'>
 						<li>
-							<NavLink to='/department' activeClassName={active}>
+							<NavLink to='/department' activeclass={active}>
 								Department
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/youtube' activeClassName={active}>
+							<NavLink to='/youtube' activeclass={active}>
 								Youtube
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/gallery' activeClassName={active}>
+							<NavLink to='/gallery' activeclass={active}>
 								Gallery
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/members' activeClassName={active}>
+							<NavLink to='/members' activeclass={active}>
 								Members
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/contact' activeClassName={active}>
+							<NavLink to='/contact' activeclass={active}>
 								Contact
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/community' activeClassName={active}>
+							<NavLink to='/community' activeclass={active}>
 								Community
 							</NavLink>
 						</li>
 					</ul>
 				</nav>
 
-				<ul class='util'>
+				<ul className='util'>
 					<li>
 						<NavLink to='#'>
-							<i class='fa-regular fa-heart'></i>
+							<FontAwesomeIcon icon={faHeart} />
 						</NavLink>
 					</li>
 					<li>
 						<NavLink to='#'>
-							<i class='fa-regular fa-user'></i>
+							<FontAwesomeIcon icon={faUser} />
 						</NavLink>
 					</li>
 					<li>
 						<NavLink to='#'>
-							<i class='fa-solid fa-bag-shopping'></i>
+							<FontAwesomeIcon icon={faBagShopping} />
 						</NavLink>
 					</li>
 				</ul>
 
-				<NavLink to='#' class='btn_mo'>
-					<i class='fa-solid fa-bars'></i>
+				<NavLink to='#' className='btn_mo'>
+					<FontAwesomeIcon icon={faBars} />
 				</NavLink>
 			</div>
 		</header>
