@@ -1,0 +1,57 @@
+header {
+	position: absolute;
+	width: 100%;
+	height: 70px;
+
+	.header_inner {
+		position: relative;
+		display: flex;
+		width: 1200px;
+		margin: 0 auto;
+		padding: 21px 0 0;
+
+		h1 {
+			margin-top: -9px;
+		}
+
+		nav {
+			margin-left: 50px;
+
+			#gnb {
+				display: flex;
+				gap: 30px;
+
+				li {
+					a {
+						font: 16px 'arial';
+
+						&.on {
+							font-weight: bold;
+						}
+					}
+				}
+			}
+		}
+
+		.util {
+			display: flex;
+			gap: 15px;
+			margin-left: auto;
+
+			li {
+				a {
+					font: 16px 'arial';
+				}
+			}
+		}
+
+		.btn_mo {
+			display: none;
+			margin-left: auto;
+		}
+
+		a {
+			color: #464644;
+		}
+	}
+}

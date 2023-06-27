@@ -1,3 +1,4 @@
+import { faEnvira } from '@fortawesome/free-brands-svg-icons';
 import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faBagShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,38 +10,40 @@ function Header() {
 		<header>
 			<div className='header_inner'>
 				<h1 className='logo'>
-					<Link to='/'>LOGO</Link>
+					<Link to='/'>
+						<FontAwesomeIcon icon={faEnvira} />
+					</Link>
 				</h1>
 
 				<nav>
-					<ul className='gnb'>
+					<ul id='gnb'>
 						<li>
-							<NavLink to='/department' activeclass={active}>
+							<NavLink to='/department' activeClassName={active}>
 								Department
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/youtube' activeclass={active}>
+							<NavLink to='/youtube' activeClassName={active}>
 								Youtube
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/gallery' activeclass={active}>
+							<NavLink to='/gallery' activeClassName={active}>
 								Gallery
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/members' activeclass={active}>
+							<NavLink to='/members' activeClassName={active}>
 								Members
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/contact' activeclass={active}>
+							<NavLink to='/contact' activeClassName={active}>
 								Contact
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/community' activeclass={active}>
+							<NavLink to='/community' activeClassName={active}>
 								Community
 							</NavLink>
 						</li>
