@@ -1,4 +1,5 @@
-import { faEnvira, faFacebook, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faEnvira, faFacebook, faFacebookF, faInstagram, faInstagramSquare, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faBlog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -95,27 +96,27 @@ function Footer() {
 						<ul className='sns_list'>
 							<li>
 								<Link to='#'>
-									<FontAwesomeIcon icon={faYoutube} />
+									<FontAwesomeIcon icon={faInstagram} />
 								</Link>
 							</li>
 							<li>
 								<Link to='#'>
-									<FontAwesomeIcon icon={faFacebook} />
+									<FontAwesomeIcon icon={faFacebookF} />
 								</Link>
 							</li>
 							<li>
 								<Link to='#'>
-									<FontAwesomeIcon icon={faYoutube} />
+									<FontAwesomeIcon icon={faTwitter} />
 								</Link>
 							</li>
 							<li>
 								<Link to='#'>
-									<FontAwesomeIcon icon={faFacebook} />
+									<FontAwesomeIcon icon={faFacebookF} />
 								</Link>
 							</li>
 							<li>
 								<Link to='#'>
-									<FontAwesomeIcon icon={faFacebook} />
+									<FontAwesomeIcon icon={faBlog} />
 								</Link>
 							</li>
 						</ul>
