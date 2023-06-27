@@ -21,6 +21,8 @@ import Youtube from './components/sub/Youtube';
 import Contact from './components/sub/Contact';
 import Member from './components/sub/Member';
 
+import './scss/style.scss';
+
 function App() {
 	return (
 		<>
