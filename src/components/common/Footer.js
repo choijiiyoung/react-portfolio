@@ -12,70 +12,70 @@ function Footer() {
 					</h1>
 					<ul className='list'>
 						<li>
-							<Link>Catalog</Link>
+							<Link to='#'>Catalog</Link>
 							<ul>
 								<li>
-									<Link>Speakers</Link>
+									<Link to='#'>Speakers</Link>
 								</li>
 								<li>
-									<Link>Headphones</Link>
+									<Link to='#'>Headphones</Link>
 								</li>
 								<li>
-									<Link>Televisions</Link>
+									<Link to='#'>Televisions</Link>
 								</li>
 								<li>
-									<Link>Accessories</Link>
+									<Link to='#'>Accessories</Link>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<Link>Catalog</Link>
+							<Link to='#'>Catalog</Link>
 							<ul>
 								<li>
-									<Link>Speakers</Link>
+									<Link to='#'>Speakers</Link>
 								</li>
 								<li>
-									<Link>Headphones</Link>
+									<Link to='#'>Headphones</Link>
 								</li>
 								<li>
-									<Link>Televisions</Link>
+									<Link to='#'>Televisions</Link>
 								</li>
 								<li>
-									<Link>Accessories</Link>
+									<Link to='#'>Accessories</Link>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<Link>Catalog</Link>
+							<Link to='#'>Catalog</Link>
 							<ul>
 								<li>
-									<Link>Speakers</Link>
+									<Link to='#'>Speakers</Link>
 								</li>
 								<li>
-									<Link>Headphones</Link>
+									<Link to='#'>Headphones</Link>
 								</li>
 								<li>
-									<Link>Televisions</Link>
+									<Link to='#'>Televisions</Link>
 								</li>
 								<li>
-									<Link>Accessories</Link>
+									<Link to='#'>Accessories</Link>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<Link>Catalog</Link>
+							<Link to='#'>Catalog</Link>
 							<ul>
 								<li>
-									<Link>Speakers</Link>
+									<Link to='#'>Speakers</Link>
 								</li>
 								<li>
-									<Link>Headphones</Link>
+									<Link to='#'>Headphones</Link>
 								</li>
 								<li>
-									<Link>Televisions</Link>
+									<Link to='#'>Televisions</Link>
 								</li>
 								<li>
-									<Link>Accessories</Link>
+									<Link to='#'>Accessories</Link>
 								</li>
 							</ul>
 						</li>
@@ -94,27 +94,27 @@ function Footer() {
 						</div>
 						<ul className='sns_list'>
 							<li>
-								<Link>
+								<Link to='#'>
 									<FontAwesomeIcon icon={faYoutube} />
 								</Link>
 							</li>
 							<li>
-								<Link>
+								<Link to='#'>
 									<FontAwesomeIcon icon={faFacebook} />
 								</Link>
 							</li>
 							<li>
-								<Link>
+								<Link to='#'>
 									<FontAwesomeIcon icon={faYoutube} />
 								</Link>
 							</li>
 							<li>
-								<Link>
+								<Link to='#'>
 									<FontAwesomeIcon icon={faFacebook} />
 								</Link>
 							</li>
 							<li>
-								<Link>
+								<Link to='#'>
 									<FontAwesomeIcon icon={faFacebook} />
 								</Link>
 							</li>
