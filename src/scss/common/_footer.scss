@@ -1,0 +1,189 @@
+footer {
+	.footer_inner {
+		width: 1200px;
+		margin: 0 auto;
+	}
+
+	.upper {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 30px;
+		border-bottom: 1px solid #ddd;
+
+		.list {
+			margin-left: 150px;
+			display: flex;
+			gap: 60px;
+
+			> li {
+				> a {
+					display: block;
+					margin-bottom: 10px;
+					color: #222;
+					font: bold 15px 'arial';
+				}
+
+				ul {
+					li {
+						padding: 8px 0;
+						a {
+							display: block;
+							font-size: 14px;
+							color: #888;
+						}
+					}
+				}
+			}
+		}
+
+		.util_wrap {
+			margin-left: 280px;
+
+			.util {
+				.input_wrap {
+					margin-bottom: 10px;
+
+					label {
+						display: block;
+						font-weight: bold;
+					}
+
+					input[type='text'] {
+						width: 100%;
+						height: 40px;
+						border: 0;
+						border-bottom: 1px solid #000;
+					}
+				}
+
+				.chk_wrap {
+					position: relative;
+					padding-left: 20px;
+					margin-bottom: 15px;
+
+					input[type='checkbox'] {
+						position: absolute;
+						left: 0;
+						top: 7px;
+					}
+
+					label {
+						font-size: 14px;
+					}
+				}
+			}
+
+			.sns_list {
+				display: flex;
+				gap: 9px;
+				li {
+					a {
+						display: flex;
+						width: 30px;
+						height: 30px;
+						border: 1px solid #888;
+						border-radius: 50%;
+						justify-content: center;
+						align-items: center;
+						color: #222;
+					}
+				}
+			}
+		}
+	}
+
+	.lower {
+		display: flex;
+		gap: 50px;
+		padding: 20px 0 30px;
+		color: #888;
+
+		address {
+			font-style: normal;
+		}
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	footer {
+		.footer_inner {
+			width: 100%;
+			padding: 0 4%;
+		}
+
+		.upper {
+			.list {
+				margin-left: 100px;
+			}
+
+			.util_wrap {
+				margin-left: 100px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $tablet) {
+	footer {
+		.upper {
+			flex-wrap: wrap;
+
+			.list {
+				margin-left: auto;
+			}
+
+			.util_wrap {
+				margin: 50px 0 0 0;
+				width: 100%;
+			}
+		}
+
+		.lower {
+			display: block;
+
+			p {
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $mobile) {
+	footer {
+		.upper {
+			display: block;
+
+			.logo {
+				margin-bottom: 20px;
+			}
+
+			.list {
+				display: block;
+				margin-left: 0;
+				gap: 0;
+				font-size: 0;
+
+				> li {
+					display: inline-block;
+					width: 48%;
+
+					&:nth-child(n + 3) {
+						margin-top: 40px;
+					}
+
+					&:nth-child(even) {
+						margin-left: 4%;
+					}
+				}
+			}
+		}
+
+		.lower {
+			display: block;
+
+			p {
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
