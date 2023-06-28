@@ -84,14 +84,14 @@ function Footer() {
 
 					<div className='util_wrap'>
 						<div className='util'>
-							{/* <div className="input_wrap">
-                <label for="join">Join us</label>
-                <input type="text" id="join" placeholder="Your e-mail">
-              </div>
-              <div className="chk_wrap">
-                <input type="checkbox" id="chk">
-                <label for="chk">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</label>
-              </div> */}
+							<div className='input_wrap'>
+								<label for='join'>Join us</label>
+								<input type='text' id='join' placeholder='Your e-mail' />
+							</div>
+							<div className='chk_wrap'>
+								<input type='checkbox' id='chk' />
+								<label for='chk'>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</label>
+							</div>
 						</div>
 						<ul className='sns_list'>
 							<li>
