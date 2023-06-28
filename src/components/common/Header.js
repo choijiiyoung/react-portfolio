@@ -33,8 +33,8 @@ function Header() {
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to='/members' activeClassName={active}>
-								Members
+							<NavLink to='/member' activeClassName={active}>
+								Member
 							</NavLink>
 						</li>
 						<li>
