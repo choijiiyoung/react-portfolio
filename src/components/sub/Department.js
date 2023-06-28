@@ -85,6 +85,7 @@ function Department() {
 											<article key={idx}>
 												<div className='pic'>
 													<img src={`${process.env.PUBLIC_URL}/img/department/${member.pic}`} alt={member.name} />
+													<img src={`${process.env.PUBLIC_URL}/img/department/${member.pic}`} alt={member.name} />
 												</div>
 												<div className='info'>
 													<p className='name'>{member.name}</p>
