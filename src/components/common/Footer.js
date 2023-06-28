@@ -1,7 +1,7 @@
 import { faEnvira, faFacebookF, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faBlog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
 
 function Footer() {
 	return (
@@ -85,12 +85,12 @@ function Footer() {
 					<div className='util_wrap'>
 						<div className='util'>
 							<div className='input_wrap'>
-								<label for='join'>Join us</label>
+								<label htmlFor='join'>Join us</label>
 								<input type='text' id='join' placeholder='Your e-mail' />
 							</div>
 							<div className='chk_wrap'>
 								<input type='checkbox' id='chk' />
-								<label for='chk'>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</label>
+								<label htmlFor='chk'>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</label>
 							</div>
 						</div>
 						<ul className='sns_list'>
