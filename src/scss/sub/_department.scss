@@ -172,6 +172,12 @@
 								font: bold 16px 'arial';
 								border-bottom: 1px solid #000;
 							}
+
+							.place {
+								p {
+									white-space: pre-line;
+								}
+							}
 						}
 					}
 				}
