@@ -1,4 +1,4 @@
-function Layout({ name }) {
+function Layout({ name, children }) {
 	return (
 		<div className='container'>
 			<div className={`content ${name}`}>
@@ -6,7 +6,7 @@ function Layout({ name }) {
 					<h1>{name}</h1>
 				</figure>
 				<section>
-					<div className='inner'></div>
+					<div className='inner'>{children}</div>
 				</section>
 			</div>
 		</div>
