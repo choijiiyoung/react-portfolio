@@ -9,8 +9,10 @@ function Youtube() {
 	const [Txts, setTxts] = useState([]);
 	const [Thumbs, setThumbs] = useState([]);
 
+	const [idxNext, setidxNext] = useState(3);
+
 	const frame = useRef(null);
-	const panel = useRef(null);
+	const panel = useRef([]);
 
 	useEffect(() => {
 		const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
@@ -31,6 +33,20 @@ function Youtube() {
 
 	const btnNext = () => {
 		frame.current.append(frame.current.firstElementChild);
+		setidxNext(idxNext + 1);
+
+		if (idxNext === frame.current.children.length - 1) {
+			setidxNext(0);
+		}
+		console.log(idxNext);
+
+		const panels = panel.current.parentElement.querySelectorAll('.panel');
+		activation(panels, idxNext);
+	};
+
+	const activation = (arr, idx) => {
+		for (const el of arr) el.classList.remove('on');
+		arr[idx].classList.add('on');
 	};
 
 	return (
@@ -60,7 +76,7 @@ function Youtube() {
 									{Txts.map((txt, idx) => {
 										if (idx === 2)
 											return (
-												<div className='panel on' key={idx}>
+												<div className='panel on' key={idx} ref={panel}>
 													<div className='num'>
 														<span>0{idx + 1}</span>
 													</div>
@@ -73,7 +89,7 @@ function Youtube() {
 											);
 										else
 											return (
-												<div className='panel' key={idx} ref={panel}>
+												<div className='panel' key={idx}>
 													<div className='num'>
 														<span>0{idx + 1}</span>
 													</div>
@@ -92,13 +108,18 @@ function Youtube() {
 										className='prev'
 										onClick={() => {
 											btnPrev();
-											console.log(panel);
 										}}
 									>
 										<span>PREV</span>
 										<FontAwesomeIcon icon={faAnglesLeft} />
 									</button>
-									<button type='button' className='next' onClick={btnNext}>
+									<button
+										type='button'
+										className='next'
+										onClick={() => {
+											btnNext();
+										}}
+									>
 										<span>NEXT</span>
 										<FontAwesomeIcon icon={faAnglesRight} />
 									</button>
