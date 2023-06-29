@@ -62,7 +62,7 @@ function Youtube() {
 									{Vids.map((vid, idx) => {
 										return (
 											<article key={idx}>
-												<div className='pic' onClick={() => console.log(modal)}>
+												<div className='pic' onClick={() => modal.current.open()}>
 													<img className='thumb' src={vid.snippet.thumbnails.standard.url} alt={vid.snippet.title} />
 													<span className='num'>0{idx + 1}</span>
 												</div>
@@ -141,7 +141,7 @@ function Youtube() {
 								return (
 									<li key={idx}>
 										<article>
-											<div className='pic'>
+											<div className='pic' onClick={() => modal.current.open()}>
 												<img src={thumb.snippet.thumbnails.standard.url} alt={thumb.snippet.title} className='thumb' />
 											</div>
 
