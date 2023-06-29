@@ -15,6 +15,7 @@ function Youtube() {
 	const [IdxNext, setIdxNext] = useState(3); //next버튼
 
 	const modal = useRef(null);
+	const [IdxModal, setIdxModal] = useState(0);
 
 	useEffect(() => {
 		const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
@@ -62,7 +63,13 @@ function Youtube() {
 									{Vids.map((vid, idx) => {
 										return (
 											<article key={idx}>
-												<div className='pic' onClick={() => modal.current.open()}>
+												<div
+													className='pic'
+													onClick={() => {
+														modal.current.open();
+														setIdxModal(idx);
+													}}
+												>
 													<img className='thumb' src={vid.snippet.thumbnails.standard.url} alt={vid.snippet.title} />
 													<span className='num'>0{idx + 1}</span>
 												</div>
@@ -141,7 +148,13 @@ function Youtube() {
 								return (
 									<li key={idx}>
 										<article>
-											<div className='pic' onClick={() => modal.current.open()}>
+											<div
+												className='pic'
+												onClick={() => {
+													modal.current.open();
+													setIdxModal(idx);
+												}}
+											>
 												<img src={thumb.snippet.thumbnails.standard.url} alt={thumb.snippet.title} className='thumb' />
 											</div>
 
@@ -160,7 +173,7 @@ function Youtube() {
 			</Layout>
 
 			<Modal ref={modal}>
-				<iframe title={Vids[0]?.id} src={`https://www.youtube.com/embed/${Vids[0]?.snippet.resourceId.videoId}`}></iframe>
+				<iframe title={Vids[IdxModal]?.id} src={`https://www.youtube.com/embed/${Vids[IdxModal]?.snippet.resourceId.videoId}`}></iframe>
 			</Modal>
 		</>
 	);
