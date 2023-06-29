@@ -12,7 +12,7 @@ function Youtube() {
 
 	const frame = useRef(null); //상단 슬라이드
 	const panel = useRef([]); //상단 텍스트
-	const [idxNext, setidxNext] = useState(3); //next버튼
+	const [IdxNext, setIdxNext] = useState(3); //next버튼
 
 	const modal = useRef(null);
 
@@ -35,15 +35,15 @@ function Youtube() {
 
 	const btnNext = () => {
 		frame.current.append(frame.current.firstElementChild);
-		setidxNext(idxNext + 1);
+		setIdxNext(IdxNext + 1);
 
-		if (idxNext === frame.current.children.length - 1) {
-			setidxNext(0);
+		if (IdxNext === frame.current.children.length - 1) {
+			setIdxNext(0);
 		}
-		console.log(idxNext);
+		console.log(IdxNext);
 
 		const panels = panel.current.parentElement.querySelectorAll('.panel');
-		activation(panels, idxNext);
+		activation(panels, IdxNext);
 	};
 
 	const activation = (arr, idx) => {
