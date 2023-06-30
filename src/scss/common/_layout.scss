@@ -12,7 +12,9 @@
 		+ section {
 			opacity: 0;
 			transform: translateY(100px);
-			transition: 1s 0.4s;
+			transition-property: opacity, transform;
+			transition-duration: 1s;
+			transition-delay: 0.4s;
 		}
 	}
 
