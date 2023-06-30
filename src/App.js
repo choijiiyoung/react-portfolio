@@ -38,29 +38,12 @@ function App() {
 				<News />
 			</Route>
 
-			<Route path='/department'>
-				<Department />
-			</Route>
-
-			<Route path='/community'>
-				<Community />
-			</Route>
-
-			<Route path='/gallery'>
-				<Gallery />
-			</Route>
-
-			<Route path='/youtube'>
-				<Youtube />
-			</Route>
-
-			<Route path='/contact'>
-				<Contact />
-			</Route>
-
-			<Route path='/member'>
-				<Member />
-			</Route>
+			<Route path='/department' component={Department} />
+			<Route path='/community' component={Community} />
+			<Route path='/gallery' component={Gallery} />
+			<Route path='/youtube' component={Youtube} />
+			<Route path='/contact' component={Contact} />
+			<Route path='/member' component={Member} />
 
 			<Footer />
 		</>
