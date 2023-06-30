@@ -17,18 +17,19 @@ function Youtube() {
 	const modal = useRef(null);
 	const [IdxModal, setIdxModal] = useState(0);
 
-	useEffect(() => {
+	const fetchYoutube = async () => {
 		const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
 		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
 		const num = 4;
 		const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${list}&key=${key}&maxResults=${num}`;
 
-		axios.get(url).then((data) => {
-			setVids(data.data.items);
-			setTxts(data.data.items);
-			setThumbs(data.data.items);
-		});
-	}, []);
+		const result = await axios.get(url);
+		setVids(result.data.items);
+		setTxts(result.data.items);
+		setThumbs(result.data.items);
+	};
+
+	useEffect(() => fetchYoutube(), []);
 
 	const btnPrev = () => {
 		frame.current.prepend(frame.current.lastElementChild);
