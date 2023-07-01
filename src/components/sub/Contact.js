@@ -5,14 +5,21 @@ function Contact() {
 	const container = useRef(null);
 	const { kakao } = window;
 	const option = {
-		center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		level: 3, // 지도의 확대 레벨
+		center: new kakao.maps.LatLng(33.450701, 126.570667),
+		level: 3,
 	};
 
 	useEffect(() => {
 		const mapInstance = new kakao.maps.Map(container.current, option);
+
+		const imgSrc = `${process.env.PUBLIC_URL}/img/contact/marker.png`;
+		const imgSize = new kakao.maps.Size(50, 64);
+		const imgPos = { offset: new kakao.maps.Point(25, 32) };
+		const markerImage = new kakao.maps.MarkerImage(imgSrc, imgSize, imgPos);
+
 		const marker = new kakao.maps.Marker({
 			position: option.center,
+			image: markerImage,
 		});
 
 		marker.setMap(mapInstance);
