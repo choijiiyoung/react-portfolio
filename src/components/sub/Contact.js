@@ -65,6 +65,7 @@ function Contact() {
 
 	useEffect(() => {
 		Traffic ? Location?.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC) : Location?.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+		Traffic ? mouseOverEvt() : mouseOutEvt();
 	}, [Traffic]);
 
 	return (
@@ -81,7 +82,7 @@ function Contact() {
 						})}
 					</ul>
 					<div className='map_wrap'>
-						<div id='map' ref={container} onMouseOver={mouseOverEvt} onMouseOut={mouseOutEvt} className={IsHover ? 'on' : ''}></div>
+						<div id='map' ref={container} onMouseOver={mouseOverEvt} onMouseOut={mouseOutEvt} className={IsHover || Traffic ? 'on' : ''}></div>
 					</div>
 				</article>
 
