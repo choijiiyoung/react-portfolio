@@ -126,18 +126,18 @@ function Contact() {
 					<div id='formBox' className='form_wrap'>
 						<form ref={form} onSubmit={sendEmail} className='form_area'>
 							<div className='input_wrap'>
-								<label>Name</label>
-								<input type='text' name='name' ref={inputName} />
+								<label htmlFor='name'>Name</label>
+								<input type='text' id='name' name='name' ref={inputName} />
 							</div>
 
 							<div className='input_wrap'>
-								<label>Email</label>
-								<input type='email' name='email' ref={inputEmail} />
+								<label htmlFor='email'>Email</label>
+								<input type='email' id='email' name='email' ref={inputEmail} />
 							</div>
 
 							<div className='msg_wrap'>
-								<label>Message</label>
-								<textarea name='message' ref={inputMsg} />
+								<label htmlFor='message'>Message</label>
+								<textarea id='message' name='message' ref={inputMsg} />
 							</div>
 
 							<div className='btn_wrap'>
