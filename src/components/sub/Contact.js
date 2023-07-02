@@ -3,12 +3,12 @@ import { useRef, useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 function Contact() {
+	//kakao map
 	const container = useRef(null);
 	const [Traffic, setTraffic] = useState(false);
 	const [Location, setLocation] = useState(null);
 	const [Index, setIndex] = useState(0);
 	const [IsHover, setIsHover] = useState(false);
-	const form = useRef(null);
 
 	const { kakao } = window;
 	const info = [
@@ -42,6 +42,13 @@ function Contact() {
 	const markerImage = new kakao.maps.MarkerImage(imgSrc, imgSize, imgPos);
 	const marker = new kakao.maps.Marker({ position: option.center, image: markerImage });
 
+	//form
+	const form = useRef(null);
+	const inputName = useRef(null);
+	const inputEmail = useRef(null);
+	const inputMsg = useRef(null);
+	const [Success, setSuccess] = useState(false);
+
 	//폼메일 전송 함수
 	const sendEmail = (e) => {
 		e.preventDefault();
@@ -49,9 +56,14 @@ function Contact() {
 		emailjs.sendForm('service_893824x', 'template_kffl4y1', form.current, 'XT-0I8L5nMrP8bxB8').then(
 			(result) => {
 				console.log(result.text);
+				setSuccess(true);
+				inputName.current.value = '';
+				inputEmail.current.value = '';
+				inputMsg.current.value = '';
 			},
 			(error) => {
 				console.log(error.text);
+				setSuccess(false);
 			}
 		);
 	};
@@ -115,23 +127,25 @@ function Contact() {
 						<form ref={form} onSubmit={sendEmail} className='form_area'>
 							<div className='input_wrap'>
 								<label>Name</label>
-								<input type='text' name='name' />
+								<input type='text' name='name' ref={inputName} />
 							</div>
 
 							<div className='input_wrap'>
 								<label>Email</label>
-								<input type='email' name='email' />
+								<input type='email' name='email' ref={inputEmail} />
 							</div>
 
 							<div className='msg_wrap'>
 								<label>Message</label>
-								<textarea name='message' />
+								<textarea name='message' ref={inputMsg} />
 							</div>
 
 							<div className='btn_wrap'>
 								<input type='submit' value='Send' />
 							</div>
 						</form>
+
+						{Success && <p>메일이 성공적으로 발송되었습니다.</p>}
 					</div>
 				</article>
 			</section>
