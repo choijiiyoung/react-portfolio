@@ -1,5 +1,6 @@
 import Layout from '../common/Layout';
 import { useRef, useEffect, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 function Contact() {
 	const container = useRef(null);
@@ -7,6 +8,7 @@ function Contact() {
 	const [Location, setLocation] = useState(null);
 	const [Index, setIndex] = useState(0);
 	const [IsHover, setIsHover] = useState(false);
+	const form = useRef(null);
 
 	const { kakao } = window;
 	const info = [
@@ -39,6 +41,20 @@ function Contact() {
 	const imgPos = info[Index].imgPos;
 	const markerImage = new kakao.maps.MarkerImage(imgSrc, imgSize, imgPos);
 	const marker = new kakao.maps.Marker({ position: option.center, image: markerImage });
+
+	//폼메일 전송 함수
+	const sendEmail = (e) => {
+		e.preventDefault();
+
+		emailjs.sendForm('service_893824x', 'template_kffl4y1', form.current, 'XT-0I8L5nMrP8bxB8').then(
+			(result) => {
+				console.log(result.text);
+			},
+			(error) => {
+				console.log(error.text);
+			}
+		);
+	};
 
 	const mouseOverEvt = () => {
 		setIsHover(true);
@@ -94,6 +110,28 @@ function Contact() {
 								{Traffic ? 'Traffic ON' : 'Traffic OFF'}
 							</button>
 						</div>
+					</div>
+					<div id='formBox' className='form_wrap'>
+						<form ref={form} onSubmit={sendEmail} className='form_area'>
+							<div className='input_wrap'>
+								<label>Name</label>
+								<input type='text' name='name' />
+							</div>
+
+							<div className='input_wrap'>
+								<label>Email</label>
+								<input type='email' name='email' />
+							</div>
+
+							<div className='msg_wrap'>
+								<label>Message</label>
+								<textarea name='message' />
+							</div>
+
+							<div className='btn_wrap'>
+								<input type='submit' value='Send' />
+							</div>
+						</form>
 					</div>
 				</article>
 			</section>
