@@ -1,3 +1,78 @@
+//main
+main {
+	padding-bottom: 200px;
+
+	section {
+		padding-top: 50px;
+		margin-bottom: 100px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.inner {
+		max-width: 1200px;
+		width: auto;
+		margin: 0 auto;
+
+		> h1 {
+			margin-bottom: 30px;
+		}
+	}
+
+	.cross {
+		position: relative;
+		width: 32px;
+		height: 32px;
+
+		span {
+			position: absolute;
+			background-color: #222;
+
+			&.row {
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				width: 15px;
+				height: 3px;
+			}
+
+			&.col {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				width: 3px;
+				height: 15px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	main {
+		.inner {
+			max-width: 100%;
+			padding: 0 3vw;
+		}
+	}
+}
+
+@media screen and (max-width: $tablet) {
+	main {
+		padding-bottom: 50px;
+
+		section {
+			margin-bottom: 60px;
+		}
+		.inner {
+			padding: 0 30px;
+		}
+	}
+}
+
+//sub
 .container {
 	padding: 70px 0 150px;
 
