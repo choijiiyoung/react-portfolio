@@ -49,10 +49,18 @@ function Contact() {
 	};
 
 	useEffect(() => {
+		container.current.innerHTML = '';
 		const mapInstance = new kakao.maps.Map(container.current, option);
 
 		marker.setMap(mapInstance);
 		setLocation(mapInstance);
+
+		const setCenter = () => {
+			mapInstance.setCenter(info[Index].latlng);
+		};
+
+		window.addEventListener('resize', setCenter);
+		return () => window.removeEventListener('resize', setCenter);
 	}, [Index]);
 
 	useEffect(() => {
@@ -66,7 +74,7 @@ function Contact() {
 					<ul className='branch_list'>
 						{info.map((el, idx) => {
 							return (
-								<li key={idx} onClick={() => setIndex(idx)}>
+								<li key={idx} onClick={() => setIndex(idx)} className={idx === Index ? 'on' : ''}>
 									{el.title}
 								</li>
 							);
