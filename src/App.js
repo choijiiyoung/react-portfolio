@@ -5,13 +5,7 @@ import Footer from './components/common/Footer';
 import Header from './components/common/Header';
 
 //main
-import Visual from './components/main/Visual';
-import NewProduct from './components/main/NewProduct';
-import Imprv from './components/main/Imprv';
-import Prod from './components/main/Prod';
-import Collabo from './components/main/Collabo';
-import Partnership from './components/main/Partnership';
-import News from './components/main/News';
+import Main from './components/main/Main';
 
 //sub
 import Department from './components/sub/Department';
@@ -28,15 +22,7 @@ function App() {
 		<>
 			<Header />
 
-			<Route exact path='/'>
-				<Visual />
-				<NewProduct />
-				<Imprv />
-				<Prod />
-				<Collabo />
-				<Partnership />
-				<News />
-			</Route>
+			<Route exact path='/' component={Main} />
 
 			<Route path='/department' component={Department} />
 			<Route path='/community' component={Community} />
