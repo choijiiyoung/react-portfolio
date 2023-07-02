@@ -135,7 +135,7 @@
 }
 
 @media screen and (max-width: $tablet) {
-	.location {
+	.Contact {
 		.inner.place {
 			.branch_list {
 				li {
@@ -167,7 +167,7 @@
 }
 
 @media screen and (max-width: $mobile) {
-	.location {
+	.Contact {
 		.inner.contact {
 			gap: 30px;
 			flex-wrap: wrap;
