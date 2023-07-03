@@ -83,6 +83,9 @@ function Contact() {
 		marker.setMap(mapInstance);
 		setLocation(mapInstance);
 
+		//지도영역에 휠 기능 비활성화
+		mapInstance.setZoomable(false);
+
 		const setCenter = () => {
 			mapInstance.setCenter(info[Index].latlng);
 		};
