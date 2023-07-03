@@ -1,9 +1,9 @@
 import Layout from '../common/Layout';
+import Modal from '../common/Modal';
 import axios from 'axios';
 import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
-import Modal from '../common/Modal';
 
 function Youtube() {
 	const [Vids, setVids] = useState([]);
@@ -93,8 +93,16 @@ function Youtube() {
 														</div>
 
 														<div className='txt'>
-															<h2>{txt.snippet.title.length > 40 ? txt.snippet.title.substr(0, 40) + '...' : txt.snippet.title}</h2>
-															<p>{txt.snippet.description.length > 100 ? txt.snippet.description.substr(0, 100) + '...' : txt.snippet.description}</p>
+															<h2>
+																{txt.snippet.title.length > 40
+																	? txt.snippet.title.substr(0, 40) + '...'
+																	: txt.snippet.title}
+															</h2>
+															<p>
+																{txt.snippet.description.length > 100
+																	? txt.snippet.description.substr(0, 100) + '...'
+																	: txt.snippet.description}
+															</p>
 														</div>
 													</div>
 												);
@@ -106,8 +114,16 @@ function Youtube() {
 														</div>
 
 														<div className='txt'>
-															<h2>{txt.snippet.title.length > 40 ? txt.snippet.title.substr(0, 40) + '...' : txt.snippet.title}</h2>
-															<p>{txt.snippet.description.length > 100 ? txt.snippet.description.substr(0, 100) + '...' : txt.snippet.description}</p>
+															<h2>
+																{txt.snippet.title.length > 40
+																	? txt.snippet.title.substr(0, 40) + '...'
+																	: txt.snippet.title}
+															</h2>
+															<p>
+																{txt.snippet.description.length > 100
+																	? txt.snippet.description.substr(0, 100) + '...'
+																	: txt.snippet.description}
+															</p>
 														</div>
 													</div>
 												);
@@ -160,10 +176,18 @@ function Youtube() {
 											</div>
 
 											<div className='title'>
-												<h3>{thumb.snippet.title.length > 30 ? thumb.snippet.title.substr(0, 30) + '...' : thumb.snippet.title}</h3>
+												<h3>
+													{thumb.snippet.title.length > 30
+														? thumb.snippet.title.substr(0, 30) + '...'
+														: thumb.snippet.title}
+												</h3>
 												<p>{thumb.snippet.publishedAt.split('T')[0].split('-').join('.')}</p>
 											</div>
-											<p className='txt'>{thumb.snippet.description.length > 100 ? thumb.snippet.description.substr(0, 100) + '...' : thumb.snippet.description}</p>
+											<p className='txt'>
+												{thumb.snippet.description.length > 100
+													? thumb.snippet.description.substr(0, 100) + '...'
+													: thumb.snippet.description}
+											</p>
 										</article>
 									</li>
 								);
@@ -174,7 +198,10 @@ function Youtube() {
 			</Layout>
 
 			<Modal ref={modal}>
-				<iframe title={Vids[IdxModal]?.id} src={`https://www.youtube.com/embed/${Vids[IdxModal]?.snippet.resourceId.videoId}`}></iframe>
+				<iframe
+					title={Vids[IdxModal]?.id}
+					src={`https://www.youtube.com/embed/${Vids[IdxModal]?.snippet.resourceId.videoId}`}
+				></iframe>
 			</Modal>
 		</>
 	);
