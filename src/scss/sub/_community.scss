@@ -1,0 +1,73 @@
+.Community {
+	.input_box {
+		width: 100%;
+		border: 1px solid #bbb;
+		padding: 50px;
+		margin-bottom: 50px;
+
+		input[type='text'],
+		textarea {
+			width: 50%;
+			padding: 8px 10px;
+			border: 1px solid #aaa;
+			resize: none;
+			margin-bottom: 10px;
+			background: #f4ffff;
+		}
+
+		.btn_wrap {
+			button {
+				width: 150px;
+				height: 30px;
+				display: inline-block;
+				border: none;
+				background: #555;
+				margin-right: 20px;
+				color: #fff;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.show_box {
+		width: 100%;
+		border: 1px solid #bbb;
+		padding: 50px;
+
+		article {
+			background: #fff;
+			padding: 30px;
+			margin-bottom: 40px;
+			display: flex;
+			justify-content: space-between;
+			align-content: center;
+			flex-wrap: wrap;
+
+			.txt {
+				width: 88%;
+				h2 {
+					margin-bottom: 10px;
+				}
+			}
+			.btn_wrap {
+				width: 10%;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				gap: 20px;
+
+				button {
+					border: none;
+					background: transparent;
+					cursor: pointer;
+					&:nth-of-type(1) {
+						color: orange;
+					}
+					&:nth-of-type(2) {
+						color: orangered;
+					}
+				}
+			}
+		}
+	}
+}
