@@ -6,8 +6,15 @@ function Community() {
 	const textarea = useRef(null);
 	const [Posts, setPosts] = useState([]);
 
+	//리셋
+	const resetForm = () => {
+		input.current.value = '';
+		textarea.current.value = '';
+	};
+
 	const createPost = () => {
 		setPosts([...Posts, { title: input.current.value, content: textarea.current.value }]);
+		resetForm();
 	};
 
 	useEffect(() => {
