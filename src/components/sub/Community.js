@@ -36,6 +36,15 @@ function Community() {
 		);
 	};
 
+	const disableUpdate = (editIndex) => {
+		setPosts(
+			Posts.map((post, postIndex) => {
+				if (editIndex === postIndex) post.enableUpdate = false;
+				return post;
+			})
+		);
+	};
+
 	useEffect(() => {
 		console.log(Posts);
 	}, [Posts]);
@@ -60,7 +69,19 @@ function Community() {
 							return (
 								<article key={idx}>
 									{post.enableUpdate ? (
-										<>{/* 수정 */}</>
+										<>
+											{/* 수정 */}
+											<div className='txt_wrap'>
+												<input type='text' defaultValue={post.title} />
+												<br />
+												<textarea cols='30' rows='3' defaultValue={post.content}></textarea>
+											</div>
+
+											<div className='btn_wrap'>
+												<button onClick={() => disableUpdate(idx)}>CANCLE</button>
+												<button>UPDATE</button>
+											</div>
+										</>
 									) : (
 										<>
 											{/* 출력 */}
