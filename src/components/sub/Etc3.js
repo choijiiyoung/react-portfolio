@@ -1,17 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../common/Layout';
 
-function Etc() {
+function Etc3() {
 	return (
-		<Layout name={'Etc'}>
+		<Layout name={'Etc3'}>
 			<section>
 				<div className='inner'>
-					<FontAwesomeIcon icon={faHeart} />
+					<FontAwesomeIcon icon={faBagShopping} />
 				</div>
 			</section>
 		</Layout>
 	);
 }
 
-export default Etc;
+export default Etc3;

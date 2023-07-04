@@ -15,7 +15,10 @@ import Youtube from './components/sub/Youtube';
 import Contact from './components/sub/Contact';
 import Member from './components/sub/Member';
 
+//etc
 import Etc from './components/sub/Etc';
+import Etc2 from './components/sub/Etc2';
+import Etc3 from './components/sub/Etc3';
 
 import './scss/style.scss';
 
@@ -34,6 +37,8 @@ function App() {
 			<Route path='/member' component={Member} />
 
 			<Route path='/etc' component={Etc} />
+			<Route path='/etc2' component={Etc2} />
+			<Route path='/etc3' component={Etc3} />
 
 			<Footer />
 		</>

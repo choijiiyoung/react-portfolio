@@ -57,12 +57,12 @@ function Header() {
 						</Link>
 					</li>
 					<li>
-						<Link to='/etc'>
+						<Link to='/etc2'>
 							<FontAwesomeIcon icon={faUser} />
 						</Link>
 					</li>
 					<li>
-						<Link to='/etc'>
+						<Link to='/etc3'>
 							<FontAwesomeIcon icon={faBagShopping} />
 						</Link>
 					</li>
