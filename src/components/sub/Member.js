@@ -1,6 +1,20 @@
+import { useEffect, useState } from 'react';
 import Layout from '../common/Layout';
 
 function Member() {
+	const initVal = {
+		userid: '',
+		pwd1: '',
+		ped2: '',
+		email: '',
+	};
+
+	const [Val, setVal] = useState(initVal);
+
+	useEffect(() => {
+		console.log(Val);
+	}, [Val]);
+
 	return (
 		<Layout name={'Member'}>
 			<section>
@@ -30,7 +44,7 @@ function Member() {
 										</td>
 									</tr>
 
-									{/* re password */}
+									{/* re-password */}
 									<tr>
 										<th>
 											<label htmlFor='pwd2'>RE-PASSWORD</label>
