@@ -11,6 +11,11 @@ function Member() {
 
 	const [Val, setVal] = useState(initVal);
 
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setVal({ ...Val, [name]: value });
+	};
+
 	useEffect(() => {
 		console.log(Val);
 	}, [Val]);
@@ -30,7 +35,13 @@ function Member() {
 											<label htmlFor='userid'>USER ID</label>
 										</th>
 										<td>
-											<input type='text' name='userid' id='userid' placeholder='아이디를 입력하세요' />
+											<input
+												type='text'
+												name='userid'
+												id='userid'
+												placeholder='아이디를 입력하세요'
+												onChange={handleChange}
+											/>
 										</td>
 									</tr>
 
@@ -40,7 +51,13 @@ function Member() {
 											<label htmlFor='pwd1'>PASSWORD</label>
 										</th>
 										<td>
-											<input type='password' name='pwd1' id='pwd1' placeholder='비밀번호를 입력하세요' />
+											<input
+												type='password'
+												name='pwd1'
+												id='pwd1'
+												placeholder='비밀번호를 입력하세요'
+												onChange={handleChange}
+											/>
 										</td>
 									</tr>
 
@@ -50,7 +67,13 @@ function Member() {
 											<label htmlFor='pwd2'>RE-PASSWORD</label>
 										</th>
 										<td>
-											<input type='password' name='pwd2' id='pwd2' placeholder='비밀번호를 재입력하세요' />
+											<input
+												type='password'
+												name='pwd2'
+												id='pwd2'
+												placeholder='비밀번호를 재입력하세요'
+												onChange={handleChange}
+											/>
 										</td>
 									</tr>
 
@@ -60,7 +83,13 @@ function Member() {
 											<label htmlFor='email'>E-MAIL</label>
 										</th>
 										<td>
-											<input type='text' name='email' id='email' placeholder='이메일주소를 입력하세요' />
+											<input
+												type='text'
+												name='email'
+												id='email'
+												placeholder='이메일주소를 입력하세요'
+												onChange={handleChange}
+											/>
 										</td>
 									</tr>
 
