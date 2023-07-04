@@ -31,7 +31,7 @@ function Community() {
 						<textarea cols='30' rows='3' placeholder='본문을 입력하세요.' ref={textarea}></textarea>
 
 						<div className='btn_wrap'>
-							<button>cancle</button>
+							<button onClick={resetForm}>cancle</button>
 							<button onClick={createPost}>wirte</button>
 						</div>
 					</div>
