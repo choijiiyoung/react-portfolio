@@ -27,6 +27,15 @@ function Community() {
 		setPosts(Posts.filter((_, idx) => idx !== delIndex));
 	};
 
+	const enableUpdate = (editIndex) => {
+		setPosts(
+			Posts.map((post, postIndex) => {
+				if (editIndex === postIndex) post.enableUpdate = true;
+				return post;
+			})
+		);
+	};
+
 	useEffect(() => {
 		console.log(Posts);
 	}, [Posts]);
@@ -50,13 +59,22 @@ function Community() {
 						{Posts.map((post, idx) => {
 							return (
 								<article key={idx}>
-									<h2>{post.title}</h2>
-									<p>{post.content}</p>
+									{post.enableUpdate ? (
+										<>{/* 수정 */}</>
+									) : (
+										<>
+											{/* 출력 */}
+											<div className='txt_wrap'>
+												<h2>{post.title}</h2>
+												<p>{post.content}</p>
+											</div>
 
-									<nav className='btn_wrap'>
-										<button onClick={resetForm}>EDIT</button>
-										<button onClick={() => deletePost(idx)}>DELETE</button>
-									</nav>
+											<nav className='btn_wrap'>
+												<button onClick={() => enableUpdate(idx)}>EDIT</button>
+												<button onClick={() => deletePost(idx)}>DELETE</button>
+											</nav>
+										</>
+									)}
 								</article>
 							);
 						})}
