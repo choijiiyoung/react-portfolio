@@ -18,7 +18,7 @@ function Community() {
 			return alert('제목과 본문을 모두 입력하세요.');
 		}
 
-		setPosts([...Posts, { title: input.current.value, content: textarea.current.value }]);
+		setPosts([{ title: input.current.value, content: textarea.current.value }, ...Posts]);
 		resetForm();
 	};
 
@@ -36,9 +36,25 @@ function Community() {
 						<textarea cols='30' rows='3' placeholder='본문을 입력하세요.' ref={textarea}></textarea>
 
 						<div className='btn_wrap'>
-							<button onClick={resetForm}>cancle</button>
-							<button onClick={createPost}>wirte</button>
+							<button onClick={resetForm}>CANCLE</button>
+							<button onClick={createPost}>WRITE</button>
 						</div>
+					</div>
+
+					<div className='show_box'>
+						{Posts.map((post, idx) => {
+							return (
+								<article key={idx}>
+									<h2>{post.title}</h2>
+									<p>{post.content}</p>
+
+									<nav className='btn_wrap'>
+										<button>EDIT</button>
+										<button>DELETE</button>
+									</nav>
+								</article>
+							);
+						})}
 					</div>
 				</div>
 			</section>
