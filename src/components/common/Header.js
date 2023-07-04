@@ -52,17 +52,17 @@ function Header() {
 
 				<ul className='util'>
 					<li>
-						<Link to='#'>
+						<Link to='/etc'>
 							<FontAwesomeIcon icon={faHeart} />
 						</Link>
 					</li>
 					<li>
-						<Link to='#'>
+						<Link to='/etc'>
 							<FontAwesomeIcon icon={faUser} />
 						</Link>
 					</li>
 					<li>
-						<Link to='#'>
+						<Link to='/etc'>
 							<FontAwesomeIcon icon={faBagShopping} />
 						</Link>
 					</li>

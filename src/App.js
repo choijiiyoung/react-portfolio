@@ -15,6 +15,8 @@ import Youtube from './components/sub/Youtube';
 import Contact from './components/sub/Contact';
 import Member from './components/sub/Member';
 
+import Etc from './components/sub/Etc';
+
 import './scss/style.scss';
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
 			<Route path='/youtube' component={Youtube} />
 			<Route path='/contact' component={Contact} />
 			<Route path='/member' component={Member} />
+
+			<Route path='/etc' component={Etc} />
 
 			<Footer />
 		</>
