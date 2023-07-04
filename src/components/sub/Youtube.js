@@ -9,6 +9,10 @@ function Youtube() {
 	const [Vids, setVids] = useState([]);
 	const [Txts, setTxts] = useState([]);
 	const [Thumbs, setThumbs] = useState([]);
+	const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
+	const num = 4;
+	const ytbSlide = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
+	const ytbList = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
 
 	const frame = useRef(null); //상단 슬라이드
 	const panel = useRef([]); //상단 텍스트
@@ -17,19 +21,25 @@ function Youtube() {
 	const modal = useRef(null);
 	const [IdxModal, setIdxModal] = useState(0);
 
-	const fetchYoutube = async () => {
-		const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
-		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
-		const num = 4;
-		const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${list}&key=${key}&maxResults=${num}`;
-
-		const result = await axios.get(url);
+	//유튜브 슬라이드 fetch
+	const fetchYoutubeSlide = async () => {
+		const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${ytbSlide}&key=${key}&maxResults=${num}`;
+		const result = await axios.get(baseURL);
 		setVids(result.data.items);
 		setTxts(result.data.items);
+	};
+
+	//유트브 리스트 fetch
+	const fetchYoutubeList = async () => {
+		const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${ytbList}&key=${key}&maxResults=${num}`;
+		const result = await axios.get(baseURL);
 		setThumbs(result.data.items);
 	};
 
-	useEffect(() => fetchYoutube(), []);
+	useEffect(() => {
+		fetchYoutubeSlide();
+		fetchYoutubeList();
+	}, []);
 
 	const btnPrev = () => {
 		frame.current.prepend(frame.current.lastElementChild);
@@ -69,6 +79,7 @@ function Youtube() {
 													onClick={() => {
 														modal.current.open();
 														setIdxModal(idx);
+														console.log(vid?.snippet.resourceId.videoId, 'vids videoid');
 													}}
 												>
 													<img className='thumb' src={vid.snippet.thumbnails.standard.url} alt={vid.snippet.title} />
@@ -170,6 +181,7 @@ function Youtube() {
 												onClick={() => {
 													modal.current.open();
 													setIdxModal(idx);
+													console.log(thumb?.snippet.resourceId.videoId, 'thumb videoid');
 												}}
 											>
 												<img src={thumb.snippet.thumbnails.standard.url} alt={thumb.snippet.title} className='thumb' />
