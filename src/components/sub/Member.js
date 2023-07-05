@@ -5,7 +5,7 @@ function Member() {
 	const initVal = {
 		userid: '',
 		pwd1: '',
-		ped2: '',
+		pwd2: '',
 		email: '',
 	};
 
@@ -16,6 +16,24 @@ function Member() {
 		setVal({ ...Val, [name]: value });
 	};
 
+	const check = (value) => {
+		const errs = {};
+		const eng = /[a-zA-Z]/;
+		const num = /[0-9]/;
+		const spc = /[~!@#$%^&*()_+]/;
+
+		if (value.userid.length < 5) {
+			errs.userid = '아이디를 5글자 이상 입력하세요.';
+		}
+		return errs;
+	};
+
+	const handelSubmit = (e) => {
+		e.preventDefault();
+		console.log(Val, '현재 스테이트값');
+		console.log(check(Val), 'chk val');
+	};
+
 	useEffect(() => {
 		console.log(Val);
 	}, [Val]);
@@ -24,7 +42,7 @@ function Member() {
 		<Layout name={'Member'}>
 			<section>
 				<div className='inner'>
-					<form>
+					<form onSubmit={handelSubmit}>
 						<fieldset>
 							<legend className='h'>회원가입 폼 양식</legend>
 							<table>
