@@ -49,9 +49,10 @@ function Gallery() {
 												<img
 													src={`http://farm${item.farm}.staticflickr.com/${item.server}/buddyicons/${item.owner}.jpg`}
 													alt={item.owner}
+													onError={(e) => e.target.setAttribute('src', 'https://www.flickr.com/images/buddyicon.gif')}
 												/>
 												<p>{item.title}</p>
-												<span className='userid'>{item.owner}</span>
+												<span>{item.owner}</span>
 											</div>
 										</div>
 									</article>
