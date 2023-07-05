@@ -1,70 +1,116 @@
 .Community {
-	.input_box {
-		width: 100%;
-		border: 1px solid #bbb;
-		padding: 50px;
-		margin-bottom: 50px;
+	.inner {
+		.input_box {
+			width: 100%;
+			border: 1px solid #bbb;
+			padding: 50px;
+			margin-bottom: 50px;
 
-		input[type='text'],
-		textarea {
-			width: 50%;
-			padding: 8px 10px;
-			border: 1px solid #aaa;
-			resize: none;
-			margin-bottom: 10px;
-			background: #f4ffff;
+			input[type='text'],
+			textarea {
+				width: 50%;
+				padding: 8px 10px;
+				border: 1px solid #aaa;
+				resize: none;
+				margin-bottom: 10px;
+				background: #f4ffff;
+			}
+
+			.btn_wrap {
+				button {
+					width: 150px;
+					height: 30px;
+					display: inline-block;
+					border: none;
+					background: #555;
+					margin-right: 20px;
+					color: #fff;
+					cursor: pointer;
+				}
+			}
 		}
 
-		.btn_wrap {
-			button {
-				width: 150px;
-				height: 30px;
-				display: inline-block;
-				border: none;
-				background: #555;
-				margin-right: 20px;
-				color: #fff;
-				cursor: pointer;
+		.show_box {
+			width: 100%;
+			border: 1px solid #bbb;
+			padding: 50px;
+
+			article {
+				background: #fff;
+				padding: 30px;
+				margin-bottom: 40px;
+				display: flex;
+				justify-content: space-between;
+				align-content: center;
+				flex-wrap: wrap;
+
+				.txt {
+					width: 70%;
+					h2 {
+						margin-bottom: 10px;
+					}
+
+					input,
+					textarea {
+						width: 100%;
+						padding: 8px 10px;
+						border: 1px solid lightblue;
+						margin-bottom: 20px;
+						background: #f4ffff;
+						resize: none;
+						outline: none;
+					}
+				}
+				.btn_wrap {
+					width: 10%;
+					display: flex;
+					align-items: center;
+					justify-content: flex-end;
+					gap: 20px;
+
+					button {
+						border: none;
+						background: transparent;
+						cursor: pointer;
+						&:nth-of-type(1) {
+							color: orange;
+						}
+						&:nth-of-type(2) {
+							color: orangered;
+						}
+					}
+				}
 			}
 		}
 	}
+}
 
-	.show_box {
-		width: 100%;
-		border: 1px solid #bbb;
-		padding: 50px;
+@media screen and (max-width: $tablet) {
+	.Community {
+		.inner {
+			.input_box {
+				input[type='text'],
+				textarea {
+					width: 100%;
+				}
+				.btn_wrap {
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: space-between;
 
-		article {
-			background: #fff;
-			padding: 30px;
-			margin-bottom: 40px;
-			display: flex;
-			justify-content: space-between;
-			align-content: center;
-			flex-wrap: wrap;
-
-			.txt {
-				width: 88%;
-				h2 {
-					margin-bottom: 10px;
+					button {
+						width: 47%;
+						margin-right: 0;
+					}
 				}
 			}
-			.btn_wrap {
-				width: 10%;
-				display: flex;
-				align-items: center;
-				justify-content: flex-end;
-				gap: 20px;
 
-				button {
-					border: none;
-					background: transparent;
-					cursor: pointer;
-					&:nth-of-type(1) {
-						color: orange;
-					}
-					&:nth-of-type(2) {
-						color: orangered;
+			.show_box {
+				article {
+					.txt,
+					.btn_wrap {
+						width: 100%;
+						margin-top: 20px;
 					}
 				}
 			}

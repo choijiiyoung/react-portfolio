@@ -67,7 +67,6 @@ function Community() {
 				return post;
 			})
 		);
-
 		setAllowed(true);
 	};
 
