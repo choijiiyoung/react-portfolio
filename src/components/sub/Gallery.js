@@ -1,5 +1,6 @@
 import Layout from '../common/Layout';
 import axios from 'axios';
+import Masonry from 'react-masonry-component';
 import { useState, useEffect } from 'react';
 
 function Gallery() {
@@ -32,29 +33,31 @@ function Gallery() {
 			<section>
 				<div className='inner'>
 					<div className='frame'>
-						{Items.map((item, idx) => {
-							return (
-								<article key={idx}>
-									<div className='item'>
-										<div className='pic'>
-											<img
-												src={`https://live.staticflickr.com/${item.server}/${item.id}_${item.secret}_m.jpg`}
-												alt={item.title}
-											/>
-										</div>
+						<Masonry elementType={'div'} options={{ transitionDuration: '0.5s' }}>
+							{Items.map((item, idx) => {
+								return (
+									<article key={idx}>
+										<div className='item'>
+											<div className='pic'>
+												<img
+													src={`https://live.staticflickr.com/${item.server}/${item.id}_${item.secret}_m.jpg`}
+													alt={item.title}
+												/>
+											</div>
 
-										<div className='profile'>
-											<img
-												src={`http://farm${item.farm}.staticflickr.com/${item.server}/buddyicons/${item.owner}.jpg`}
-												alt={item.owner}
-											/>
-											<p>{item.title}</p>
-											<span className='userid'>{item.owner}</span>
+											<div className='profile'>
+												<img
+													src={`http://farm${item.farm}.staticflickr.com/${item.server}/buddyicons/${item.owner}.jpg`}
+													alt={item.owner}
+												/>
+												<p>{item.title}</p>
+												<span className='userid'>{item.owner}</span>
+											</div>
 										</div>
-									</div>
-								</article>
-							);
-						})}
+									</article>
+								);
+							})}
+						</Masonry>
 					</div>
 				</div>
 			</section>
