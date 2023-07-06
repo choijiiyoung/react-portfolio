@@ -1,5 +1,9 @@
 .Gallery {
 	.frame {
+		opacity: 0;
+		transform: translateY(200px);
+		transition: 0.5s;
+		min-height: 500px;
 		&::after {
 			content: '';
 			display: block;
@@ -50,11 +54,38 @@
 						font: bold 14px/1.2 'arial';
 						margin-bottom: 10px;
 					}
-
-					span {
-						cursor: pointer;
-					}
 				}
+			}
+		}
+	}
+	.frame.on {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+
+	.loader {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+@media screen and (max-width: $tablet) {
+	.Gallery {
+		.frame {
+			article {
+				width: calc(100% / 2);
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $mobile) {
+	.Gallery {
+		.frame {
+			article {
+				width: calc(100% / 1);
 			}
 		}
 	}
