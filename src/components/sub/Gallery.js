@@ -13,7 +13,7 @@ function Gallery() {
 		const key = 'db5673d91b2fb6704d13f6b0181efd99';
 		const method_interest = 'flickr.interestingness.getList';
 		const method_user = 'flickr.people.getPhotos';
-		const num = 20;
+		const num = 50;
 		let url = '';
 		let counter = 0;
 
