@@ -37,7 +37,7 @@ function Youtube() {
 	//유트브 리스트 fetch
 	const fetchYoutubeList = async () => {
 		num = 4;
-		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
+		const list = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
 		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
 		const result = await axios.get(url);
 		setThumbs(result.data.items);
@@ -87,7 +87,6 @@ function Youtube() {
 															onClick={() => {
 																modal.current.open();
 																setIdxModal(idx);
-																console.log(vid?.snippet.resourceId.videoId, 'vids videoid');
 															}}
 														>
 															<img
@@ -174,7 +173,6 @@ function Youtube() {
 												onClick={() => {
 													modal.current.open();
 													setIdxModal(idx);
-													console.log(thumb?.snippet.resourceId.videoId, 'thumb videoid');
 												}}
 											>
 												<img src={thumb.snippet.thumbnails.standard.url} alt={thumb.snippet.title} className='thumb' />
