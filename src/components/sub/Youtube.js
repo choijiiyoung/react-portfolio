@@ -9,30 +9,37 @@ function Youtube() {
 	const [Vids, setVids] = useState([]);
 	const [Txts, setTxts] = useState([]);
 	const [Thumbs, setThumbs] = useState([]);
+	const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet`;
 	const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
-	const num = 4;
-	const ytbSlide = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
-	const ytbList = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
+	let num = 0;
 
-	const frame = useRef(null); //상단 슬라이드
-	const panel = useRef([]); //상단 텍스트
-	const [IdxNext, setIdxNext] = useState(3); //next버튼
+	//슬라이드
+	const frame = useRef(null);
+	const panel = useRef([]);
+	let [ActiveNum, setActiveNum] = useState(0);
 
+	//팝업
 	const modal = useRef(null);
 	const [IdxModal, setIdxModal] = useState(0);
 
 	//유튜브 슬라이드 fetch
 	const fetchYoutubeSlide = async () => {
-		const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${ytbSlide}&key=${key}&maxResults=${num}`;
-		const result = await axios.get(baseURL);
+		num = 5;
+		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
+		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
+		const result = await axios.get(url);
 		setVids(result.data.items);
 		setTxts(result.data.items);
+		frame.current.append(frame.current.firstElementChild);
+		frame.current.append(frame.current.firstElementChild);
 	};
 
 	//유트브 리스트 fetch
 	const fetchYoutubeList = async () => {
-		const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${ytbList}&key=${key}&maxResults=${num}`;
-		const result = await axios.get(baseURL);
+		num = 4;
+		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
+		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
+		const result = await axios.get(url);
 		setThumbs(result.data.items);
 	};
 
@@ -41,21 +48,20 @@ function Youtube() {
 		fetchYoutubeList();
 	}, []);
 
-	const btnPrev = () => {
-		frame.current.prepend(frame.current.lastElementChild);
+	//슬라이드 Next 버튼
+	const btnNext = () => {
+		const panels = panel.current.querySelectorAll('.panel');
+		frame.current.append(frame.current.firstElementChild);
+		ActiveNum === frame.current.children.length - 1 ? setActiveNum(0) : setActiveNum(++ActiveNum);
+		activation(panels, ActiveNum);
 	};
 
-	const btnNext = () => {
-		frame.current.append(frame.current.firstElementChild);
-		setIdxNext(IdxNext + 1);
-
-		if (IdxNext === frame.current.children.length - 1) {
-			setIdxNext(0);
-		}
-		console.log(IdxNext);
-
-		const panels = panel.current.parentElement.querySelectorAll('.panel');
-		activation(panels, IdxNext);
+	//슬라이드 Prev 버튼
+	const btnPrev = () => {
+		const panels = panel.current.querySelectorAll('.panel');
+		frame.current.prepend(frame.current.lastElementChild);
+		ActiveNum === 0 ? setActiveNum(frame.current.children.length - 1) : setActiveNum(--ActiveNum);
+		activation(panels, ActiveNum);
 	};
 
 	const activation = (arr, idx) => {
@@ -70,74 +76,61 @@ function Youtube() {
 					<div className='inner'>
 						<div className='ytb_wrap'>
 							<div className='ytb_area'>
-								<div className='slide_wrap' ref={frame}>
-									{Vids.map((vid, idx) => {
-										return (
-											<article key={idx}>
-												<div
-													className='pic'
-													onClick={() => {
-														modal.current.open();
-														setIdxModal(idx);
-														console.log(vid?.snippet.resourceId.videoId, 'vids videoid');
-													}}
-												>
-													<img className='thumb' src={vid.snippet.thumbnails.standard.url} alt={vid.snippet.title} />
-													<span className='num'>0{idx + 1}</span>
-												</div>
+								<div className='slide_frame'>
+									<div className='slide_wrap'>
+										<div className='slide_area' ref={frame}>
+											{Vids.map((vid, idx) => {
+												return (
+													<article key={idx} className={idx === ActiveNum ? 'on' : ''}>
+														<div
+															className='pic'
+															onClick={() => {
+																modal.current.open();
+																setIdxModal(idx);
+																console.log(vid?.snippet.resourceId.videoId, 'vids videoid');
+															}}
+														>
+															<img
+																className='thumb'
+																src={vid.snippet.thumbnails.standard.url}
+																alt={vid.snippet.title}
+															/>
+															<span className='num'>0{idx + 1}</span>
+														</div>
 
-												<div className='txt'>
-													<p>{vid.snippet.publishedAt.split('T')[0].split('-').join('.')}</p>
-												</div>
-											</article>
-										);
-									})}
+														<div className='txt'>
+															<p>{vid.snippet.publishedAt.split('T')[0].split('-').join('.')}</p>
+														</div>
+													</article>
+												);
+											})}
+										</div>
+									</div>
 								</div>
+
 								<div className='info_wrap'>
-									<div className='txt_wrap'>
+									<div className='txt_wrap' ref={panel}>
 										{Txts.map((txt, idx) => {
-											if (idx === 2)
-												return (
-													<div className='panel on' key={idx} ref={panel}>
-														<div className='num'>
-															<span>0{idx + 1}</span>
-														</div>
-
-														<div className='txt'>
-															<h2>
-																{txt.snippet.title.length > 40
-																	? txt.snippet.title.substr(0, 40) + '...'
-																	: txt.snippet.title}
-															</h2>
-															<p>
-																{txt.snippet.description.length > 100
-																	? txt.snippet.description.substr(0, 100) + '...'
-																	: txt.snippet.description}
-															</p>
-														</div>
+											return (
+												<div key={idx} className={idx === ActiveNum ? 'panel on' : 'panel'}>
+													<div className='num'>
+														<span>0{idx + 1}</span>
 													</div>
-												);
-											else
-												return (
-													<div className='panel' key={idx}>
-														<div className='num'>
-															<span>0{idx + 1}</span>
-														</div>
 
-														<div className='txt'>
-															<h2>
-																{txt.snippet.title.length > 40
-																	? txt.snippet.title.substr(0, 40) + '...'
-																	: txt.snippet.title}
-															</h2>
-															<p>
-																{txt.snippet.description.length > 100
-																	? txt.snippet.description.substr(0, 100) + '...'
-																	: txt.snippet.description}
-															</p>
-														</div>
+													<div className='txt'>
+														<h2>
+															{txt.snippet.title.length > 30
+																? txt.snippet.title.substr(0, 30) + '...'
+																: txt.snippet.title}
+														</h2>
+														<p>
+															{txt.snippet.description.length > 80
+																? txt.snippet.description.substr(0, 80) + '...'
+																: txt.snippet.description}
+														</p>
 													</div>
-												);
+												</div>
+											);
 										})}
 									</div>
 									<div className='btn_wrap'>
