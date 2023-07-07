@@ -15,7 +15,7 @@ function Youtube() {
 
 	//슬라이드
 	const frame = useRef(null);
-	const panel = useRef([]);
+	const panel = useRef(null);
 	let [ActiveNum, setActiveNum] = useState(0);
 
 	//팝업
