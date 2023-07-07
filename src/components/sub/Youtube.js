@@ -20,7 +20,8 @@ function Youtube() {
 
 	//팝업
 	const modal = useRef(null);
-	const [IdxModal, setIdxModal] = useState(0);
+	const [Index, setIndex] = useState(0);
+	const [State, setState] = useState(0);
 
 	//유튜브 슬라이드 fetch
 	const fetchYoutubeSlide = async () => {
@@ -86,7 +87,9 @@ function Youtube() {
 															className='pic'
 															onClick={() => {
 																modal.current.open();
-																setIdxModal(idx);
+																setState(0);
+																console.log(State, 'Vids');
+																setIndex(idx);
 															}}
 														>
 															<img
@@ -172,7 +175,9 @@ function Youtube() {
 												className='pic'
 												onClick={() => {
 													modal.current.open();
-													setIdxModal(idx);
+													setState(1);
+													console.log(State, 'Thumb');
+													setIndex(idx);
 												}}
 											>
 												<img src={thumb.snippet.thumbnails.standard.url} alt={thumb.snippet.title} className='thumb' />
@@ -202,8 +207,12 @@ function Youtube() {
 
 			<Modal ref={modal}>
 				<iframe
-					title={Vids[IdxModal]?.id}
-					src={`https://www.youtube.com/embed/${Vids[IdxModal]?.snippet.resourceId.videoId}`}
+					title={!State ? Vids[Index]?.id : Thumbs[Index]?.id}
+					src={
+						!State
+							? `https://www.youtube.com/embed/${Vids[Index]?.snippet.resourceId.videoId}`
+							: `https://www.youtube.com/embed/${Thumbs[Index]?.snippet.resourceId.videoId}`
+					}
 				></iframe>
 			</Modal>
 		</>
