@@ -42,13 +42,17 @@ function Member() {
 			if (el.checked) checkArr.push(el.value);
 		});
 		setVal({ ...Val, [name]: checkArr });
-		console.log(setVal({ ...Val, [name]: checkArr }));
 	};
 
 	const handleSelect = (e) => {
-		e.preventDefault();
 		const { name, value } = e.target;
 		setVal({ ...Val, [name]: value });
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setErr(check(Val));
+		setSubmit(true);
 	};
 
 	const check = (value) => {
@@ -84,14 +88,6 @@ function Member() {
 		return errs;
 	};
 
-	const handelSubmit = (e) => {
-		e.preventDefault();
-		console.log(Val, '현재 스테이트값');
-		console.log(check(Val), 'chk val');
-		setErr(check(Val));
-		setSubmit(true);
-	};
-
 	const resetForm = () => {
 		const select = selectEl.current.options[0];
 		const checks = checkGroup.current.querySelectorAll('input');
@@ -99,6 +95,7 @@ function Member() {
 		select.selected = true;
 		checks.forEach((el) => (el.checked = false));
 		radios.forEach((el) => (el.checked = false));
+		setVal(initVal);
 	};
 
 	useEffect(() => {
@@ -113,7 +110,7 @@ function Member() {
 		<Layout name={'Member'}>
 			<section>
 				<div className='inner'>
-					<form onSubmit={handelSubmit}>
+					<form onSubmit={handleSubmit}>
 						<fieldset>
 							<legend className='h'>회원가입 폼 양식</legend>
 							<table>
