@@ -2,11 +2,14 @@ import Layout from '../common/Layout';
 import axios from 'axios';
 import Masonry from 'react-masonry-component';
 import { useState, useEffect, useRef } from 'react';
+import Modal from '../common/Modal';
 
 function Gallery() {
+	const openModal = useRef(null);
 	const frame = useRef(null);
 	const [Items, setItems] = useState([]);
 	const [Loader, setLoader] = useState(true);
+	const [Index, setIndex] = useState(0);
 
 	const getFlickr = async (opt) => {
 		const baseURL = `https://www.flickr.com/services/rest/?format=json&nojsoncallback=1`;
@@ -41,41 +44,58 @@ function Gallery() {
 	useEffect(() => getFlickr({ type: 'interest' }), []);
 
 	return (
-		<Layout name={'Gallery'}>
-			<section>
-				<div className='inner'>
-					<div className='frame' ref={frame}>
-						<Masonry elementType={'div'} options={{ transitionDuration: '0.5s' }}>
-							{Items.map((item, idx) => {
-								return (
-									<article key={idx}>
-										<div className='item'>
-											<div className='pic'>
-												<img
-													src={`https://live.staticflickr.com/${item.server}/${item.id}_${item.secret}_m.jpg`}
-													alt={item.title}
-												/>
-											</div>
+		<>
+			<Layout name={'Gallery'}>
+				<section>
+					<div className='inner'>
+						<div className='frame' ref={frame}>
+							<Masonry elementType={'div'} options={{ transitionDuration: '0.5s' }}>
+								{Items.map((item, idx) => {
+									return (
+										<article key={idx}>
+											<div className='item'>
+												<div
+													className='pic'
+													onClick={() => {
+														openModal.current?.open();
+														setIndex(idx);
+													}}
+												>
+													<img
+														src={`https://live.staticflickr.com/${item.server}/${item.id}_${item.secret}_m.jpg`}
+														alt={item.title}
+													/>
+												</div>
 
-											<div className='profile'>
-												<img
-													src={`http://farm${item.farm}.staticflickr.com/${item.server}/buddyicons/${item.owner}.jpg`}
-													alt={item.owner}
-													onError={(e) => e.target.setAttribute('src', 'https://www.flickr.com/images/buddyicon.gif')}
-												/>
-												<p>{item.title}</p>
-												<span>{item.owner}</span>
+												<div className='profile'>
+													<img
+														src={`http://farm${item.farm}.staticflickr.com/${item.server}/buddyicons/${item.owner}.jpg`}
+														alt={item.owner}
+														onError={(e) => e.target.setAttribute('src', 'https://www.flickr.com/images/buddyicon.gif')}
+													/>
+													<p>{item.title}</p>
+													<span>{item.owner}</span>
+												</div>
 											</div>
-										</div>
-									</article>
-								);
-							})}
-						</Masonry>
+										</article>
+									);
+								})}
+							</Masonry>
+						</div>
+						{Loader && (
+							<img className='loader' src={`${process.env.PUBLIC_URL}/img/gallery/loading.gif`} alt='loader' />
+						)}
 					</div>
-					{Loader && <img className='loader' src={`${process.env.PUBLIC_URL}/img/gallery/loading.gif`} alt='loader' />}
-				</div>
-			</section>
-		</Layout>
+				</section>
+			</Layout>
+
+			<Modal ref={openModal}>
+				<img
+					src={`https://live.staticflickr.com/${Items[Index]?.server}/${Items[Index]?.id}_${Items[Index]?.secret}_b.jpg`}
+					alt={Items[Index]?.title}
+				/>
+			</Modal>
+		</>
 	);
 }
 
