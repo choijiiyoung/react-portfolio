@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Layout from '../common/Layout';
 
 function Member() {
+	const radioGroup = useRef(null);
+	const checkGroup = useRef(null);
+	const selectEl = useRef(null);
 	const initVal = {
 		userid: '',
 		pwd1: '',
@@ -18,7 +21,9 @@ function Member() {
 	const [Submit, setSubmit] = useState(false);
 
 	const handleChange = (e) => {
+		//현재 입력하고 있는 input요소의 name,value값을 비구조화할당으로 뽑아서 출력
 		const { name, value } = e.target;
+		//기존 초기 Val State값을 deep copy해서 현재 입력하고 있는 항목의 name값과 value값으로 기존 State를 덮어쓰기 해서 변경 (불변성 유지)
 		setVal({ ...Val, [name]: value });
 	};
 
@@ -31,6 +36,7 @@ function Member() {
 		const { name } = e.target;
 		const inputs = e.target.parentElement.querySelectorAll('input');
 
+		//모든 체크박스를 반복돌면서 하나라도 체크되어 있는게 있으면 true값 반환
 		let checkArr = [];
 		inputs.forEach((el) => {
 			if (el.checked) checkArr.push(el.value);
@@ -86,10 +92,20 @@ function Member() {
 		setSubmit(true);
 	};
 
+	const resetForm = () => {
+		const select = selectEl.current.options[0];
+		const checks = checkGroup.current.querySelectorAll('input');
+		const radios = radioGroup.current.querySelectorAll('input');
+		select.selected = true;
+		checks.forEach((el) => (el.checked = false));
+		radios.forEach((el) => (el.checked = false));
+	};
+
 	useEffect(() => {
 		const len = Object.keys(Err).length;
 		if (len === 0 && Submit) {
 			alert('모든 인증을 통과했습니다.');
+			resetForm();
 		}
 	}, [Err]);
 
@@ -181,7 +197,7 @@ function Member() {
 									{/* gender */}
 									<tr>
 										<th>GENDER</th>
-										<td>
+										<td ref={radioGroup}>
 											<input type='radio' name='gender' value='male' id='mail' onChange={handleRadio} />
 											<label htmlFor='male'>Male</label>
 
@@ -195,7 +211,7 @@ function Member() {
 									{/* interest */}
 									<tr>
 										<th>INTERESTS</th>
-										<td>
+										<td ref={checkGroup}>
 											<input type='checkbox' name='interests' value='music' id='music' onChange={handleCheck} />
 											<label htmlFor='music'>Music</label>
 
@@ -215,7 +231,7 @@ function Member() {
 											<label htmlFor='edu'>EDUCATION</label>
 										</th>
 										<td>
-											<select name='edu' id='edu' onChange={handleSelect}>
+											<select name='edu' id='edu' onChange={handleSelect} ref={selectEl}>
 												<option value=''>최종학력을 선택하세요</option>
 												<option value='elementary-school'>초등학교 졸업</option>
 												<option value='middle-school'>중학교 졸업</option>
