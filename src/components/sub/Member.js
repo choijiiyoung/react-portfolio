@@ -39,6 +39,12 @@ function Member() {
 		console.log(setVal({ ...Val, [name]: checkArr }));
 	};
 
+	const handleSelect = (e) => {
+		e.preventDefault();
+		const { name, value } = e.target;
+		setVal({ ...Val, [name]: value });
+	};
+
 	const check = (value) => {
 		const errs = {};
 		const eng = /[a-zA-Z]/;
@@ -62,6 +68,12 @@ function Member() {
 		}
 		if (value.interests.length === 0) {
 			errs.interests = '관심사를 하나 이상 체크하세요.';
+		}
+		if (value.edu === '') {
+			errs.edu = '최종학력을 선택하세요.';
+		}
+		if (value.comments.length < 10) {
+			errs.comments = '남기는 말을 최소 10글자 이상 입력하세요.';
 		}
 		return errs;
 	};
@@ -102,7 +114,10 @@ function Member() {
 												id='userid'
 												placeholder='아이디를 입력하세요'
 												onChange={handleChange}
+												value={Val.userid}
 											/>
+											<br />
+											{Err.userid && <p>{Err.userid}</p>}
 										</td>
 									</tr>
 
@@ -118,11 +133,14 @@ function Member() {
 												id='pwd1'
 												placeholder='비밀번호를 입력하세요'
 												onChange={handleChange}
+												value={Val.pwd1}
 											/>
+											<br />
+											{Err.pwd1 && <p>{Err.pwd1}</p>}
 										</td>
 									</tr>
 
-									{/* re-password */}
+									{/* re password */}
 									<tr>
 										<th>
 											<label htmlFor='pwd2'>RE-PASSWORD</label>
@@ -134,7 +152,10 @@ function Member() {
 												id='pwd2'
 												placeholder='비밀번호를 재입력하세요'
 												onChange={handleChange}
+												value={Val.pwd2}
 											/>
+											<br />
+											{Err.pwd2 && <p>{Err.pwd2}</p>}
 										</td>
 									</tr>
 
@@ -150,7 +171,10 @@ function Member() {
 												id='email'
 												placeholder='이메일주소를 입력하세요'
 												onChange={handleChange}
+												value={Val.email}
 											/>
+											<br />
+											{Err.email && <p>{Err.email}</p>}
 										</td>
 									</tr>
 
@@ -158,11 +182,13 @@ function Member() {
 									<tr>
 										<th>GENDER</th>
 										<td>
-											<input type='radio' name='gender' value='male' id='male' onChange={handleRadio} />
+											<input type='radio' name='gender' value='male' id='mail' onChange={handleRadio} />
 											<label htmlFor='male'>Male</label>
 
-											<input type='radio' name='gender' value='female' id='female' onChange={handleRadio} />
+											<input type='radio' name='gender' value='female' id='femail' onChange={handleRadio} />
 											<label htmlFor='female'>FeMale</label>
+											<br />
+											{Err.gender && <p>{Err.gender}</p>}
 										</td>
 									</tr>
 
@@ -178,13 +204,50 @@ function Member() {
 
 											<input type='checkbox' name='interests' value='game' id='game' onChange={handleCheck} />
 											<label htmlFor='game'>Game</label>
+											<br />
+											{Err.interests && <p>{Err.interests}</p>}
 										</td>
 									</tr>
 
-									{/* btn wrap */}
+									{/* education */}
+									<tr>
+										<th>
+											<label htmlFor='edu'>EDUCATION</label>
+										</th>
+										<td>
+											<select name='edu' id='edu' onChange={handleSelect}>
+												<option value=''>최종학력을 선택하세요</option>
+												<option value='elementary-school'>초등학교 졸업</option>
+												<option value='middle-school'>중학교 졸업</option>
+												<option value='hight-schoolr'>고등학교 졸업</option>
+												<option value='collage'>대학교 졸업</option>
+											</select>
+											{Err.edu && <p>{Err.edu}</p>}
+										</td>
+									</tr>
+
+									{/* comments */}
+									<tr>
+										<th>
+											<label htmlFor='comments'>Leave Message</label>
+										</th>
+										<td>
+											<textarea
+												name='comments'
+												id='comments'
+												cols='30'
+												rows='3'
+												value={Val.comments}
+												onChange={handleChange}
+											></textarea>
+											{Err.comments && <p>{Err.comments}</p>}
+										</td>
+									</tr>
+
+									{/* btn set */}
 									<tr>
 										<th colSpan='2'>
-											<input type='reset' value='CANCEL' />
+											<input type='reset' value='CANCEL' onClick={() => setVal(initVal)} />
 											<input type='submit' value='SEND' />
 										</th>
 									</tr>
