@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import Layout from '../common/Layout';
+import { useHistory } from 'react-router-dom';
 
 function Member() {
 	const radioGroup = useRef(null);
 	const checkGroup = useRef(null);
 	const selectEl = useRef(null);
+	const history = useHistory();
 	const initVal = {
 		userid: '',
 		pwd1: '',
@@ -110,6 +112,7 @@ function Member() {
 		<Layout name={'Member'}>
 			<section>
 				<div className='inner'>
+					<button onClick={() => history.goBack()}>뒤로 가기</button>
 					<form onSubmit={handleSubmit}>
 						<fieldset>
 							<legend className='h'>회원가입 폼 양식</legend>
