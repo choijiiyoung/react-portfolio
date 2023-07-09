@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
@@ -17,9 +18,15 @@ const Menu = forwardRef((props, ref) => {
 	});
 
 	return (
-		<>
+		<AnimatePresence>
 			{Open && (
-				<nav id='mobilePanel' onClick={() => setOpen(false)}>
+				<motion.nav
+					id='mobilePanel'
+					initial={{ opacity: 0, x: -280 }}
+					animate={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
+					exit={{ opacity: 0, x: -280, transition: { duration: 0.5 } }}
+					onClick={() => setOpen(false)}
+				>
 					<h1>
 						<Link to='/'>LOGO</Link>
 					</h1>
@@ -56,9 +63,9 @@ const Menu = forwardRef((props, ref) => {
 							</NavLink>
 						</li>
 					</ul>
-				</nav>
+				</motion.nav>
 			)}
-		</>
+		</AnimatePresence>
 	);
 });
 

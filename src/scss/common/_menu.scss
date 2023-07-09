@@ -10,13 +10,19 @@
 
 	h1 {
 		font: bold 40px/1 'arial';
-		color: #fff;
 		margin-bottom: 30px;
+		a {
+			color: #fff;
+		}
 	}
 
 	#gnb {
 		li {
 			margin-bottom: 10px;
+
+			a {
+				color: #fff;
+			}
 		}
 	}
 }
