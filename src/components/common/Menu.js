@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const Menu = forwardRef((props, ref) => {
 	const [Open, setOpen] = useState(false);
@@ -20,7 +20,9 @@ const Menu = forwardRef((props, ref) => {
 		<>
 			{Open && (
 				<nav id='mobilePanel' onClick={() => setOpen(false)}>
-					<h1>LOGO</h1>
+					<h1>
+						<Link to='/'>LOGO</Link>
+					</h1>
 
 					<ul id='gnb'>
 						<li>
