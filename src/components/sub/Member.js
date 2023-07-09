@@ -7,6 +7,10 @@ function Member() {
 		pwd1: '',
 		pwd2: '',
 		email: '',
+		gender: '',
+		interests: [],
+		edu: '',
+		comments: '',
 	};
 
 	const [Val, setVal] = useState(initVal);
@@ -16,6 +20,23 @@ function Member() {
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setVal({ ...Val, [name]: value });
+	};
+
+	const handleRadio = (e) => {
+		const { name, value } = e.target;
+		setVal({ ...Val, [name]: value });
+	};
+
+	const handleCheck = (e) => {
+		const { name } = e.target;
+		const inputs = e.target.parentElement.querySelectorAll('input');
+
+		let checkArr = [];
+		inputs.forEach((el) => {
+			if (el.checked) checkArr.push(el.value);
+		});
+		setVal({ ...Val, [name]: checkArr });
+		console.log(setVal({ ...Val, [name]: checkArr }));
 	};
 
 	const check = (value) => {
@@ -35,6 +56,12 @@ function Member() {
 		}
 		if (value.email.length < 8 || !/@/.test(value.email)) {
 			errs.email = '이메일주소는 8글자 이상 @를 포함하세요.';
+		}
+		if (value.gender === '') {
+			errs.gender = '성별을 체크해주세요.';
+		}
+		if (value.interests.length === 0) {
+			errs.interests = '관심사를 하나 이상 체크하세요.';
 		}
 		return errs;
 	};
@@ -131,10 +158,10 @@ function Member() {
 									<tr>
 										<th>GENDER</th>
 										<td>
-											<input type='radio' name='gender' value='male' id='male' />
+											<input type='radio' name='gender' value='male' id='male' onChange={handleRadio} />
 											<label htmlFor='male'>Male</label>
 
-											<input type='radio' name='gender' value='female' id='female' />
+											<input type='radio' name='gender' value='female' id='female' onChange={handleRadio} />
 											<label htmlFor='female'>FeMale</label>
 										</td>
 									</tr>
@@ -143,13 +170,13 @@ function Member() {
 									<tr>
 										<th>INTERESTS</th>
 										<td>
-											<input type='checkbox' name='interests' value='music' id='music' />
+											<input type='checkbox' name='interests' value='music' id='music' onChange={handleCheck} />
 											<label htmlFor='music'>Music</label>
 
-											<input type='checkbox' name='interests' value='reading' id='reading' />
+											<input type='checkbox' name='interests' value='reading' id='reading' onChange={handleCheck} />
 											<label htmlFor='reading'>Reading</label>
 
-											<input type='checkbox' name='interests' value='game' id='game' />
+											<input type='checkbox' name='interests' value='game' id='game' onChange={handleCheck} />
 											<label htmlFor='game'>Game</label>
 										</td>
 									</tr>
