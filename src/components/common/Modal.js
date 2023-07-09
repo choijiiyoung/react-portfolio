@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useState } from 'react';
+import { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 
 const Modal = forwardRef((props, ref) => {
 	const [Open, setOpen] = useState(false);
@@ -6,6 +6,10 @@ const Modal = forwardRef((props, ref) => {
 	useImperativeHandle(ref, () => {
 		return { open: () => setOpen(true) };
 	});
+
+	useEffect(() => {
+		Open ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
+	}, [Open]);
 
 	return (
 		<>
