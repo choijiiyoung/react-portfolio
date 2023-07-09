@@ -25,6 +25,15 @@ function Member() {
 		if (value.userid.length < 5) {
 			errs.userid = '아이디를 5글자 이상 입력하세요.';
 		}
+		if (value.pwd1.length < 5 || !eng.test(value.pwd1) || !num.test(value.pwd1) || !spc.test(value.pwd1)) {
+			errs.pwd1 = '비밀번호는 5글자 이상, 영문, 숫자, 특수문자를 모두 포함하세요.';
+		}
+		if (value.pwd1 !== value.pwd2 || !value.pwd2) {
+			errs.pwd2 = '두개의 비밀번호를 동일하게 입력하세요.';
+		}
+		if (value.emial.length < 8 || !/@/.test(value.emial)) {
+			errs.email = '이메일주소는 8글자 이상 @를 포함하세요.';
+		}
 		return errs;
 	};
 
