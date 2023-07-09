@@ -10,6 +10,8 @@ function Member() {
 	};
 
 	const [Val, setVal] = useState(initVal);
+	const [Err, setErr] = useState({});
+	const [Submit, setSubmit] = useState(false);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -31,7 +33,7 @@ function Member() {
 		if (value.pwd1 !== value.pwd2 || !value.pwd2) {
 			errs.pwd2 = '두개의 비밀번호를 동일하게 입력하세요.';
 		}
-		if (value.emial.length < 8 || !/@/.test(value.emial)) {
+		if (value.email.length < 8 || !/@/.test(value.email)) {
 			errs.email = '이메일주소는 8글자 이상 @를 포함하세요.';
 		}
 		return errs;
@@ -41,11 +43,16 @@ function Member() {
 		e.preventDefault();
 		console.log(Val, '현재 스테이트값');
 		console.log(check(Val), 'chk val');
+		setErr(check(Val));
+		setSubmit(true);
 	};
 
 	useEffect(() => {
-		console.log(Val);
-	}, [Val]);
+		const len = Object.keys(Err).length;
+		if (len === 0 && Submit) {
+			alert('모든 인증을 통과했습니다.');
+		}
+	}, [Err]);
 
 	return (
 		<Layout name={'Member'}>
