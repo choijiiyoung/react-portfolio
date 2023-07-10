@@ -6,12 +6,13 @@ import { Link, NavLink } from 'react-router-dom';
 import Menu from './Menu';
 import { useRef } from 'react';
 
-function Header() {
+function Header({ type }) {
 	const toggleMenu = useRef(null);
 	const active = 'on';
 	return (
 		<>
-			<header>
+			{/* props로 전달되는 type값을 header의 class명으로 지정해서 스타일 분기처리 */}
+			<header className={type}>
 				<div className='header_inner'>
 					<h1 className='logo'>
 						<Link to='/'>

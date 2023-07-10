@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 //common
 import Footer from './components/common/Footer';
@@ -25,9 +25,10 @@ import './scss/style.scss';
 function App() {
 	return (
 		<>
-			<Header />
-
-			<Route exact path='/' component={Main} />
+			<Switch>
+				<Route exact path='/' component={Main} />
+				<Route path='/' render={() => <Header type={'sub'} />} />
+			</Switch>
 
 			<Route path='/department' component={Department} />
 			<Route path='/community' component={Community} />
