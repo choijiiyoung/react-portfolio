@@ -207,7 +207,7 @@ function Youtube() {
 
 			<Modal ref={modal}>
 				<iframe
-					title={!State ? Vids[Index]?.id : Thumbs[Index]?.id}
+					title={modal.title}
 					src={
 						!State
 							? `https://www.youtube.com/embed/${Vids[Index]?.snippet.resourceId.videoId}`
