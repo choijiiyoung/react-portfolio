@@ -16,7 +16,7 @@ function Gallery() {
 		const key = 'db5673d91b2fb6704d13f6b0181efd99';
 		const method_interest = 'flickr.interestingness.getList';
 		const method_user = 'flickr.people.getPhotos';
-		const num = 50;
+		const num = 20;
 		let url = '';
 		let counter = 0;
 
@@ -31,6 +31,7 @@ function Gallery() {
 		imgs.forEach((img, idx) => {
 			img.onload = () => {
 				++counter;
+				console.log(counter);
 
 				if (counter === imgs.length) {
 					setLoader(false);
