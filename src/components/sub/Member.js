@@ -1,13 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import Layout from '../common/Layout';
 import { useHistory } from 'react-router-dom';
 
 function Member() {
-	const radioGroup = useRef(null);
-	const checkGroup = useRef(null);
-	const selectEl = useRef(null);
-	const history = useHistory();
-	const initVal = {
+	//initVal값을 useRef로 담아놓으면 해당 값은 컴포넌트가 재랜더링되더라도 값을 기억
+	const initVal = useRef({
 		userid: '',
 		pwd1: '',
 		pwd2: '',
@@ -16,9 +13,13 @@ function Member() {
 		interests: [],
 		edu: '',
 		comments: '',
-	};
+	});
+	const radioGroup = useRef(null);
+	const checkGroup = useRef(null);
+	const selectEl = useRef(null);
+	const history = useHistory();
 
-	const [Val, setVal] = useState(initVal);
+	const [Val, setVal] = useState(initVal.current);
 	const [Err, setErr] = useState({});
 	const [Submit, setSubmit] = useState(false);
 
@@ -90,15 +91,15 @@ function Member() {
 		return errs;
 	};
 
-	const resetForm = () => {
+	const resetForm = useCallback(() => {
 		const select = selectEl.current.options[0];
 		const checks = checkGroup.current.querySelectorAll('input');
 		const radios = radioGroup.current.querySelectorAll('input');
 		select.selected = true;
 		checks.forEach((el) => (el.checked = false));
 		radios.forEach((el) => (el.checked = false));
-		setVal(initVal);
-	};
+		setVal(initVal.current);
+	}, []);
 
 	useEffect(() => {
 		const len = Object.keys(Err).length;
@@ -106,7 +107,11 @@ function Member() {
 			alert('모든 인증을 통과했습니다.');
 			resetForm();
 		}
-	}, [Err]);
+	}, [Err, Submit, resetForm]);
+
+	useEffect(() => {
+		console.log(Val);
+	}, [Val]);
 
 	return (
 		<Layout name={'Member'}>
@@ -263,7 +268,7 @@ function Member() {
 									{/* btn set */}
 									<tr>
 										<th colSpan='2'>
-											<input type='reset' value='CANCEL' onClick={() => setVal(initVal)} />
+											<input type='reset' value='CANCEL' onClick={() => setVal(initVal.current)} />
 											<input type='submit' value='SEND' />
 										</th>
 									</tr>
