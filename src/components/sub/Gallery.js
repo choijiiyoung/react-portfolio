@@ -31,7 +31,6 @@ function Gallery() {
 		imgs.forEach((img, idx) => {
 			img.onload = () => {
 				++counter;
-				console.log(counter);
 
 				if (counter === imgs.length) {
 					setLoader(false);
