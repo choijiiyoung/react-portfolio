@@ -45,7 +45,7 @@ header {
 			}
 		}
 
-		.btn_mo {
+		.fa-bars {
 			display: none;
 			margin-left: auto;
 		}
@@ -63,16 +63,22 @@ header.main {
 	background: transparent;
 	z-index: 2;
 
-	h1 a {
-		color: #000;
+	.header_inner {
+		// h1 a {
+		// 	color: #000;
+		// }
+
+		nav #gnb li a {
+			color: #000;
+		}
+
+		.fa-bars {
+			color: #000;
+		}
 	}
 
-	#gnb li a {
-		color: #000;
-	}
-
-	.fa-bars {
-		color: #000;
+	a {
+		color: #555;
 	}
 }
 
@@ -96,7 +102,7 @@ header.main {
 				display: none;
 			}
 
-			.btn_mo {
+			.fa-bars {
 				display: block;
 				font-size: 20px;
 			}

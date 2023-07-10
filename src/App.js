@@ -1,8 +1,10 @@
 import { Route, Switch } from 'react-router-dom';
+import { useRef } from 'react';
 
 //common
 import Footer from './components/common/Footer';
 import Header from './components/common/Header';
+import Menu from './components/common/Menu';
 
 //main
 import Main from './components/main/Main';
@@ -23,11 +25,13 @@ import Etc3 from './components/sub/Etc3';
 import './scss/style.scss';
 
 function App() {
+	const menu = useRef(null);
+
 	return (
 		<>
 			<Switch>
-				<Route exact path='/' component={Main} />
-				<Route path='/' render={() => <Header type={'sub'} />} />
+				<Route exact path='/' render={() => <Main menu={menu} />} />
+				<Route path='/' render={() => <Header type={'sub'} menu={menu} />} />
 			</Switch>
 
 			<Route path='/department' component={Department} />
@@ -36,12 +40,13 @@ function App() {
 			<Route path='/youtube' component={Youtube} />
 			<Route path='/contact' component={Contact} />
 			<Route path='/member' component={Member} />
-
 			<Route path='/etc' component={Etc} />
 			<Route path='/etc2' component={Etc2} />
 			<Route path='/etc3' component={Etc3} />
 
 			<Footer />
+
+			<Menu ref={menu} />
 		</>
 	);
 }

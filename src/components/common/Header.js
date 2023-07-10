@@ -3,11 +3,8 @@ import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faBagShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, NavLink } from 'react-router-dom';
-import Menu from './Menu';
-import { useRef } from 'react';
 
-function Header({ type }) {
-	const toggleMenu = useRef(null);
+function Header({ type, menu }) {
 	const active = 'on';
 	return (
 		<>
@@ -73,12 +70,14 @@ function Header({ type }) {
 						</li>
 					</ul>
 
-					<NavLink to='#' className='btn_mo'>
-						<FontAwesomeIcon icon={faBars} onClick={() => toggleMenu.current.toggle()} />
-					</NavLink>
+					<FontAwesomeIcon
+						icon={faBars}
+						onClick={() => {
+							menu.current.toggle();
+						}}
+					/>
 				</div>
 			</header>
-			<Menu ref={toggleMenu} />
 		</>
 	);
 }

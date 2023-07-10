@@ -7,10 +7,10 @@ import Partnership from './Partnership';
 import Prod from './Prod';
 import Visual from './Visual';
 
-function Main() {
+function Main({ menu }) {
 	return (
 		<main>
-			<Header type={'main'} />
+			<Header type={'main'} menu={menu} />
 			<Visual />
 			<NewProduct />
 			<Imprv />
