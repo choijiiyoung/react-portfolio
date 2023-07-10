@@ -88,7 +88,6 @@ function Youtube() {
 															onClick={() => {
 																modal.current.open();
 																setState(0);
-																console.log(State, 'Vids');
 																setIndex(idx);
 															}}
 														>
@@ -176,7 +175,6 @@ function Youtube() {
 												onClick={() => {
 													modal.current.open();
 													setState(1);
-													console.log(State, 'Thumb');
 													setIndex(idx);
 												}}
 											>
