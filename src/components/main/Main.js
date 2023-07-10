@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Header from '../common/Header';
 import Collabo from './Collabo';
 import Imprv from './Imprv';
@@ -22,4 +23,4 @@ function Main({ menu }) {
 	);
 }
 
-export default Main;
+export default memo(Main);

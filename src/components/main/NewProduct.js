@@ -1,5 +1,7 @@
+import { memo } from 'react';
+
 function NewProduct() {
 	return <div>NewProduct</div>;
 }
 
-export default NewProduct;
+export default memo(NewProduct);

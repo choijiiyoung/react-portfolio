@@ -2,6 +2,7 @@ import { faEnvira } from '@fortawesome/free-brands-svg-icons';
 import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faBagShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { memo } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 function Header({ type, menu }) {
@@ -82,4 +83,4 @@ function Header({ type, menu }) {
 	);
 }
 
-export default Header;
+export default memo(Header);
