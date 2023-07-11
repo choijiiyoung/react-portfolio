@@ -10,9 +10,9 @@
 			width: 210px;
 			flex-direction: column;
 			justify-content: space-between;
-			transform: translateX(-200px);
-			opacity: 0;
-			transition: 0.8s;
+			// transform: translateX(-200px);
+			// opacity: 0;
+			// transition: 0.8s;
 
 			.btn_view {
 				width: 62px;
@@ -21,9 +21,9 @@
 
 		.txt_area {
 			flex: 1;
-			transform: translateX(200px);
-			opacity: 0;
-			transition: 0.8s;
+			// transform: translateX(200px);
+			// opacity: 0;
+			// transition: 0.8s;
 
 			.news_list {
 				display: flex;
@@ -77,19 +77,19 @@
 	}
 }
 
-#news.on {
-	.content {
-		.title_area {
-			transform: translateX(0px);
-			opacity: 1;
-		}
+// #news.on {
+// 	.content {
+// 		.title_area {
+// 			transform: translateX(0px);
+// 			opacity: 1;
+// 		}
 
-		.txt_area {
-			transform: translateX(0px);
-			opacity: 1;
-		}
-	}
-}
+// 		.txt_area {
+// 			transform: translateX(0px);
+// 			opacity: 1;
+// 		}
+// 	}
+// }
 
 @media screen and (max-width: 1300px) {
 	#news {
@@ -184,12 +184,6 @@
 @media screen and (max-width: $mobile) {
 	#news {
 		.content {
-			// .title_area {
-			// 	.btn_view {
-			// 		width: auto;
-			// 	}
-			// }
-
 			.txt_area {
 				.news_list {
 					flex-wrap: wrap;

@@ -1,13 +1,15 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, memo, useState } from 'react';
 
 function Btns() {
 	const btnRef = useRef(null);
-	let pos = useRef([]);
+	const pos = useRef([]);
+	const [Num, setNum] = useState(0);
 
 	const getPos = () => {
 		pos.current = [];
 		const secs = btnRef.current.parentElement.querySelectorAll('.my_scroll');
 		for (const sec of secs) pos.current.push(sec.offsetTop);
+		setNum(pos.current.length);
 	};
 
 	const visualEvt = () => {
@@ -31,14 +33,13 @@ function Btns() {
 
 	return (
 		<ul className='btn_navi' ref={btnRef}>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
+			{Array(Num)
+				.fill()
+				.map((_, idx) => {
+					return <li key={idx}></li>;
+				})}
 		</ul>
 	);
 }
 
-export default Btns;
+export default memo(Btns);

@@ -7,10 +7,10 @@
 		.item {
 			flex: 1;
 			border-top: 1px solid #ddd;
-			opacity: 0;
-			transform: translateY(100px);
-			transition-delay: 0.5s;
-			transition: 1s;
+			// opacity: 0;
+			// transform: translateY(100px);
+			// transition-delay: 0.5s;
+			// transition: 1s;
 
 			.name {
 				padding: 20px 0;
@@ -34,14 +34,14 @@
 	}
 }
 
-#partnership.on {
-	.prs_wrap {
-		.item {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-}
+// #partnership.on {
+// 	.prs_wrap {
+// 		.item {
+// 			opacity: 1;
+// 			transform: translateY(0);
+// 		}
+// 	}
+// }
 
 @media screen and (max-width: $tablet) {
 	#partnership {
