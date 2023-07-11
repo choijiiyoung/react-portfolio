@@ -1,18 +1,10 @@
+import { useSelector } from 'react-redux';
 import Layout from '../common/Layout';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Department() {
-	const [Members, setMembers] = useState([]);
-	const [Schedules, setSchedules] = useState([]);
-
-	useEffect(() => {
-		axios.get(`${process.env.PUBLIC_URL}/DB/department.json`).then((data) => {
-			setMembers(data.data.members);
-			setSchedules(data.data.schedule);
-		});
-	}, []);
+	const Members = useSelector((store) => store.departmentReducer.members);
+	const Schedules = useSelector((store) => store.departmentReducer.schedules);
 
 	return (
 		<Layout name={'Department'}>
@@ -22,8 +14,8 @@ function Department() {
 						<div className='left'>
 							<p>
 								<strong>
-									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore nemo, cupiditate debiti quaerat blanditiis eos neque iusto quibusdam odio? Dolorem. orem ipsum dolor, sit amet
-									consectetur
+									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore nemo, cupiditate debiti quaerat
+									blanditiis eos neque iusto quibusdam odio? Dolorem. orem ipsum dolor, sit amet consectetur
 								</strong>
 							</p>
 						</div>
@@ -33,15 +25,23 @@ function Department() {
 								<div className='cont_area'>
 									<div className='item txt'>
 										<p>
-											Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, illum atque eius ex ipsam iusto tempora neque consectetur? Minima corporis eos dolores aliquid tenetur aperiam
-											alias deserunt nihil atque dolor?
+											Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, illum atque eius ex ipsam iusto
+											tempora neque consectetur? Minima corporis eos dolores aliquid tenetur aperiam alias deserunt
+											nihil atque dolor?
 										</p>
 										<p>
-											Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni facilis, totam ad itaque ab asperiores nam incidunt tempore soluta culpa distinctio ipsum aliquid sed deserunt
-											placeat, provident sapiente maxime ullam.
+											Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni facilis, totam ad itaque ab
+											asperiores nam incidunt tempore soluta culpa distinctio ipsum aliquid sed deserunt placeat,
+											provident sapiente maxime ullam.
 										</p>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique obcaecati quisquam veritatis impedit animi facilis laborum dolores suscipit quasi commodi.</p>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fuga! Lorem ipsum dolor sit amet consectetur adip</p>
+										<p>
+											Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique obcaecati quisquam veritatis
+											impedit animi facilis laborum dolores suscipit quasi commodi.
+										</p>
+										<p>
+											Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fuga! Lorem ipsum dolor sit amet
+											consectetur adip
+										</p>
 									</div>
 									<article className='item'>
 										<img src={`${process.env.PUBLIC_URL}/img/department/bg.jpg`} alt={'bg'} />
@@ -52,7 +52,10 @@ function Department() {
 								<h2>Lorem ipsum</h2>
 								<div className='cont_area'>
 									<div className='item txt'>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit quos nesciunt, ex laboriosam qui voluptates fugiat aut molestiae dignissimos cupiditate! Blanditiis</p>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit quos nesciunt, ex
+											laboriosam qui voluptates fugiat aut molestiae dignissimos cupiditate! Blanditiis
+										</p>
 										<Link to='#' className='btn_view'>
 											View full list of awards
 										</Link>
