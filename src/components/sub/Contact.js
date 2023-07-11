@@ -95,7 +95,9 @@ function Contact() {
 	}, [Index]);
 
 	useEffect(() => {
-		Traffic ? Location?.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC) : Location?.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+		Traffic
+			? Location?.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC)
+			: Location?.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
 		Traffic ? mouseOverEvt() : mouseOutEvt();
 	}, [Traffic]);
 
@@ -113,14 +115,23 @@ function Contact() {
 						})}
 					</ul>
 					<div className='map_wrap'>
-						<div id='map' ref={container} onMouseOver={mouseOverEvt} onMouseOut={mouseOutEvt} className={IsHover || Traffic ? 'on' : ''}></div>
+						<div
+							id='map'
+							ref={container}
+							onMouseOver={mouseOverEvt}
+							onMouseOut={mouseOutEvt}
+							className={IsHover || Traffic ? 'on' : ''}
+						></div>
 					</div>
 				</article>
 
 				<article className='inner contact'>
 					<div className='btn_wrap'>
 						<div className='btn_area'>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius possimus voluptates at impedit nisi, ratione modi totam animi omnis? Delectus!</p>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius possimus voluptates at impedit nisi,
+								ratione modi totam animi omnis? Delectus!
+							</p>
 							<button type='button' className='btn_toggle' onClick={() => setTraffic(!Traffic)}>
 								{Traffic ? 'Traffic ON' : 'Traffic OFF'}
 							</button>
