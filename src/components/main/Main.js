@@ -7,6 +7,7 @@ import News from './News';
 import Partnership from './Partnership';
 import Prod from './Prod';
 import Visual from './Visual';
+import Btns from './Btns';
 
 function Main({ menu }) {
 	return (
@@ -19,6 +20,7 @@ function Main({ menu }) {
 			<Collabo />
 			<Partnership />
 			<News />
+			<Btns />
 		</main>
 	);
 }

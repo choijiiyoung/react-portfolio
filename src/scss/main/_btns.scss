@@ -1,0 +1,35 @@
+.btn_navi {
+	position: fixed;
+	left: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+
+	li {
+		width: 10px;
+		height: 10px;
+		border-radius: 5px;
+		background: #efefef;
+		cursor: pointer;
+		transition: 0.5s;
+
+		+ li {
+			margin-top: 20px;
+		}
+
+		&.on {
+			height: 80px;
+			background: #000;
+		}
+	}
+}
+
+@media screen and (max-width: $tablet) {
+	.btn_navi {
+		left: 10px;
+		li {
+			width: 15px;
+			height: 15px;
+			border-radius: 8px;
+		}
+	}
+}

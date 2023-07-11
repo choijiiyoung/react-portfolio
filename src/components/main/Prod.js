@@ -6,57 +6,57 @@ function Prod() {
 	return (
 		<>
 			<section id='prod'>
-				<div class='inner'>
-					<ul class='prod_list'>
-						<li class='on'>
+				<div className='inner'>
+					<ul className='prod_list'>
+						<li className='on'>
 							<Link to='#'>
-								<div class='cross'>
-									<span class='bar row'></span>
-									<span class='bar col'></span>
+								<div className='cross'>
+									<span className='bar row'></span>
+									<span className='bar col'></span>
 								</div>
 								<p>Speakers</p>
 								<FontAwesomeIcon icon={faArrowUp} />
 							</Link>
-							<article class='pic'>
+							<article className='pic'>
 								<img src={`${process.env.PUBLIC_URL}/img/main/prod1.jpg`} alt={'img'} />
 							</article>
 						</li>
 						<li>
 							<Link to='#'>
-								<div class='cross'>
-									<span class='bar row'></span>
-									<span class='bar col'></span>
+								<div className='cross'>
+									<span className='bar row'></span>
+									<span className='bar col'></span>
 								</div>
 								<p>Headphones</p>
 								<FontAwesomeIcon icon={faArrowUp} />
 							</Link>
-							<article class='pic'>
+							<article className='pic'>
 								<img src={`${process.env.PUBLIC_URL}/img/main/prod1.jpg`} alt={'img'} />
 							</article>
 						</li>
 						<li>
 							<Link to='#'>
-								<div class='cross'>
-									<span class='bar row'></span>
-									<span class='bar col'></span>
+								<div className='cross'>
+									<span className='bar row'></span>
+									<span className='bar col'></span>
 								</div>
 								<p>Televisions</p>
 								<FontAwesomeIcon icon={faArrowUp} />
 							</Link>
-							<article class='pic'>
+							<article className='pic'>
 								<img src={`${process.env.PUBLIC_URL}/img/main/prod1.jpg`} alt={'img'} />
 							</article>
 						</li>
 						<li>
 							<Link to='#'>
-								<div class='cross'>
-									<span class='bar row'></span>
-									<span class='bar col'></span>
+								<div className='cross'>
+									<span className='bar row'></span>
+									<span className='bar col'></span>
 								</div>
 								<p>Accessories</p>
 								<FontAwesomeIcon icon={faArrowUp} />
 							</Link>
-							<article class='pic'>
+							<article className='pic'>
 								<img src={`${process.env.PUBLIC_URL}/img/main/prod1.jpg`} alt={'img'} />
 							</article>
 						</li>
