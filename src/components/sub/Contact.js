@@ -1,17 +1,24 @@
 import Layout from '../common/Layout';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import emailjs from '@emailjs/browser';
 
 function Contact() {
+	//form
+	const form = useRef(null);
+	const inputName = useRef(null);
+	const inputEmail = useRef(null);
+	const inputMsg = useRef(null);
+	const [Success, setSuccess] = useState(false);
+
 	//kakao map
-	const container = useRef(null);
+	const container = useRef(null); //kakao map 지도가 들어갈 프레임도 가상요소 참조를 위해 useRef로 참조 객체 생성
 	const [Traffic, setTraffic] = useState(false);
 	const [Location, setLocation] = useState(null);
 	const [Index, setIndex] = useState(0);
 	const [IsHover, setIsHover] = useState(false);
 
-	const { kakao } = window;
-	const info = [
+	const { kakao } = window; //윈도우 객체를 비구조 할당으로 변경
+	const info = useRef([
 		{
 			title: 'KBS',
 			latlng: new kakao.maps.LatLng(37.524798972757594, 126.91675264356007),
@@ -33,21 +40,26 @@ function Contact() {
 			imgSize: new kakao.maps.Size(50, 64),
 			imgPos: { offset: new kakao.maps.Point(25, 32) },
 		},
-	];
+	]);
 
-	const option = { center: info[Index].latlng, level: 3 };
-	const imgSrc = info[Index].imgSrc;
-	const imgSize = info[Index].imgSize;
-	const imgPos = info[Index].imgPos;
-	const markerImage = new kakao.maps.MarkerImage(imgSrc, imgSize, imgPos);
-	const marker = new kakao.maps.Marker({ position: option.center, image: markerImage });
+	const marker = useMemo(() => {
+		return new kakao.maps.Marker({
+			position: info.current[Index].latlng,
+			image: new kakao.maps.MarkerImage(
+				info.current[Index].imgSrc,
+				info.current[Index].imgSize,
+				info.current[Index].imgPos
+			),
+		});
+	}, [Index, kakao]);
 
-	//form
-	const form = useRef(null);
-	const inputName = useRef(null);
-	const inputEmail = useRef(null);
-	const inputMsg = useRef(null);
-	const [Success, setSuccess] = useState(false);
+	const mouseOverEvt = () => {
+		setIsHover(true);
+	};
+
+	const mouseOutEvt = () => {
+		setIsHover(false);
+	};
 
 	//폼메일 전송 함수
 	const sendEmail = (e) => {
@@ -68,17 +80,9 @@ function Contact() {
 		);
 	};
 
-	const mouseOverEvt = () => {
-		setIsHover(true);
-	};
-
-	const mouseOutEvt = () => {
-		setIsHover(false);
-	};
-
 	useEffect(() => {
 		container.current.innerHTML = '';
-		const mapInstance = new kakao.maps.Map(container.current, option);
+		const mapInstance = new kakao.maps.Map(container.current, { center: info.current[Index].latlng, level: 3 });
 
 		marker.setMap(mapInstance);
 		setLocation(mapInstance);
@@ -87,26 +91,26 @@ function Contact() {
 		mapInstance.setZoomable(false);
 
 		const setCenter = () => {
-			mapInstance.setCenter(info[Index].latlng);
+			mapInstance.setCenter(info.current[Index].latlng);
 		};
 
 		window.addEventListener('resize', setCenter);
 		return () => window.removeEventListener('resize', setCenter);
-	}, [Index]);
+	}, [Index, kakao, marker]);
 
 	useEffect(() => {
 		Traffic
 			? Location?.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC)
 			: Location?.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
 		Traffic ? mouseOverEvt() : mouseOutEvt();
-	}, [Traffic]);
+	}, [Traffic, Location, kakao]);
 
 	return (
 		<Layout name={'Contact'}>
 			<section>
 				<article className='inner place'>
 					<ul className='branch_list'>
-						{info.map((el, idx) => {
+						{info.current.map((el, idx) => {
 							return (
 								<li key={idx} onClick={() => setIndex(idx)} className={idx === Index ? 'on' : ''}>
 									{el.title}
