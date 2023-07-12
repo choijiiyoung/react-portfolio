@@ -1,4 +1,4 @@
-import { useRef, useEffect, memo, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Anime from '../../asset/anime';
 
 function Btns() {
@@ -14,7 +14,7 @@ function Btns() {
 	};
 
 	const activation = () => {
-		const base = -window.innerHeight / 2;
+		const base = -350;
 		const scroll = window.scrollY;
 		const btns = btnRef.current.children;
 		const boxs = btnRef.current.parentElement.querySelectorAll('.my_scroll');
@@ -43,6 +43,7 @@ function Btns() {
 			setTimeout(visualEvt, 500);
 			console.log('load');
 		});
+
 		return () => {
 			window.removeEventListener('resize', getPos);
 			window.removeEventListener('scroll', activation);
@@ -76,4 +77,4 @@ function Btns() {
 	);
 }
 
-export default memo(Btns);
+export default Btns;
