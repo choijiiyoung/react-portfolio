@@ -1,4 +1,5 @@
 import { useRef, useEffect, memo, useState } from 'react';
+import Anime from '../../asset/anime';
 
 function Btns() {
 	const btnRef = useRef(null);
@@ -12,6 +13,22 @@ function Btns() {
 		setNum(pos.current.length);
 	};
 
+	const activation = () => {
+		const base = -window.innerHeight / 2;
+		const scroll = window.scrollY;
+		const btns = btnRef.current.children;
+		const boxs = btnRef.current.parentElement.querySelectorAll('.my_scroll');
+
+		pos.current.forEach((pos, idx) => {
+			if (scroll >= pos + base) {
+				for (const btn of btns) btn.classList.remove('on');
+				for (const box of boxs) box.classList.remove('on');
+				btns[idx].classList.add('on');
+				boxs[idx].classList.add('on');
+			}
+		});
+	};
+
 	const visualEvt = () => {
 		const visual = btnRef.current.parentElement.querySelector('#visual');
 		visual.classList.add('active');
@@ -21,13 +38,15 @@ function Btns() {
 		getPos();
 		visualEvt();
 		window.addEventListener('resize', getPos);
+		window.addEventListener('scroll', activation);
 		window.addEventListener('load', () => {
 			setTimeout(visualEvt, 500);
 			console.log('load');
 		});
 		return () => {
-			window.addEventListener('resize', getPos);
-			window.addEventListener('load', visualEvt);
+			window.removeEventListener('resize', getPos);
+			window.removeEventListener('scroll', activation);
+			window.removeEventListener('load', visualEvt);
 		};
 	}, []);
 
@@ -36,7 +55,22 @@ function Btns() {
 			{Array(Num)
 				.fill()
 				.map((_, idx) => {
-					return <li key={idx}></li>;
+					let defaultCalss = '';
+					if (idx === 0) defaultCalss = 'on';
+					return (
+						<li
+							key={idx}
+							className={defaultCalss}
+							onClick={() => {
+								console.log(idx);
+								new Anime(window, {
+									prop: 'scroll',
+									value: pos.current[idx],
+									duration: 500,
+								});
+							}}
+						></li>
+					);
 				})}
 		</ul>
 	);
