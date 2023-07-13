@@ -1,17 +1,20 @@
 import Layout from '../common/Layout';
 import Modal from '../common/Modal';
 import axios from 'axios';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { setYoutube, setYoutubeTxt, setYoutubeThumb } from '../../redux/action';
 
 function Youtube() {
-	const [Vids, setVids] = useState([]);
-	const [Txts, setTxts] = useState([]);
-	const [Thumbs, setThumbs] = useState([]);
+	const dispatch = useDispatch();
+	const Vids = useSelector((store) => store.youtubeReducer.youtube);
+	const Txts = useSelector((store) => store.youtubeReducer.youtubetxt);
+	const Thumbs = useSelector((store) => store.youtubeThumbReducer.youtube);
+
 	const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet`;
 	const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
-	let num = 0;
 
 	//슬라이드
 	const frame = useRef(null);
@@ -24,30 +27,32 @@ function Youtube() {
 	const [State, setState] = useState(0);
 
 	//유튜브 슬라이드 fetch
-	const fetchYoutubeSlide = async () => {
-		num = 5;
+	const fetchYoutubeSlide = useCallback(async () => {
+		const num = 5;
 		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
 		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
 		const result = await axios.get(url);
-		setVids(result.data.items);
-		setTxts(result.data.items);
+
+		dispatch(setYoutube(result.data.items));
+		dispatch(setYoutubeTxt(result.data.items));
+
 		frame.current.append(frame.current.firstElementChild);
 		frame.current.append(frame.current.firstElementChild);
-	};
+	}, [dispatch]);
 
 	//유트브 리스트 fetch
-	const fetchYoutubeList = async () => {
-		num = 4;
+	const fetchYoutubeList = useCallback(async () => {
+		const num = 4;
 		const list = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
 		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
 		const result = await axios.get(url);
-		setThumbs(result.data.items);
-	};
+		dispatch(setYoutubeThumb(result.data.items));
+	}, [dispatch]);
 
 	useEffect(() => {
 		fetchYoutubeSlide();
 		fetchYoutubeList();
-	}, []);
+	}, [fetchYoutubeSlide, fetchYoutubeList]);
 
 	//슬라이드 Next 버튼
 	const btnNext = () => {

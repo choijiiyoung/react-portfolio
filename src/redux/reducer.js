@@ -74,5 +74,25 @@ const departmentReducer = (state = initDepartment, action) => {
 	}
 };
 
-const reducers = combineReducers({ departmentReducer });
+const youtubeReducer = (state = { youtube: [], youtubetxt: [] }, action) => {
+	switch (action.type) {
+		case 'SET_YOUTUBE':
+			return { ...state, youtube: action.payload };
+		case 'SET_YOUTUBETXT':
+			return { ...state, youtubetxt: action.payload };
+		default:
+			return state;
+	}
+};
+
+const youtubeThumbReducer = (state = { youtube: [] }, action) => {
+	switch (action.type) {
+		case 'SET_YOUTUBETHUMB':
+			return { ...state, youtube: action.payload };
+		default:
+			return state;
+	}
+};
+
+const reducers = combineReducers({ departmentReducer, youtubeReducer, youtubeThumbReducer });
 export default reducers;

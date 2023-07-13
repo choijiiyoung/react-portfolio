@@ -10,6 +10,7 @@ function Btns() {
 		pos.current = [];
 		const secs = btnRef.current.parentElement.querySelectorAll('.my_scroll');
 		for (const sec of secs) pos.current.push(sec.offsetTop);
+
 		setNum(pos.current.length);
 	};
 
@@ -21,6 +22,8 @@ function Btns() {
 
 		pos.current.forEach((pos, idx) => {
 			if (scroll >= pos + base) {
+				console.log(pos);
+
 				for (const btn of btns) btn.classList.remove('on');
 				for (const box of boxs) box.classList.remove('on');
 				btns[idx].classList.add('on');

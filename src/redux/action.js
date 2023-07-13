@@ -11,3 +11,24 @@ export const setSchedules = (data) => {
 		payload: data,
 	};
 };
+
+export const setYoutube = (data) => {
+	return {
+		type: 'SET_YOUTUBE',
+		payload: data,
+	};
+};
+
+export const setYoutubeTxt = (data) => {
+	return {
+		type: 'SET_YOUTUBETXT',
+		payload: data,
+	};
+};
+
+export const setYoutubeThumb = (data) => {
+	return {
+		type: 'SET_YOUTUBETHUMB',
+		payload: data,
+	};
+};
