@@ -6,7 +6,7 @@ main {
 		padding-top: 50px;
 		margin-bottom: 100px;
 
-		&:last-child {
+		&:last-of-type {
 			margin-bottom: 0;
 		}
 	}
