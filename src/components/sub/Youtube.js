@@ -15,12 +15,6 @@ function Youtube() {
 	const panel = useRef(null);
 	let [ActiveNum, setActiveNum] = useState(0);
 
-	//App.js에서 유튜브 데이터를 불러오고있으므르 메인에서 유튜브 페이지로 가면 index값 잘 적용되서 나옴
-	useEffect(() => {
-		frame.current.append(frame.current.firstElementChild);
-		frame.current.append(frame.current.firstElementChild);
-	}, []);
-
 	//팝업
 	const modal = useRef(null);
 	const [Index, setIndex] = useState(0);
@@ -46,6 +40,12 @@ function Youtube() {
 		for (const el of arr) el.classList.remove('on');
 		arr[idx].classList.add('on');
 	};
+
+	//App.js에서 유튜브 데이터를 불러오고 있으므르 메인에서 유튜브 페이지로 가면 index값 잘 적용되서 나옴
+	useEffect(() => {
+		frame.current.append(frame.current.firstElementChild);
+		frame.current.append(frame.current.firstElementChild);
+	}, []);
 
 	return (
 		<>
