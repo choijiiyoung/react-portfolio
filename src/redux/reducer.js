@@ -14,5 +14,18 @@ const youtubeReducer = (state = { youtube: [] }, action) => {
 	}
 };
 
-const reducers = combineReducers({ youtubeReducer });
+const youtubeThumbReducer = (state = { youtube: [] }, action) => {
+	switch (action.type) {
+		case types.YOUTUBETHUMB.start:
+			return state;
+		case types.YOUTUBETHUMB.success:
+			return { ...state, youtube: action.payload };
+		case types.YOUTUBETHUMB.fail:
+			return { ...state, youtube: action.payload };
+		default:
+			return state;
+	}
+};
+
+const reducers = combineReducers({ youtubeReducer, youtubeThumbReducer });
 export default reducers;

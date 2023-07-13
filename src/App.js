@@ -33,6 +33,7 @@ function App() {
 
 	useEffect(() => {
 		dispatch({ type: types.YOUTUBE.start });
+		dispatch({ type: types.YOUTUBETHUMB.start });
 	}, [dispatch]);
 
 	return (

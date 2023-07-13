@@ -3,3 +3,9 @@ export const YOUTUBE = {
 	success: 'YOUTUBE_SUCCESS',
 	fail: 'YOUTUBE_FAIL',
 };
+
+export const YOUTUBETHUMB = {
+	start: 'YOUTUBETHUMB_START',
+	success: 'YOUTUBETHUMB_SUCCESS',
+	fail: 'YOUTUBETHUMB_FAIL',
+};
