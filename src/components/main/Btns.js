@@ -10,6 +10,7 @@ function Btns() {
 		pos.current = [];
 		const secs = btnRef.current.parentElement.querySelectorAll('.my_scroll');
 		for (const sec of secs) pos.current.push(sec.offsetTop);
+
 		setNum(pos.current.length);
 	};
 
@@ -38,7 +39,6 @@ function Btns() {
 
 	useEffect(() => {
 		getPos();
-		visualEvt();
 		window.addEventListener('resize', getPos);
 		window.addEventListener('scroll', activation);
 		window.addEventListener('load', () => {
