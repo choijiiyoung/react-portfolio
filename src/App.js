@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import { useRef, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setYoutube, setYoutubeTxt, setYoutubeThumb } from './redux/action';
+import { setYoutube, setYoutubeTxt, setYoutubeThumb, setMembers, setSchedules } from './redux/action';
 
 //common
 import Footer from './components/common/Footer';
@@ -52,10 +52,18 @@ function App() {
 		dispatch(setYoutubeThumb(result.data.items));
 	}, [dispatch, baseURL]);
 
+	//department fetch
+	const fetchDepartment = useCallback(async () => {
+		const result = await axios.get(`${process.env.PUBLIC_URL}/DB/department.json`);
+		dispatch(setMembers(result.data.members));
+		dispatch(setSchedules(result.data.schedules));
+	}, [dispatch]);
+
 	useEffect(() => {
 		fetchYoutubeSlide();
 		fetchYoutubeList();
-	}, [fetchYoutubeSlide, fetchYoutubeList]);
+		fetchDepartment();
+	}, [fetchYoutubeSlide, fetchYoutubeList, fetchDepartment]);
 
 	return (
 		<>
