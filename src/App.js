@@ -34,6 +34,8 @@ function App() {
 	useEffect(() => {
 		dispatch({ type: types.YOUTUBE.start });
 		dispatch({ type: types.YOUTUBETHUMB.start });
+		dispatch({ type: types.DEPARTMENT.start });
+		dispatch({ type: types.SCHEDULE.start });
 	}, [dispatch]);
 
 	return (

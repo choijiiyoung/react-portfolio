@@ -1,5 +1,5 @@
 import { takeLatest, put, call, fork, all } from 'redux-saga/effects';
-import { fetchYoutube, fetchYoutubeThumb } from './api';
+import { fetchYoutube, fetchYoutubeThumb, fetchDepartment } from './api';
 import * as types from './actionType';
 
 //youtube slide saga
@@ -28,6 +28,32 @@ function* returnYoutubeThumb() {
 	}
 }
 
+//department member saga
+function* callDepartment() {
+	yield takeLatest(types.DEPARTMENT.start, returnDepartment);
+}
+function* returnDepartment() {
+	try {
+		const response = yield call(fetchDepartment);
+		yield put({ type: types.DEPARTMENT.success, payload: response.data.members });
+	} catch (err) {
+		yield put({ type: types.DEPARTMENT.fail, payload: err });
+	}
+}
+
+//department schedule saga
+function* callSchedule() {
+	yield takeLatest(types.SCHEDULE.start, returnSchedule);
+}
+function* returnSchedule() {
+	try {
+		const response = yield call(fetchDepartment);
+		yield put({ type: types.SCHEDULE.success, payload: response.data.schedules });
+	} catch (err) {
+		yield put({ type: types.SCHEDULE.fail, payload: err });
+	}
+}
+
 export default function* rootSaga() {
-	yield all([fork(callYoutube), fork(callYoutubeThumb)]);
+	yield all([fork(callYoutube), fork(callYoutubeThumb), fork(callDepartment), fork(callSchedule)]);
 }

@@ -11,10 +11,15 @@ export const fetchYoutube = async () => {
 	return await axios.get(url);
 };
 
-// 유트브 리스트 fetch
+//유트브 리스트 fetch
 export const fetchYoutubeThumb = async () => {
 	const num = 4;
 	const list = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
 	const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
 	return await axios.get(url);
+};
+
+//department fetch
+export const fetchDepartment = async () => {
+	return await axios.get(`${process.env.PUBLIC_URL}/DB/department.json`);
 };
