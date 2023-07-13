@@ -1,58 +1,30 @@
 import Layout from '../common/Layout';
 import Modal from '../common/Modal';
-import axios from 'axios';
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { setYoutube, setYoutubeTxt, setYoutubeThumb } from '../../redux/action';
+import { useSelector } from 'react-redux';
 
 function Youtube() {
-	const dispatch = useDispatch();
 	const Vids = useSelector((store) => store.youtubeReducer.youtube);
 	const Txts = useSelector((store) => store.youtubeReducer.youtubetxt);
 	const Thumbs = useSelector((store) => store.youtubeThumbReducer.youtube);
-
-	const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet`;
-	const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
 
 	//슬라이드
 	const frame = useRef(null);
 	const panel = useRef(null);
 	let [ActiveNum, setActiveNum] = useState(0);
 
+	//App.js에서 유튜브 데이터를 불러오고있으므르 메인에서 유튜브 페이지로 가면 index값 잘 적용되서 나옴
+	useEffect(() => {
+		frame.current.append(frame.current.firstElementChild);
+		frame.current.append(frame.current.firstElementChild);
+	}, []);
+
 	//팝업
 	const modal = useRef(null);
 	const [Index, setIndex] = useState(0);
 	const [State, setState] = useState(0);
-
-	//유튜브 슬라이드 fetch
-	const fetchYoutubeSlide = useCallback(async () => {
-		const num = 5;
-		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
-		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
-		const result = await axios.get(url);
-
-		dispatch(setYoutube(result.data.items));
-		dispatch(setYoutubeTxt(result.data.items));
-
-		frame.current.append(frame.current.firstElementChild);
-		frame.current.append(frame.current.firstElementChild);
-	}, [dispatch]);
-
-	//유트브 리스트 fetch
-	const fetchYoutubeList = useCallback(async () => {
-		const num = 4;
-		const list = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
-		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
-		const result = await axios.get(url);
-		dispatch(setYoutubeThumb(result.data.items));
-	}, [dispatch]);
-
-	useEffect(() => {
-		fetchYoutubeSlide();
-		fetchYoutubeList();
-	}, [fetchYoutubeSlide, fetchYoutubeList]);
 
 	//슬라이드 Next 버튼
 	const btnNext = () => {

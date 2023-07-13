@@ -1,5 +1,8 @@
 import { Route, Switch } from 'react-router-dom';
-import { useRef } from 'react';
+import axios from 'axios';
+import { useRef, useCallback, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setYoutube, setYoutubeTxt, setYoutubeThumb } from './redux/action';
 
 //common
 import Footer from './components/common/Footer';
@@ -25,7 +28,34 @@ import Etc3 from './components/sub/Etc3';
 import './scss/style.scss';
 
 function App() {
+	const dispatch = useDispatch();
+	const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet`;
+	const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
 	const menu = useRef(null);
+
+	//유튜브 슬라이드 fetch
+	const fetchYoutubeSlide = useCallback(async () => {
+		const num = 5;
+		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
+		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
+		const result = await axios.get(url);
+		dispatch(setYoutube(result.data.items));
+		dispatch(setYoutubeTxt(result.data.items));
+	}, [dispatch]);
+
+	//유트브 리스트 fetch
+	const fetchYoutubeList = useCallback(async () => {
+		const num = 4;
+		const list = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
+		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
+		const result = await axios.get(url);
+		dispatch(setYoutubeThumb(result.data.items));
+	}, [dispatch]);
+
+	useEffect(() => {
+		fetchYoutubeSlide();
+		fetchYoutubeList();
+	}, [fetchYoutubeSlide, fetchYoutubeList]);
 
 	return (
 		<>
