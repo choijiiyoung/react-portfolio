@@ -1,16 +1,15 @@
 import Layout from '../common/Layout';
-import Modal from '../common/Modal';
-import axios from 'axios';
-import { useEffect, useState, useRef } from 'react';
+// import Modal from '../common/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import { useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function Youtube() {
-	const [Vids, setVids] = useState([]);
-	const [Txts, setTxts] = useState([]);
-	const [Thumbs, setThumbs] = useState([]);
-	const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet`;
-	const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
+	const Vids = useSelector((store) => store.youtubeReducer.youtube);
+	const Txts = useSelector((store) => store.youtubeReducer.youtube);
+
+	// const [Thumbs, setThumbs] = useState([]);
 
 	//슬라이드
 	const frame = useRef(null);
@@ -18,35 +17,18 @@ function Youtube() {
 	let [ActiveNum, setActiveNum] = useState(0);
 
 	//팝업
-	const modal = useRef(null);
-	const [Index, setIndex] = useState(0);
-	const [State, setState] = useState(0);
-
-	//유튜브 슬라이드 fetch
-	const fetchYoutubeSlide = async () => {
-		const num = 5;
-		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
-		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
-		const result = await axios.get(url);
-		setVids(result.data.items);
-		setTxts(result.data.items);
-		frame.current.append(frame.current.firstElementChild);
-		frame.current.append(frame.current.firstElementChild);
-	};
+	// const modal = useRef(null);
+	// const [Index, setIndex] = useState(0);
+	// const [State, setState] = useState(0);
 
 	//유트브 리스트 fetch
-	const fetchYoutubeList = async () => {
-		const num = 4;
-		const list = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
-		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
-		const result = await axios.get(url);
-		setThumbs(result.data.items);
-	};
-
-	useEffect(() => {
-		fetchYoutubeSlide();
-		fetchYoutubeList();
-	}, []);
+	// const fetchYoutubeList = async () => {
+	// 	const num = 4;
+	// 	const list = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
+	// 	const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
+	// 	const result = await axios.get(url);
+	// 	setThumbs(result.data.items);
+	// };
 
 	//슬라이드 Next 버튼
 	const btnNext = () => {
@@ -69,6 +51,11 @@ function Youtube() {
 		arr[idx].classList.add('on');
 	};
 
+	useEffect(() => {
+		frame.current.append(frame.current.firstElementChild);
+		frame.current.append(frame.current.firstElementChild);
+	}, []);
+
 	return (
 		<>
 			<Layout name={'Youtube'}>
@@ -84,11 +71,11 @@ function Youtube() {
 													<article key={idx} className={idx === ActiveNum ? 'on' : ''}>
 														<div
 															className='pic'
-															onClick={() => {
-																modal.current.open();
-																setState(0);
-																setIndex(idx);
-															}}
+															// onClick={() => {
+															// 	modal.current.open();
+															// 	setState(0);
+															// 	setIndex(idx);
+															// }}
 														>
 															<img
 																className='thumb'
@@ -165,7 +152,7 @@ function Youtube() {
 					<div className='inner'>
 						<h2>Lorem ipsum dolor sit amet.</h2>
 						<ul className='ytb_list'>
-							{Thumbs.map((thumb, idx) => {
+							{/* {Thumbs.map((thumb, idx) => {
 								return (
 									<li key={idx}>
 										<article>
@@ -196,13 +183,13 @@ function Youtube() {
 										</article>
 									</li>
 								);
-							})}
+							})} */}
 						</ul>
 					</div>
 				</section>
 			</Layout>
 
-			<Modal ref={modal}>
+			{/* <Modal ref={modal}>
 				<iframe
 					title={modal.title}
 					src={
@@ -211,7 +198,7 @@ function Youtube() {
 							: `https://www.youtube.com/embed/${Thumbs[Index]?.snippet.resourceId.videoId}`
 					}
 				></iframe>
-			</Modal>
+			</Modal> */}
 		</>
 	);
 }

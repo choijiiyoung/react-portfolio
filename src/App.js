@@ -23,9 +23,17 @@ import Etc2 from './components/sub/Etc2';
 import Etc3 from './components/sub/Etc3';
 
 import './scss/style.scss';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import * as types from './redux/actionType';
 
 function App() {
+	const dispatch = useDispatch();
 	const menu = useRef(null);
+
+	useEffect(() => {
+		dispatch({ type: types.YOUTUBE.start });
+	}, [dispatch]);
 
 	return (
 		<>
