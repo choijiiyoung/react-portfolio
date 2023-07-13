@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import * as types from './actionType';
 
-const youtubeReducer = (state = { youtube: [], youtubetxt: [] }, action) => {
+const youtubeReducer = (state = { youtube: [] }, action) => {
 	switch (action.type) {
 		case types.YOUTUBE.start:
 			return state;
