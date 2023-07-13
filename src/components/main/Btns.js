@@ -46,11 +46,13 @@ function Btns() {
 			setTimeout(visualEvt, 500);
 			console.log('load');
 		});
+		window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
 		return () => {
 			window.removeEventListener('resize', getPos);
 			window.removeEventListener('scroll', activation);
 			window.removeEventListener('load', visualEvt);
+			window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 		};
 	}, []);
 
