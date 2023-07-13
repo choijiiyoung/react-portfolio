@@ -41,7 +41,7 @@ function App() {
 		const result = await axios.get(url);
 		dispatch(setYoutube(result.data.items));
 		dispatch(setYoutubeTxt(result.data.items));
-	}, [dispatch]);
+	}, [dispatch, baseURL]);
 
 	//유트브 리스트 fetch
 	const fetchYoutubeList = useCallback(async () => {
@@ -50,7 +50,7 @@ function App() {
 		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
 		const result = await axios.get(url);
 		dispatch(setYoutubeThumb(result.data.items));
-	}, [dispatch]);
+	}, [dispatch, baseURL]);
 
 	useEffect(() => {
 		fetchYoutubeSlide();
