@@ -11,7 +11,6 @@ function Youtube() {
 	const [Thumbs, setThumbs] = useState([]);
 	const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet`;
 	const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
-	let num = 0;
 
 	//슬라이드
 	const frame = useRef(null);
@@ -25,7 +24,7 @@ function Youtube() {
 
 	//유튜브 슬라이드 fetch
 	const fetchYoutubeSlide = async () => {
-		num = 5;
+		const num = 5;
 		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
 		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
 		const result = await axios.get(url);
@@ -37,7 +36,7 @@ function Youtube() {
 
 	//유트브 리스트 fetch
 	const fetchYoutubeList = async () => {
-		num = 4;
+		const num = 4;
 		const list = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
 		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
 		const result = await axios.get(url);
