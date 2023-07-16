@@ -12,7 +12,6 @@ function Youtube() {
 	const Txts = useSelector((store) => store.youtubeReducer.youtube);
 	const Thumbs = useSelector((store) => store.youtubeReducer.youtube);
 	const [Opt, setOpt] = useState({ type: 'slide', num: 5 });
-	console.log(Thumbs);
 
 	//슬라이드
 	const frame = useRef(null);
@@ -47,14 +46,11 @@ function Youtube() {
 
 	useEffect(() => {
 		dispatch({ type: types.YOUTUBE.start, opt: Opt });
-
-		frame.current.append(frame.current.firstElementChild);
-		frame.current.append(frame.current.firstElementChild);
-
 		// setOpt({ type: 'thumb', num: 4 })
-	}, [dispatch, Opt]);
 
-	useEffect(() => {}, []);
+		frame.current.append(frame.current.firstElementChild);
+		frame.current.append(frame.current.firstElementChild);
+	}, [dispatch, Opt]);
 
 	return (
 		<>
