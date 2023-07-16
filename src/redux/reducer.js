@@ -14,18 +14,18 @@ const youtubeReducer = (state = { youtube: [] }, action) => {
 	}
 };
 
-const youtubeThumbReducer = (state = { youtube: [] }, action) => {
-	switch (action.type) {
-		case types.YOUTUBETHUMB.start:
-			return state;
-		case types.YOUTUBETHUMB.success:
-			return { ...state, youtube: action.payload };
-		case types.YOUTUBETHUMB.fail:
-			return { ...state, youtube: action.payload };
-		default:
-			return state;
-	}
-};
+// const youtubeThumbReducer = (state = { youtube: [] }, action) => {
+// 	switch (action.type) {
+// 		case types.YOUTUBETHUMB.start:
+// 			return state;
+// 		case types.YOUTUBETHUMB.success:
+// 			return { ...state, youtube: action.payload };
+// 		case types.YOUTUBETHUMB.fail:
+// 			return { ...state, youtube: action.payload };
+// 		default:
+// 			return state;
+// 	}
+// };
 
 const departmentReducer = (state = { department: [] }, action) => {
 	switch (action.type) {
@@ -53,5 +53,5 @@ const scheduleReducer = (state = { schedule: [] }, action) => {
 	}
 };
 
-const reducers = combineReducers({ youtubeReducer, youtubeThumbReducer, departmentReducer, scheduleReducer });
+const reducers = combineReducers({ youtubeReducer, departmentReducer, scheduleReducer });
 export default reducers;

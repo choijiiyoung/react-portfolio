@@ -32,8 +32,8 @@ function App() {
 	const menu = useRef(null);
 
 	useEffect(() => {
-		dispatch({ type: types.YOUTUBE.start });
-		dispatch({ type: types.YOUTUBETHUMB.start });
+		dispatch({ type: types.YOUTUBE.start, opt: { type: 'slide', num: 5 } });
+		// dispatch({ type: types.YOUTUBETHUMB.start });
 		dispatch({ type: types.DEPARTMENT.start });
 		dispatch({ type: types.SCHEDULE.start });
 	}, [dispatch]);

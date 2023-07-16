@@ -19,7 +19,7 @@ function Main({ menu }) {
 			<Collabo />
 			<Partnership />
 			<News />
-			<Btns />
+			{/* <Btns /> */}
 		</main>
 	);
 }

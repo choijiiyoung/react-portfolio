@@ -1,14 +1,14 @@
 import { takeLatest, put, call, fork, all } from 'redux-saga/effects';
-import { fetchYoutube, fetchYoutubeThumb, fetchDepartment } from './api';
+import { fetchYoutube, fetchDepartment } from './api';
 import * as types from './actionType';
 
 //youtube slide saga
 function* callYoutube() {
 	yield takeLatest(types.YOUTUBE.start, returnYoutube);
 }
-function* returnYoutube() {
+function* returnYoutube(action) {
 	try {
-		const response = yield call(fetchYoutube);
+		const response = yield call(fetchYoutube, action.opt);
 		yield put({ type: types.YOUTUBE.success, payload: response.data.items });
 	} catch (err) {
 		yield put({ type: types.YOUTUBE.fail, payload: err });
@@ -16,17 +16,17 @@ function* returnYoutube() {
 }
 
 //youtube thumb list saga
-function* callYoutubeThumb() {
-	yield takeLatest(types.YOUTUBETHUMB.start, returnYoutubeThumb);
-}
-function* returnYoutubeThumb() {
-	try {
-		const response = yield call(fetchYoutubeThumb);
-		yield put({ type: types.YOUTUBETHUMB.success, payload: response.data.items });
-	} catch (err) {
-		yield put({ type: types.YOUTUBETHUMB.fail, payload: err });
-	}
-}
+// function* callYoutubeThumb() {
+// 	yield takeLatest(types.YOUTUBETHUMB.start, returnYoutubeThumb);
+// }
+// function* returnYoutubeThumb() {
+// 	try {
+// 		const response = yield call(fetchYoutubeThumb);
+// 		yield put({ type: types.YOUTUBETHUMB.success, payload: response.data.items });
+// 	} catch (err) {
+// 		yield put({ type: types.YOUTUBETHUMB.fail, payload: err });
+// 	}
+// }
 
 //department member saga
 function* callDepartment() {
@@ -55,5 +55,5 @@ function* returnSchedule() {
 }
 
 export default function* rootSaga() {
-	yield all([fork(callYoutube), fork(callYoutubeThumb), fork(callDepartment), fork(callSchedule)]);
+	yield all([fork(callYoutube), fork(callDepartment), fork(callSchedule)]);
 }
