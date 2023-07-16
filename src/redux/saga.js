@@ -1,8 +1,8 @@
 import { takeLatest, put, call, fork, all } from 'redux-saga/effects';
-import { fetchYoutube, fetchDepartment } from './api';
+import { fetchYoutube, fetchDepartment, fetchFlickr } from './api';
 import * as types from './actionType';
 
-//youtube slide saga
+//youtube saga
 function* callYoutube() {
 	yield takeLatest(types.YOUTUBE.start, returnYoutube);
 }
@@ -27,6 +27,19 @@ function* returnYoutube(action) {
 // 		yield put({ type: types.YOUTUBETHUMB.fail, payload: err });
 // 	}
 // }
+
+//flickr saga
+function* callFlickr() {
+	yield takeLatest(types.FLICKR.start, returnFlickr);
+}
+function* returnFlickr(action) {
+	try {
+		const response = yield call(fetchFlickr, action.opt);
+		yield put({ type: types.FLICKR.success, payload: response.data.photos.photo });
+	} catch (err) {
+		yield put({ type: types.FLICKR.fail, payload: err });
+	}
+}
 
 //department member saga
 function* callDepartment() {
@@ -55,5 +68,5 @@ function* returnSchedule() {
 }
 
 export default function* rootSaga() {
-	yield all([fork(callYoutube), fork(callDepartment), fork(callSchedule)]);
+	yield all([fork(callYoutube), fork(callDepartment), fork(callSchedule), fork(callFlickr)]);
 }

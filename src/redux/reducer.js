@@ -27,6 +27,19 @@ const youtubeReducer = (state = { youtube: [] }, action) => {
 // 	}
 // };
 
+const flickrReducer = (state = { flickr: [] }, action) => {
+	switch (action.type) {
+		case types.FLICKR.start:
+			return state;
+		case types.FLICKR.success:
+			return { ...state, flickr: action.payload };
+		case types.FLICKR.fail:
+			return { ...state, flickr: action.payload };
+		default:
+			return state;
+	}
+};
+
 const departmentReducer = (state = { department: [] }, action) => {
 	switch (action.type) {
 		case types.DEPARTMENT.start:
@@ -53,5 +66,5 @@ const scheduleReducer = (state = { schedule: [] }, action) => {
 	}
 };
 
-const reducers = combineReducers({ youtubeReducer, departmentReducer, scheduleReducer });
+const reducers = combineReducers({ youtubeReducer, departmentReducer, scheduleReducer, flickrReducer });
 export default reducers;

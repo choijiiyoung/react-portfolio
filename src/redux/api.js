@@ -30,6 +30,21 @@ export const fetchYoutube = async (opt) => {
 // 	return await axios.get(url);
 // };
 
+//gallery fetch
+export const fetchFlickr = async (opt) => {
+	const baseURL = `https://www.flickr.com/services/rest/?format=json&nojsoncallback=1`;
+	const key = 'db5673d91b2fb6704d13f6b0181efd99';
+	const method_interest = 'flickr.interestingness.getList';
+	const method_user = 'flickr.people.getPhotos';
+	const num = 30;
+	let url = '';
+
+	if (opt.type === 'interest') url = `${baseURL}&api_key=${key}&method=${method_interest}&per_page=${num}`;
+	if (opt.type === 'user') url = `${baseURL}&api_key=${key}&method=${method_user}&per_page=${num}&user_id=${opt.user}`;
+
+	return await axios.get(url);
+};
+
 //department fetch
 export const fetchDepartment = async () => {
 	return await axios.get(`${process.env.PUBLIC_URL}/DB/department.json`);

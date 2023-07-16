@@ -10,6 +10,12 @@ export const YOUTUBE = {
 // 	fail: 'YOUTUBETHUMB_FAIL',
 // };
 
+export const FLICKR = {
+	start: 'FLICKR_START',
+	success: 'FLICKR_SUCCESS',
+	fail: 'FLICKR_FAIL',
+};
+
 export const DEPARTMENT = {
 	start: 'DEPARTMENT_START',
 	success: 'DEPARTMENT_SUCCESS',

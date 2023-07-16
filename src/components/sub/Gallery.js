@@ -1,47 +1,42 @@
 import Layout from '../common/Layout';
-import axios from 'axios';
 import Masonry from 'react-masonry-component';
 import { useState, useEffect, useRef } from 'react';
 import Modal from '../common/Modal';
+import { useSelector } from 'react-redux';
 
 function Gallery() {
+	const Items = useSelector((store) => store.flickrReducer.flickr);
 	const openModal = useRef(null);
 	const frame = useRef(null);
-	const [Items, setItems] = useState([]);
+	const counter = useRef(0);
 	const [Loader, setLoader] = useState(true);
 	const [Index, setIndex] = useState(0);
+	const enableEvent = useRef(true);
 
-	const getFlickr = async (opt) => {
-		const baseURL = `https://www.flickr.com/services/rest/?format=json&nojsoncallback=1`;
-		const key = 'db5673d91b2fb6704d13f6b0181efd99';
-		const method_interest = 'flickr.interestingness.getList';
-		const method_user = 'flickr.people.getPhotos';
-		const num = 20;
-		let url = '';
-		let counter = 0;
+	useEffect(() => {
+		counter.current = 0;
+		const imgs = frame.current?.querySelectorAll('img');
 
-		if (opt.type === 'interest') url = `${baseURL}&api_key=${key}&method=${method_interest}&per_page=${num}`;
-		if (opt.type === 'user')
-			url = `${baseURL}&api_key=${key}&method=${method_user}&per_page=${num}&user_id=${opt.user}`;
+		if (!imgs) return;
 
-		const result = await axios.get(url);
-		setItems(result.data.photos.photo);
-
-		const imgs = frame.current.querySelectorAll('img');
-		imgs.forEach((img, idx) => {
+		imgs.forEach((img) => {
 			img.onload = () => {
-				++counter;
+				++counter.current;
 
-				if (counter === imgs.length) {
+				if (counter.current === imgs.length) {
 					setLoader(false);
 					frame.current.classList.add('on');
+					enableEvent.current = true;
 				}
 			};
 		});
-	};
+	}, [Items]);
 
-	// useEffect(() => getFlickr({ type: 'user', user: '198483448@N02' }), []);
-	useEffect(() => getFlickr({ type: 'interest' }), []);
+	useEffect(() => {
+		enableEvent.current = false;
+		setLoader(true);
+		frame.current.classList.remove('on');
+	}, []);
 
 	return (
 		<>
