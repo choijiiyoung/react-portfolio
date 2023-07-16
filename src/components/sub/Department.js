@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 function Department() {
 	const Members = useSelector((store) => store.departmentReducer.department);
-	const Schedules = useSelector((store) => store.departmentReducer.schedule);
+	const Schedules = useSelector((store) => store.scheduleReducer.schedule);
 
 	return (
 		<Layout name={'Department'}>

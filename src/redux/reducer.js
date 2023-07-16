@@ -27,7 +27,7 @@ const youtubeThumbReducer = (state = { youtube: [] }, action) => {
 	}
 };
 
-const departmentReducer = (state = { department: [], schedule: [] }, action) => {
+const departmentReducer = (state = { department: [] }, action) => {
 	switch (action.type) {
 		case types.DEPARTMENT.start:
 			return state;
@@ -35,6 +35,13 @@ const departmentReducer = (state = { department: [], schedule: [] }, action) => 
 			return { ...state, department: action.payload };
 		case types.DEPARTMENT.fail:
 			return { ...state, department: action.payload };
+		default:
+			return state;
+	}
+};
+
+const scheduleReducer = (state = { schedule: [] }, action) => {
+	switch (action.type) {
 		case types.SCHEDULE.start:
 			return state;
 		case types.SCHEDULE.success:
@@ -46,5 +53,5 @@ const departmentReducer = (state = { department: [], schedule: [] }, action) => 
 	}
 };
 
-const reducers = combineReducers({ youtubeReducer, youtubeThumbReducer, departmentReducer });
+const reducers = combineReducers({ youtubeReducer, youtubeThumbReducer, departmentReducer, scheduleReducer });
 export default reducers;
