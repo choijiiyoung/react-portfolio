@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 function Partnership() {
 	return (
 		<>
@@ -36,4 +38,4 @@ function Partnership() {
 	);
 }
 
-export default Partnership;
+export default memo(Partnership);
