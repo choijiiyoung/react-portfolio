@@ -1,7 +1,6 @@
 #visual {
 	overflow: hidden;
 	padding-top: 120px;
-	margin-bottom: 180px;
 
 	.title_wrap {
 		overflow: hidden;
@@ -151,7 +150,7 @@
 @media screen and (max-width: $tablet) {
 	#visual {
 		padding-top: 80px;
-		margin-bottom: 80px;
+
 		h1 {
 			gap: 10px;
 			.title {
