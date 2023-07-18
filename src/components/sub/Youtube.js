@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 
 function Youtube() {
 	const Vids = useSelector((store) => store.youtubeReducer.youtube);
-	const Txts = useSelector((store) => store.youtubeReducer.youtube);
 	const Thumbs = useSelector((store) => store.youtubeThumbReducer.youtube);
 
 	//슬라이드
@@ -87,7 +86,7 @@ function Youtube() {
 
 								<div className='info_wrap'>
 									<div className='txt_wrap' ref={panel}>
-										{Txts.map((txt, idx) => {
+										{Vids.map((txt, idx) => {
 											return (
 												<div key={idx} className={idx === ActiveNum ? 'panel on' : 'panel'}>
 													<div className='num'>
