@@ -3,15 +3,12 @@ import Modal from '../common/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import * as types from '../../redux/actionType';
+import { useSelector } from 'react-redux';
 
 function Youtube() {
-	const dispatch = useDispatch();
 	const Vids = useSelector((store) => store.youtubeReducer.youtube);
 	const Txts = useSelector((store) => store.youtubeReducer.youtube);
-	const Thumbs = useSelector((store) => store.youtubeReducer.youtube);
-	const [Opt, setOpt] = useState({ type: 'slide', num: 5 });
+	const Thumbs = useSelector((store) => store.youtubeThumbReducer.youtube);
 
 	//슬라이드
 	const frame = useRef(null);
@@ -45,12 +42,9 @@ function Youtube() {
 	};
 
 	useEffect(() => {
-		dispatch({ type: types.YOUTUBE.start, opt: Opt });
-		// setOpt({ type: 'thumb', num: 4 })
-
 		frame.current.append(frame.current.firstElementChild);
 		frame.current.append(frame.current.firstElementChild);
-	}, [dispatch, Opt]);
+	}, []);
 
 	return (
 		<>

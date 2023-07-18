@@ -4,11 +4,11 @@ export const YOUTUBE = {
 	fail: 'YOUTUBE_FAIL',
 };
 
-// export const YOUTUBETHUMB = {
-// 	start: 'YOUTUBETHUMB_START',
-// 	success: 'YOUTUBETHUMB_SUCCESS',
-// 	fail: 'YOUTUBETHUMB_FAIL',
-// };
+export const YOUTUBETHUMB = {
+	start: 'YOUTUBETHUMB_START',
+	success: 'YOUTUBETHUMB_SUCCESS',
+	fail: 'YOUTUBETHUMB_FAIL',
+};
 
 export const FLICKR = {
 	start: 'FLICKR_START',
