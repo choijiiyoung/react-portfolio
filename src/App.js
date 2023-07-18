@@ -23,9 +23,17 @@ import Etc2 from './components/sub/Etc2';
 import Etc3 from './components/sub/Etc3';
 
 import './scss/style.scss';
+import { fetchYoutube } from './redux/youtubeSlice';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 function App() {
 	const menu = useRef(null);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchYoutube());
+	}, [dispatch]);
 
 	return (
 		<>

@@ -1,17 +1,13 @@
 import Layout from '../common/Layout';
 import Modal from '../common/Modal';
-import axios from 'axios';
 import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
 function Youtube() {
-	const [Vids, setVids] = useState([]);
-	const [Txts, setTxts] = useState([]);
-	const [Thumbs, setThumbs] = useState([]);
-	const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet`;
-	const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
-	let num = 0;
+	const Vids = useSelector((store) => store.youtube.data);
+	// const [Thumbs, setThumbs] = useState([]);
 
 	//슬라이드
 	const frame = useRef(null);
@@ -23,30 +19,18 @@ function Youtube() {
 	const [Index, setIndex] = useState(0);
 	const [State, setState] = useState(0);
 
-	//유튜브 슬라이드 fetch
-	const fetchYoutubeSlide = async () => {
-		num = 5;
-		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
-		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
-		const result = await axios.get(url);
-		setVids(result.data.items);
-		setTxts(result.data.items);
-		frame.current.append(frame.current.firstElementChild);
-		frame.current.append(frame.current.firstElementChild);
-	};
-
 	//유트브 리스트 fetch
-	const fetchYoutubeList = async () => {
-		num = 4;
-		const list = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
-		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
-		const result = await axios.get(url);
-		setThumbs(result.data.items);
-	};
+	// const fetchYoutubeList = async () => {
+	// 	num = 4;
+	// 	const list = 'PLFAS7kFpzjoOzH0K-VNLbCyY2fnoyMYh8';
+	// 	const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
+	// 	const result = await axios.get(url);
+	// 	setThumbs(result.data.items);
+	// };
 
 	useEffect(() => {
-		fetchYoutubeSlide();
-		fetchYoutubeList();
+		frame.current.append(frame.current.firstElementChild);
+		frame.current.append(frame.current.firstElementChild);
 	}, []);
 
 	//슬라이드 Next 버튼
@@ -111,7 +95,7 @@ function Youtube() {
 
 								<div className='info_wrap'>
 									<div className='txt_wrap' ref={panel}>
-										{Txts.map((txt, idx) => {
+										{Vids.map((txt, idx) => {
 											return (
 												<div key={idx} className={idx === ActiveNum ? 'panel on' : 'panel'}>
 													<div className='num'>
@@ -166,7 +150,7 @@ function Youtube() {
 					<div className='inner'>
 						<h2>Lorem ipsum dolor sit amet.</h2>
 						<ul className='ytb_list'>
-							{Thumbs.map((thumb, idx) => {
+							{/* {Thumbs.map((thumb, idx) => {
 								return (
 									<li key={idx}>
 										<article>
@@ -197,21 +181,21 @@ function Youtube() {
 										</article>
 									</li>
 								);
-							})}
+							})} */}
 						</ul>
 					</div>
 				</section>
 			</Layout>
 
 			<Modal ref={modal}>
-				<iframe
+				{/* <iframe
 					title={modal.title}
 					src={
 						!State
 							? `https://www.youtube.com/embed/${Vids[Index]?.snippet.resourceId.videoId}`
 							: `https://www.youtube.com/embed/${Thumbs[Index]?.snippet.resourceId.videoId}`
 					}
-				></iframe>
+				></iframe> */}
 			</Modal>
 		</>
 	);
