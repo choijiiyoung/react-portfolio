@@ -19,11 +19,6 @@ function Youtube() {
 	const [Index, setIndex] = useState(0);
 	const [State, setState] = useState(0);
 
-	useEffect(() => {
-		frame.current.append(frame.current.firstElementChild);
-		frame.current.append(frame.current.firstElementChild);
-	}, []);
-
 	//슬라이드 Next 버튼
 	const btnNext = () => {
 		const panels = panel.current.querySelectorAll('.panel');
@@ -44,6 +39,11 @@ function Youtube() {
 		for (const el of arr) el.classList.remove('on');
 		arr[idx].classList.add('on');
 	};
+
+	useEffect(() => {
+		frame.current.append(frame.current.firstElementChild);
+		frame.current.append(frame.current.firstElementChild);
+	}, []);
 
 	return (
 		<>
