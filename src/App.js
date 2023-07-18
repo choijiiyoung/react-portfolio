@@ -27,6 +27,7 @@ import { fetchYoutube } from './redux/youtubeSlice';
 import { fetchYoutubeThumb } from './redux/youtubeThumbSlice';
 import { fetchDepartment } from './redux/departmentSlice';
 import { fetchSchedule } from './redux/scheduleSlice';
+import { fetchFlickr } from './redux/flickrSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -39,6 +40,7 @@ function App() {
 		dispatch(fetchYoutubeThumb());
 		dispatch(fetchDepartment());
 		dispatch(fetchSchedule());
+		dispatch(fetchFlickr());
 	}, [dispatch]);
 
 	return (
