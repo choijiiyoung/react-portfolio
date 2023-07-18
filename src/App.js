@@ -26,6 +26,7 @@ import './scss/style.scss';
 import { fetchYoutube } from './redux/youtubeSlice';
 import { fetchYoutubeThumb } from './redux/youtubeThumbSlice';
 import { fetchDepartment } from './redux/departmentSlice';
+import { fetchSchedule } from './redux/scheduleSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -37,6 +38,7 @@ function App() {
 		dispatch(fetchYoutube());
 		dispatch(fetchYoutubeThumb());
 		dispatch(fetchDepartment());
+		dispatch(fetchSchedule());
 	}, [dispatch]);
 
 	return (

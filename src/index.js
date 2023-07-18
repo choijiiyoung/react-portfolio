@@ -7,12 +7,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import youtubeReducer from './redux/youtubeSlice';
 import youtubeThumbReducer from './redux/youtubeThumbSlice';
 import departmetReducer from './redux/departmentSlice';
+import scheduleReducer from './redux/scheduleSlice';
 
 const store = configureStore({
 	reducer: {
 		youtube: youtubeReducer,
 		youtubeThumb: youtubeThumbReducer,
 		department: departmetReducer,
+		schedules: scheduleReducer,
 	},
 });
 

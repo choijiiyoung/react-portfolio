@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Department() {
 	const Members = useSelector((store) => store.department.data);
+	const Schedules = useSelector((store) => store.schedules.data);
 
 	return (
 		<Layout name={'Department'}>
@@ -102,7 +103,7 @@ function Department() {
 							<div className='box line'>
 								<h2>Selected Publications</h2>
 								<div className='list_area'>
-									{/* <ul>
+									<ul>
 										{Schedules.map((schedule, idx) => {
 											return (
 												<li key={idx}>
@@ -113,7 +114,7 @@ function Department() {
 												</li>
 											);
 										})}
-									</ul> */}
+									</ul>
 								</div>
 							</div>
 						</div>
