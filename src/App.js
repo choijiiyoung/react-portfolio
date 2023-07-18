@@ -25,6 +25,7 @@ import Etc3 from './components/sub/Etc3';
 import './scss/style.scss';
 import { fetchYoutube } from './redux/youtubeSlice';
 import { fetchYoutubeThumb } from './redux/youtubeThumbSlice';
+import { fetchDepartment } from './redux/departmentSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -35,6 +36,7 @@ function App() {
 	useEffect(() => {
 		dispatch(fetchYoutube());
 		dispatch(fetchYoutubeThumb());
+		dispatch(fetchDepartment());
 	}, [dispatch]);
 
 	return (
