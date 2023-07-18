@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 function News() {
@@ -56,4 +57,4 @@ function News() {
 	);
 }
 
-export default News;
+export default memo(News);
