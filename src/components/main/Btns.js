@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from 'react';
 import Anime from '../../asset/anime';
 
 function Btns() {
-	console.log('btns');
 	const btnRef = useRef(null);
 	const pos = useRef([]);
 	const [Num, setNum] = useState(0);
