@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from 'react';
 import Anime from '../../asset/anime';
 
 function Btns() {
-	console.log('btns');
 	const btnRef = useRef(null);
 	const pos = useRef([]);
 	const [Num, setNum] = useState(0);
@@ -40,19 +39,18 @@ function Btns() {
 
 	useEffect(() => {
 		getPos();
+		visualEvt();
 		window.addEventListener('resize', getPos);
 		window.addEventListener('scroll', activation);
 		window.addEventListener('load', () => {
 			setTimeout(visualEvt, 500);
 			console.log('load');
 		});
-		window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
 		return () => {
 			window.removeEventListener('resize', getPos);
 			window.removeEventListener('scroll', activation);
 			window.removeEventListener('load', visualEvt);
-			window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 		};
 	}, []);
 
