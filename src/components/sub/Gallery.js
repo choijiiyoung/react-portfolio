@@ -1,53 +1,112 @@
 import Layout from '../common/Layout';
-import axios from 'axios';
 import Masonry from 'react-masonry-component';
 import { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchFlickr } from '../../redux/flickrSlice';
 import Modal from '../common/Modal';
 
 function Gallery() {
+	const dispatch = useDispatch();
 	const openModal = useRef(null);
+	const isUser = useRef(true);
+	const searchInput = useRef(null);
+	const btnWrap = useRef(null);
+	const enableEvent = useRef(true);
 	const frame = useRef(null);
-	const [Items, setItems] = useState([]);
 	const [Loader, setLoader] = useState(true);
 	const [Index, setIndex] = useState(0);
+	const counter = useRef(0);
+	const Items = useSelector((store) => store.flickr.data);
+	const firstLoaded = useRef(true);
 
-	const getFlickr = async (opt) => {
-		const baseURL = `https://www.flickr.com/services/rest/?format=json&nojsoncallback=1`;
-		const key = 'db5673d91b2fb6704d13f6b0181efd99';
-		const method_interest = 'flickr.interestingness.getList';
-		const method_user = 'flickr.people.getPhotos';
-		const num = 20;
-		let url = '';
-		let counter = 0;
+	const resetGallery = (e) => {
+		const btns = btnWrap.current.querySelectorAll('button');
+		btns.forEach((el) => el.classList.remove('on'));
+		e.target.classList.add('on');
+		enableEvent.current = false;
+		setLoader(true);
+		frame.current.classList.remove('on');
+	};
 
-		if (opt.type === 'interest') url = `${baseURL}&api_key=${key}&method=${method_interest}&per_page=${num}`;
-		if (opt.type === 'user')
-			url = `${baseURL}&api_key=${key}&method=${method_user}&per_page=${num}&user_id=${opt.user}`;
+	const showInterest = (e) => {
+		if (!enableEvent.current) return; //재이벤트, 모션중 재이벤트 방지
+		if (e.target.classList.contains('on')) return;
 
-		const result = await axios.get(url);
-		setItems(result.data.photos.photo);
+		resetGallery(e);
+		dispatch(fetchFlickr({ type: 'interest' }));
+		isUser.current = false;
+	};
 
+	const showMine = (e) => {
+		if (!enableEvent.current) return;
+		if (e.target.classList.contains('on')) return;
+
+		resetGallery(e);
+		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
+	};
+
+	const showSearch = (e) => {
+		const tag = searchInput.current.value.trim();
+		if (tag === '') return alert('검색어를 입력하세요.');
+		if (!enableEvent.current) return;
+
+		resetGallery(e);
+		dispatch(fetchFlickr({ type: 'search', tags: tag }));
+		searchInput.current.value = '';
+		isUser.current = false;
+	};
+
+	useEffect(() => {
+		console.log(Items);
+		counter.current = 0;
+		if (Items.length === 0 && !firstLoaded.current) {
+			setLoader(false);
+			frame.current.classList.add('on');
+			const btnMine = btnWrap.current.children;
+			btnMine[1].classList.add('on');
+			dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
+			enableEvent.current = true;
+			return alert('이미지 결과값이 없습니다.');
+		}
+		firstLoaded.current = false;
 		const imgs = frame.current.querySelectorAll('img');
-		imgs.forEach((img, idx) => {
-			img.onload = () => {
-				++counter;
 
-				if (counter === imgs.length) {
+		imgs.forEach((img) => {
+			img.onload = () => {
+				++counter.current;
+
+				if (counter.current === imgs.length - 2) {
 					setLoader(false);
 					frame.current.classList.add('on');
+					enableEvent.current = true;
 				}
 			};
 		});
-	};
-
-	// useEffect(() => getFlickr({ type: 'user', user: '198483448@N02' }), []);
-	useEffect(() => getFlickr({ type: 'interest' }), []);
+	}, [Items, dispatch]);
 
 	return (
 		<>
 			<Layout name={'Gallery'}>
 				<section>
 					<div className='inner'>
+						<div className='top_wrap'>
+							<div className='btn_wrap' ref={btnWrap}>
+								<button onClick={showInterest}>Interest Gallery</button>
+								<button className='on' onClick={showMine}>
+									My Gallery
+								</button>
+							</div>
+
+							<div className='search_box'>
+								<input
+									type='text'
+									placeholder='검색어를 입력하세요.'
+									ref={searchInput}
+									onKeyPress={(e) => e.key === 'Enter' && showSearch(e)}
+								/>
+								<button onClick={showSearch}>Seach</button>
+							</div>
+						</div>
 						<div className='frame' ref={frame}>
 							<Masonry elementType={'div'} options={{ transitionDuration: '0.5s' }}>
 								{Items.map((item, idx) => {
@@ -74,7 +133,17 @@ function Gallery() {
 														onError={(e) => e.target.setAttribute('src', 'https://www.flickr.com/images/buddyicon.gif')}
 													/>
 													<p>{item.title}</p>
-													<span>{item.owner}</span>
+													<span
+														onClick={(e) => {
+															if (isUser.current) return;
+															isUser.current = true;
+															setLoader(true);
+															frame.current.classList.remove('on');
+															dispatch(fetchFlickr({ type: 'user', user: e.target.innerText }));
+														}}
+													>
+														{item.owner}
+													</span>
 												</div>
 											</div>
 										</article>
