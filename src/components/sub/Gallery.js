@@ -7,21 +7,20 @@ import Modal from '../common/Modal';
 
 function Gallery() {
 	const dispatch = useDispatch();
-	const Items = useSelector((store) => store.flickr.data);
 	const openModal = useRef(null);
 	const isUser = useRef(true);
 	const searchInput = useRef(null);
-	const btnWrap = useRef(null);
-	const frame = useRef(null);
-	const counter = useRef(0);
+	const btnSet = useRef(null);
 	const enableEvent = useRef(true);
-	const firstLoaded = useRef(true); //처음 마운트되었는지 확인하기 위한 정보값
+	const frame = useRef(null);
 	const [Loader, setLoader] = useState(true);
 	const [Index, setIndex] = useState(0);
+	const counter = useRef(0);
+	const Items = useSelector((store) => store.flickr.data);
+	const firstLoaded = useRef(true);
 
-	// 기존 갤러리 초기화 함수 & 로딩바 노출
 	const resetGallery = (e) => {
-		const btns = btnWrap.current.querySelectorAll('button');
+		const btns = btnSet.current.querySelectorAll('button');
 		btns.forEach((el) => el.classList.remove('on'));
 		e.target.classList.add('on');
 		enableEvent.current = false;
@@ -30,11 +29,10 @@ function Gallery() {
 	};
 
 	const showInterest = (e) => {
-		if (!enableEvent.current) return; //재이벤트, 모션중 재이벤트 방지
+		if (!enableEvent.current) return;
 		if (e.target.classList.contains('on')) return;
 
 		resetGallery(e);
-
 		dispatch(fetchFlickr({ type: 'interest' }));
 		isUser.current = false;
 	};
@@ -44,7 +42,7 @@ function Gallery() {
 		if (e.target.classList.contains('on')) return;
 
 		resetGallery(e);
-		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
+		dispatch(fetchFlickr({ type: 'user', user: '164021883@N04' }));
 	};
 
 	const showSearch = (e) => {
@@ -59,24 +57,20 @@ function Gallery() {
 	};
 
 	useEffect(() => {
+		console.log(Items);
 		counter.current = 0;
-
 		if (Items.length === 0 && !firstLoaded.current) {
 			setLoader(false);
 			frame.current.classList.add('on');
-			const btnMine = btnWrap.current.children;
+			const btnMine = btnSet.current.children;
 			btnMine[1].classList.add('on');
-			dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
-
+			dispatch(fetchFlickr({ type: 'user', user: '164021883@N04' }));
 			enableEvent.current = true;
 			return alert('이미지 결과값이 없습니다.');
 		}
+		firstLoaded.current = false;
+		const imgs = frame.current.querySelectorAll('img');
 
-		firstLoaded.current = false; // 처음 마운트이후 firstLoaded.current값을 false로 변경
-
-		const imgs = frame.current?.querySelectorAll('img');
-
-		if (!imgs) return;
 		imgs.forEach((img) => {
 			img.onload = () => {
 				++counter.current;
@@ -96,7 +90,7 @@ function Gallery() {
 				<section>
 					<div className='inner'>
 						<div className='top_wrap'>
-							<div className='btn_wrap' ref={btnWrap}>
+							<div className='btn_wrap' ref={btnSet}>
 								<button onClick={showInterest}>Interest Gallery</button>
 								<button className='on' onClick={showMine}>
 									My Gallery

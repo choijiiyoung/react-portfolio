@@ -40,7 +40,7 @@ function App() {
 		dispatch(fetchYoutubeThumb());
 		dispatch(fetchDepartment());
 		dispatch(fetchSchedule());
-		dispatch(fetchFlickr());
+		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
 	}, [dispatch]);
 
 	return (
