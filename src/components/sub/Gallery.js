@@ -47,6 +47,18 @@ function Gallery() {
 			<Layout name={'Gallery'}>
 				<section>
 					<div className='inner'>
+						<div className='top_wrap'>
+							<div className='btn_wrap'>
+								<button>Interest Gallery</button>
+								<button className='on'>My Gallery</button>
+							</div>
+
+							<div className='search_box'>
+								<input type='text' placeholder='검색어를 입력하세요.' />
+								<button>Seach</button>
+							</div>
+						</div>
+
 						<div className='frame' ref={frame}>
 							<Masonry elementType={'div'} options={{ transitionDuration: '0.5s' }}>
 								{Items.map((item, idx) => {

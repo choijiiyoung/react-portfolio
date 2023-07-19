@@ -1,4 +1,31 @@
 .Gallery {
+	.top_wrap {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 20px;
+
+		.search_box {
+			margin-bottom: 10px;
+
+			input[type='text'] {
+				padding: 10px;
+				margin-right: 5px;
+				border: 1px solid #ddd;
+			}
+		}
+
+		button {
+			padding: 10px 20px;
+			background-color: #dee3dd;
+			border: 1px solid #6f746e;
+
+			+ button {
+				margin-left: 5px;
+			}
+		}
+	}
+
 	.frame {
 		opacity: 0;
 		transform: translateY(200px);
@@ -85,7 +112,7 @@
 	.Gallery {
 		.frame {
 			article {
-				width: calc(100% / 1);
+				width: 100%;
 			}
 		}
 	}
