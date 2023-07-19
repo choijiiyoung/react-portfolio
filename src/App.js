@@ -36,7 +36,7 @@ function App() {
 		dispatch({ type: types.YOUTUBETHUMB.start });
 		dispatch({ type: types.DEPARTMENT.start });
 		dispatch({ type: types.SCHEDULE.start });
-		dispatch({ type: types.FLICKR.start, opt: { type: 'interest' } });
+		dispatch({ type: types.FLICKR.start, opt: { type: 'user', user: '198483448@N02' } });
 	}, [dispatch]);
 
 	return (
