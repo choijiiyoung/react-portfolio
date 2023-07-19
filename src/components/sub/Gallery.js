@@ -145,7 +145,17 @@ function Gallery() {
 														onError={(e) => e.target.setAttribute('src', 'https://www.flickr.com/images/buddyicon.gif')}
 													/>
 													<p>{item.title}</p>
-													<span>{item.owner}</span>
+													<span
+														onClick={(e) => {
+															if (isUser.current) return;
+															isUser.current = true;
+															setLoader(true);
+															frame.current.classList.remove('on');
+															setOpt({ type: 'user', user: e.target.innerText });
+														}}
+													>
+														{item.owner}
+													</span>
 												</div>
 											</div>
 										</article>
