@@ -25,18 +25,18 @@ import Etc3 from './components/sub/Etc3';
 import './scss/style.scss';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import * as types from './redux/actionType';
+import { fetchYoutube } from './redux/youtubeSlice';
+import { fetchDepartment } from './redux/departmentSlice';
+import { fetchFlickr } from './redux/flickrSlice';
 
 function App() {
 	const dispatch = useDispatch();
 	const menu = useRef(null);
 
 	useEffect(() => {
-		dispatch({ type: types.YOUTUBE.start });
-		dispatch({ type: types.YOUTUBETHUMB.start });
-		dispatch({ type: types.DEPARTMENT.start });
-		dispatch({ type: types.SCHEDULE.start });
-		dispatch({ type: types.FLICKR.start, opt: { type: 'interest' } });
+		dispatch(fetchYoutube());
+		dispatch(fetchDepartment());
+		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
 	}, [dispatch]);
 
 	return (
