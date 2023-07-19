@@ -1,48 +1,118 @@
 import Layout from '../common/Layout';
 import Masonry from 'react-masonry-component';
 import { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchFlickr } from '../../redux/flickrSlice';
 import Modal from '../common/Modal';
-import { useSelector } from 'react-redux';
 
 function Gallery() {
-	const Items = useSelector((store) => store.flickrReducer.flickr);
+	const dispatch = useDispatch();
+	const Items = useSelector((store) => store.flickr.data);
 	const openModal = useRef(null);
+	const isUser = useRef(true);
+	const searchInput = useRef(null);
+	const btnWrap = useRef(null);
 	const frame = useRef(null);
 	const counter = useRef(0);
+	const enableEvent = useRef(true);
+	const firstLoaded = useRef(true); //처음 마운트되었는지 확인하기 위한 정보값
 	const [Loader, setLoader] = useState(true);
 	const [Index, setIndex] = useState(0);
-	const enableEvent = useRef(true);
+
+	// 기존 갤러리 초기화 함수 & 로딩바 노출
+	const resetGallery = (e) => {
+		const btns = btnWrap.current.querySelectorAll('button');
+		btns.forEach((el) => el.classList.remove('on'));
+		e.target.classList.add('on');
+		enableEvent.current = false;
+		setLoader(true);
+		frame.current.classList.remove('on');
+	};
+
+	const showInterest = (e) => {
+		if (!enableEvent.current) return; //재이벤트, 모션중 재이벤트 방지
+		if (e.target.classList.contains('on')) return;
+
+		resetGallery(e);
+
+		dispatch(fetchFlickr({ type: 'interest' }));
+		isUser.current = false;
+	};
+
+	const showMine = (e) => {
+		if (!enableEvent.current) return;
+		if (e.target.classList.contains('on')) return;
+
+		resetGallery(e);
+		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
+	};
+
+	const showSearch = (e) => {
+		const tag = searchInput.current.value.trim();
+		if (tag === '') return alert('검색어를 입력하세요.');
+		if (!enableEvent.current) return;
+
+		resetGallery(e);
+		dispatch(fetchFlickr({ type: 'search', tags: tag }));
+		searchInput.current.value = '';
+		isUser.current = false;
+	};
 
 	useEffect(() => {
 		counter.current = 0;
+
+		if (Items.length === 0 && !firstLoaded.current) {
+			setLoader(false);
+			frame.current.classList.add('on');
+			const btnMine = btnWrap.current.children;
+			btnMine[1].classList.add('on');
+			dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
+
+			enableEvent.current = true;
+			return alert('이미지 결과값이 없습니다.');
+		}
+
+		firstLoaded.current = false; // 처음 마운트이후 firstLoaded.current값을 false로 변경
+
 		const imgs = frame.current?.querySelectorAll('img');
 
 		if (!imgs) return;
-
 		imgs.forEach((img) => {
 			img.onload = () => {
 				++counter.current;
 
-				if (counter.current === imgs.length) {
+				if (counter.current === imgs.length - 2) {
 					setLoader(false);
 					frame.current.classList.add('on');
 					enableEvent.current = true;
 				}
 			};
 		});
-	}, [Items]);
-
-	useEffect(() => {
-		enableEvent.current = false;
-		setLoader(true);
-		frame.current.classList.remove('on');
-	}, []);
+	}, [Items, dispatch]);
 
 	return (
 		<>
 			<Layout name={'Gallery'}>
 				<section>
 					<div className='inner'>
+						<div className='top_wrap'>
+							<div className='btn_wrap' ref={btnWrap}>
+								<button onClick={showInterest}>Interest Gallery</button>
+								<button className='on' onClick={showMine}>
+									My Gallery
+								</button>
+							</div>
+
+							<div className='search_box'>
+								<input
+									type='text'
+									placeholder='검색어를 입력하세요.'
+									ref={searchInput}
+									onKeyPress={(e) => e.key === 'Enter' && showSearch(e)}
+								/>
+								<button onClick={showSearch}>Seach</button>
+							</div>
+						</div>
 						<div className='frame' ref={frame}>
 							<Masonry elementType={'div'} options={{ transitionDuration: '0.5s' }}>
 								{Items.map((item, idx) => {
@@ -69,7 +139,17 @@ function Gallery() {
 														onError={(e) => e.target.setAttribute('src', 'https://www.flickr.com/images/buddyicon.gif')}
 													/>
 													<p>{item.title}</p>
-													<span>{item.owner}</span>
+													<span
+														onClick={(e) => {
+															if (isUser.current) return;
+															isUser.current = true;
+															setLoader(true);
+															frame.current.classList.remove('on');
+															dispatch(fetchFlickr({ type: 'user', user: e.target.innerText }));
+														}}
+													>
+														{item.owner}
+													</span>
 												</div>
 											</div>
 										</article>
