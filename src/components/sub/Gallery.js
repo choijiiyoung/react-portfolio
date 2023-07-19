@@ -42,7 +42,7 @@ function Gallery() {
 		if (e.target.classList.contains('on')) return;
 
 		resetGallery(e);
-		dispatch(fetchFlickr({ type: 'user', user: '164021883@N04' }));
+		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
 	};
 
 	const showSearch = (e) => {
@@ -64,7 +64,7 @@ function Gallery() {
 			frame.current.classList.add('on');
 			const btnMine = btnSet.current.children;
 			btnMine[1].classList.add('on');
-			dispatch(fetchFlickr({ type: 'user', user: '164021883@N04' }));
+			dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
 			enableEvent.current = true;
 			return alert('이미지 결과값이 없습니다.');
 		}
