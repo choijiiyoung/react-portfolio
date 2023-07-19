@@ -110,10 +110,40 @@
 
 @media screen and (max-width: $mobile) {
 	.Gallery {
+		.top_wrap {
+			flex-wrap: wrap;
+
+			.btn_wrap {
+				display: flex;
+				justify-content: space-between;
+				flex: none;
+				width: 100%;
+				margin-bottom: 20px;
+				gap: 10px;
+
+				button {
+					width: 50%;
+				}
+			}
+
+			.search_box {
+				flex: none;
+				width: 100%;
+
+				input[type='text'] {
+					width: calc(100% - 90px);
+				}
+			}
+		}
+
 		.frame {
 			article {
 				width: 100%;
 			}
+		}
+
+		.loader {
+			width: 50%;
 		}
 	}
 }
