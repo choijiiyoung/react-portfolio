@@ -14,55 +14,59 @@ function Gallery() {
 	const [Items, setItems] = useState([]);
 	const [Loader, setLoader] = useState(true);
 	const [Index, setIndex] = useState(0);
+	const [Mounted, setMounted] = useState(true);
 
-	const getFlickr = useCallback(async (opt) => {
-		const baseURL = `https://www.flickr.com/services/rest/?format=json&nojsoncallback=1`;
-		const key = 'db5673d91b2fb6704d13f6b0181efd99';
-		const method_interest = 'flickr.interestingness.getList';
-		const method_user = 'flickr.people.getPhotos';
-		const method_search = 'flickr.photos.search';
-		const num = 30;
-		let url = '';
-		let counter = 0;
+	const getFlickr = useCallback(
+		async (opt) => {
+			const baseURL = `https://www.flickr.com/services/rest/?format=json&nojsoncallback=1`;
+			const key = 'db5673d91b2fb6704d13f6b0181efd99';
+			const method_interest = 'flickr.interestingness.getList';
+			const method_user = 'flickr.people.getPhotos';
+			const method_search = 'flickr.photos.search';
+			const num = 30;
+			let url = '';
+			let counter = 0;
 
-		if (opt.type === 'interest') url = `${baseURL}&api_key=${key}&method=${method_interest}&per_page=${num}`;
-		if (opt.type === 'search')
-			url = url = `${baseURL}&api_key=${key}&method=${method_search}&per_page=${num}&tags=${opt.tags}`;
-		if (opt.type === 'user')
-			url = `${baseURL}&api_key=${key}&method=${method_user}&per_page=${num}&user_id=${opt.user}`;
+			if (opt.type === 'interest') url = `${baseURL}&api_key=${key}&method=${method_interest}&per_page=${num}`;
+			if (opt.type === 'search')
+				url = url = `${baseURL}&api_key=${key}&method=${method_search}&per_page=${num}&tags=${opt.tags}`;
+			if (opt.type === 'user')
+				url = `${baseURL}&api_key=${key}&method=${method_user}&per_page=${num}&user_id=${opt.user}`;
 
-		const result = await axios.get(url);
-		if (result.data.photos.photo.length === 0) {
-			setLoader(false);
-			frame.current.classList.add('on');
+			const result = await axios.get(url);
+			if (result.data.photos.photo.length === 0) {
+				setLoader(false);
+				frame.current.classList.add('on');
 
-			const btnMine = btnWrap.current.children;
-			btnMine[1].classList.add('on');
-			getFlickr({ type: 'user', user: '198483448@N02' });
+				const btnMine = btnWrap.current.children;
+				btnMine[1].classList.add('on');
+				getFlickr({ type: 'user', user: '198483448@N02' });
 
-			enableEvent.current = true;
+				enableEvent.current = true;
 
-			return alert('이미지 결과값이 없습니다.');
-		}
+				return alert('이미지 결과값이 없습니다.');
+			}
 
-		setItems(result.data.photos.photo);
+			Mounted && setItems(result.data.photos.photo);
 
-		const imgs = frame.current?.querySelectorAll('img');
+			const imgs = frame.current?.querySelectorAll('img');
 
-		//만약 imgs에 받아지는 값이 없으면 밑에 반복문이 실행안되도록 return으로 강제 종료
-		if (!imgs) return;
-		imgs.forEach((img) => {
-			img.onload = () => {
-				++counter;
+			//만약 imgs에 받아지는 값이 없으면 밑에 반복문이 실행안되도록 return으로 강제 종료
+			if (!imgs) return;
+			imgs.forEach((img) => {
+				img.onload = () => {
+					++counter;
 
-				if (counter === imgs.length - 2) {
-					setLoader(false);
-					frame.current.classList.add('on');
-					enableEvent.current = true;
-				}
-			};
-		});
-	}, []);
+					if (counter === imgs.length - 2) {
+						setLoader(false);
+						frame.current.classList.add('on');
+						enableEvent.current = true;
+					}
+				};
+			});
+		},
+		[Mounted]
+	);
 
 	const resetGallery = (e) => {
 		const btns = btnWrap.current.querySelectorAll('button');
@@ -103,7 +107,12 @@ function Gallery() {
 		isUser.current = false;
 	};
 
-	useEffect(() => getFlickr({ type: 'user', user: '198483448@N02' }), [getFlickr]);
+	useEffect(() => {
+		getFlickr({ type: 'user', user: '198483448@N02' });
+		return () => {
+			setMounted(false);
+		};
+	}, [getFlickr]);
 
 	return (
 		<>
