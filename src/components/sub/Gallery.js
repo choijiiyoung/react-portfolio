@@ -99,7 +99,12 @@ function Gallery() {
 							</div>
 
 							<div className='search_box'>
-								<input type='text' placeholder='검색어를 입력하세요.' ref={searchInput} />
+								<input
+									type='text'
+									placeholder='검색어를 입력하세요.'
+									ref={searchInput}
+									onKeyPress={(e) => e.key === 'Enter' && showSearch(e)}
+								/>
 								<button onClick={showSearch}>Seach</button>
 							</div>
 						</div>
