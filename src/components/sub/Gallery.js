@@ -6,6 +6,9 @@ import Modal from '../common/Modal';
 
 function Gallery() {
 	const openModal = useRef(null);
+	const isUser = useRef(true);
+	const searchInput = useRef(null);
+	const btnWrap = useRef(null);
 	const frame = useRef(null);
 	const [Items, setItems] = useState([]);
 	const [Loader, setLoader] = useState(true);
@@ -16,19 +19,26 @@ function Gallery() {
 		const key = 'db5673d91b2fb6704d13f6b0181efd99';
 		const method_interest = 'flickr.interestingness.getList';
 		const method_user = 'flickr.people.getPhotos';
-		const num = 20;
+		const method_search = 'flickr.photos.search';
+		const num = 30;
 		let url = '';
 		let counter = 0;
 
 		if (opt.type === 'interest') url = `${baseURL}&api_key=${key}&method=${method_interest}&per_page=${num}`;
+		if (opt.type === 'search')
+			url = url = `${baseURL}&api_key=${key}&method=${method_search}&per_page=${num}&tags=${opt.tags}`;
 		if (opt.type === 'user')
 			url = `${baseURL}&api_key=${key}&method=${method_user}&per_page=${num}&user_id=${opt.user}`;
 
 		const result = await axios.get(url);
+
 		setItems(result.data.photos.photo);
 
-		const imgs = frame.current.querySelectorAll('img');
-		imgs.forEach((img, idx) => {
+		const imgs = frame.current?.querySelectorAll('img');
+
+		//만약 imgs에 받아지는 값이 없으면 밑에 반복문이 실행안되도록 return으로 강제 종료
+		if (!imgs) return;
+		imgs.forEach((img) => {
 			img.onload = () => {
 				++counter;
 
@@ -48,13 +58,13 @@ function Gallery() {
 				<section>
 					<div className='inner'>
 						<div className='top_wrap'>
-							<div className='btn_wrap'>
+							<div className='btn_wrap' ref={btnWrap}>
 								<button>Interest Gallery</button>
 								<button className='on'>My Gallery</button>
 							</div>
 
 							<div className='search_box'>
-								<input type='text' placeholder='검색어를 입력하세요.' />
+								<input type='text' placeholder='검색어를 입력하세요.' ref={searchInput} />
 								<button>Seach</button>
 							</div>
 						</div>
