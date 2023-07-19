@@ -50,7 +50,19 @@ function Gallery() {
 		});
 	}, []);
 
-	useEffect(() => getFlickr({ type: 'interest' }), [getFlickr]);
+	const showInterest = (e) => {
+		if (e.target.classList.contains('on')) return;
+
+		getFlickr({ type: 'interest' });
+		isUser.current = false;
+	};
+
+	const showMine = (e) => {
+		if (e.target.classList.contains('on')) return;
+		getFlickr({ type: 'user', user: '198483448@N02' });
+	};
+
+	useEffect(() => getFlickr({ type: 'user', user: '198483448@N02' }), [getFlickr]);
 
 	return (
 		<>
@@ -59,8 +71,10 @@ function Gallery() {
 					<div className='inner'>
 						<div className='top_wrap'>
 							<div className='btn_wrap' ref={btnWrap}>
-								<button>Interest Gallery</button>
-								<button className='on'>My Gallery</button>
+								<button onClick={showInterest}>Interest Gallery</button>
+								<button className='on' onClick={showMine}>
+									My Gallery
+								</button>
 							</div>
 
 							<div className='search_box'>
