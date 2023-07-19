@@ -9,6 +9,7 @@ function Gallery() {
 	const isUser = useRef(true);
 	const searchInput = useRef(null);
 	const btnWrap = useRef(null);
+	const enableEvent = useRef(true);
 	const frame = useRef(null);
 	const [Items, setItems] = useState([]);
 	const [Loader, setLoader] = useState(true);
@@ -31,6 +32,18 @@ function Gallery() {
 			url = `${baseURL}&api_key=${key}&method=${method_user}&per_page=${num}&user_id=${opt.user}`;
 
 		const result = await axios.get(url);
+		if (result.data.photos.photo.length === 0) {
+			setLoader(false);
+			frame.current.classList.add('on');
+
+			const btnMine = btnWrap.current.children;
+			btnMine[1].classList.add('on');
+			getFlickr({ type: 'user', user: '198483448@N02' });
+
+			enableEvent.current = true;
+
+			return alert('이미지 결과값이 없습니다.');
+		}
 
 		setItems(result.data.photos.photo);
 
@@ -42,9 +55,10 @@ function Gallery() {
 			img.onload = () => {
 				++counter;
 
-				if (counter === imgs.length) {
+				if (counter === imgs.length - 2) {
 					setLoader(false);
 					frame.current.classList.add('on');
+					enableEvent.current = true;
 				}
 			};
 		});
@@ -54,9 +68,13 @@ function Gallery() {
 		const btns = btnWrap.current.querySelectorAll('button');
 		btns.forEach((el) => el.classList.remove('on'));
 		e.target.classList.add('on');
+		enableEvent.current = false;
+		setLoader(true);
+		frame.current.classList.remove('on');
 	};
 
 	const showInterest = (e) => {
+		if (!enableEvent.current) return; //재이벤트, 모션중 재이벤트 방지
 		if (e.target.classList.contains('on')) return;
 
 		resetGallery(e);
@@ -66,6 +84,7 @@ function Gallery() {
 	};
 
 	const showMine = (e) => {
+		if (!enableEvent.current) return;
 		if (e.target.classList.contains('on')) return;
 
 		resetGallery(e);
@@ -76,6 +95,7 @@ function Gallery() {
 	const showSearch = (e) => {
 		const tag = searchInput.current.value.trim();
 		if (tag === '') return alert('검색어를 입력하세요.');
+		if (!enableEvent.current) return;
 
 		resetGallery(e);
 		getFlickr({ type: 'search', tags: tag });
