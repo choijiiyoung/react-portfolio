@@ -23,24 +23,20 @@ import Etc2 from './components/sub/Etc2';
 import Etc3 from './components/sub/Etc3';
 
 import './scss/style.scss';
-import { fetchYoutube } from './redux/youtubeSlice';
-import { fetchYoutubeThumb } from './redux/youtubeThumbSlice';
-import { fetchDepartment } from './redux/departmentSlice';
-import { fetchSchedule } from './redux/scheduleSlice';
-import { fetchFlickr } from './redux/flickrSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import * as types from './redux/actionType';
 
 function App() {
-	const menu = useRef(null);
 	const dispatch = useDispatch();
+	const menu = useRef(null);
 
 	useEffect(() => {
-		dispatch(fetchYoutube());
-		dispatch(fetchYoutubeThumb());
-		dispatch(fetchDepartment());
-		dispatch(fetchSchedule());
-		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
+		dispatch({ type: types.YOUTUBE.start });
+		dispatch({ type: types.YOUTUBETHUMB.start });
+		dispatch({ type: types.DEPARTMENT.start });
+		dispatch({ type: types.SCHEDULE.start });
+		dispatch({ type: types.FLICKR.start, opt: { type: 'interest' } });
 	}, [dispatch]);
 
 	return (

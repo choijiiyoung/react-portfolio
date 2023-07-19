@@ -1,36 +1,4 @@
 .Gallery {
-	.top_wrap {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		margin-bottom: 20px;
-
-		.search_box {
-			margin-bottom: 10px;
-
-			input[type='text'] {
-				padding: 10px;
-				margin-right: 5px;
-				border: 1px solid #ddd;
-			}
-		}
-
-		button {
-			padding: 10px 20px;
-			background-color: #dee3dd;
-			border: 1px solid #6f746e;
-
-			+ button {
-				margin-left: 5px;
-			}
-
-			&.on {
-				background-color: #000;
-				color: #fff;
-			}
-		}
-	}
-
 	.frame {
 		opacity: 0;
 		transform: translateY(200px);
@@ -86,9 +54,6 @@
 						font: bold 14px/1.2 'arial';
 						margin-bottom: 10px;
 					}
-					span {
-						cursor: pointer;
-					}
 				}
 			}
 		}
@@ -118,40 +83,10 @@
 
 @media screen and (max-width: $mobile) {
 	.Gallery {
-		.top_wrap {
-			flex-wrap: wrap;
-
-			.btn_wrap {
-				display: flex;
-				justify-content: space-between;
-				flex: none;
-				width: 100%;
-				margin-bottom: 20px;
-				gap: 10px;
-
-				button {
-					width: 50%;
-				}
-			}
-
-			.search_box {
-				flex: none;
-				width: 100%;
-
-				input[type='text'] {
-					width: calc(100% - 90px);
-				}
-			}
-		}
-
 		.frame {
 			article {
-				width: 100%;
+				width: calc(100% / 1);
 			}
-		}
-
-		.loader {
-			width: 50%;
 		}
 	}
 }
