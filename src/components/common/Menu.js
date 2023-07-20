@@ -23,7 +23,7 @@ function Menu() {
 					initial={{ opacity: 0, x: -280 }}
 					animate={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
 					exit={{ opacity: 0, x: -280, transition: { duration: 0.5 } }}
-					onClick={() => dispatch(close)}
+					onClick={() => dispatch(close())}
 				>
 					<h1>
 						<Link to='/'>LOGO</Link>

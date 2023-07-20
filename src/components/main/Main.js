@@ -8,7 +8,7 @@ import Partnership from './Partnership';
 import Prod from './Prod';
 import Visual from './Visual';
 
-function Main({ menu }) {
+function Main() {
 	return (
 		<main>
 			<Header type={'main'} />
