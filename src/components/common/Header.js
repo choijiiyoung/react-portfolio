@@ -4,8 +4,11 @@ import { faBagShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { memo } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { toggle } from '../../redux/menuSlice';
+import { useDispatch } from 'react-redux';
 
-function Header({ type, menu }) {
+function Header({ type }) {
+	const dispatch = useDispatch();
 	const active = 'on';
 	return (
 		<>
@@ -74,7 +77,7 @@ function Header({ type, menu }) {
 					<FontAwesomeIcon
 						icon={faBars}
 						onClick={() => {
-							menu.current.toggle();
+							dispatch(toggle());
 						}}
 					/>
 				</div>

@@ -11,7 +11,7 @@ import Visual from './Visual';
 function Main({ menu }) {
 	return (
 		<main>
-			<Header type={'main'} menu={menu} />
+			<Header type={'main'} />
 			<Visual />
 			<NewProduct />
 			<Imprv />

@@ -9,6 +9,7 @@ import youtubeThumbReducer from './redux/youtubeThumbSlice';
 import departmetReducer from './redux/departmentSlice';
 import scheduleReducer from './redux/scheduleSlice';
 import flickrReducer from './redux/flickrSlice';
+import menuReducer from './redux/menuSlice';
 
 const store = configureStore({
 	reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
 		department: departmetReducer,
 		schedules: scheduleReducer,
 		flickr: flickrReducer,
+		menu: menuReducer,
 	},
 });
 
