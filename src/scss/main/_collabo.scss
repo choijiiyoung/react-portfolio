@@ -56,7 +56,7 @@
 
 					.img_area {
 						overflow: hidden;
-						height: 346px;
+						height: 350px;
 
 						img {
 							width: 100%;
@@ -77,10 +77,12 @@
 	.collabo_list {
 		li {
 			.box {
-				.img_area {
-					img {
-						transform: translateY(0px);
-						opacity: 1;
+				.img_wrap {
+					.img_area {
+						img {
+							transform: translateY(0px);
+							opacity: 1;
+						}
 					}
 				}
 			}
@@ -116,7 +118,7 @@
 	}
 }
 
-@media screen and (max-width: $tablet) {
+@media screen and (max-width: $mobile) {
 	#collabo {
 		.collabo_list {
 			li {
