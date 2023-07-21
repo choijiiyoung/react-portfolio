@@ -43,7 +43,7 @@ function News() {
 								{Posts.map((post, idx) => {
 									if (idx >= 2) return null;
 									return (
-										<li>
+										<li key={idx}>
 											<div className='inner_area'>
 												<div className='cont'>
 													<span>Lorem ipsum dolor</span>
