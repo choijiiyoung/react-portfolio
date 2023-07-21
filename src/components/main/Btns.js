@@ -38,7 +38,10 @@ function Btns() {
 	};
 
 	useEffect(() => {
-		getPos();
+		setTimeout(() => {
+			getPos();
+		}, 1000);
+
 		visualEvt();
 		window.addEventListener('resize', getPos);
 		window.addEventListener('scroll', activation);
