@@ -25,7 +25,6 @@ function Btns() {
 				console.log(pos);
 
 				for (const btn of btns) btn.classList.remove('on');
-				for (const box of boxs) box.classList.remove('on');
 				btns[idx].classList.add('on');
 				boxs[idx].classList.add('on');
 			}
