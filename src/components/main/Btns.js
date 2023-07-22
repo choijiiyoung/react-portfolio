@@ -15,17 +15,14 @@ function Btns() {
 	};
 
 	const activation = () => {
-		const base = -350;
+		const base = -window.innerHeight / 2;
 		const scroll = window.scrollY;
 		const btns = btnRef.current.children;
 		const boxs = btnRef.current.parentElement.querySelectorAll('.my_scroll');
 
 		pos.current.forEach((pos, idx) => {
 			if (scroll >= pos + base) {
-				console.log(pos);
-
 				for (const btn of btns) btn.classList.remove('on');
-				for (const box of boxs) box.classList.remove('on');
 				btns[idx].classList.add('on');
 				boxs[idx].classList.add('on');
 			}
@@ -38,13 +35,15 @@ function Btns() {
 	};
 
 	useEffect(() => {
-		getPos();
+		setTimeout(() => {
+			getPos();
+		}, 1000);
+
 		visualEvt();
 		window.addEventListener('resize', getPos);
 		window.addEventListener('scroll', activation);
 		window.addEventListener('load', () => {
 			setTimeout(visualEvt, 500);
-			console.log('load');
 		});
 
 		return () => {

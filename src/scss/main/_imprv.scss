@@ -5,18 +5,18 @@
 		margin-bottom: 50px;
 		overflow: hidden;
 
-		// .title_area {
-		// 	flex: 1;
-		// 	transform: translateY(100px);
-		// 	opacity: 0;
-		// 	transition: 0.5s;
-		// }
+		.title_area {
+			flex: 1;
+			transform: translateY(100px);
+			opacity: 0;
+			transition: 0.5s;
+		}
 
 		.txt_area {
 			flex: 3;
-			// transform: translateY(100px);
-			// opacity: 0;
-			// transition: 0.5s;
+			transform: translateY(100px);
+			opacity: 0;
+			transition: 0.5s;
 
 			p {
 				&:first-of-type {
@@ -37,6 +37,15 @@
 				transition: 1.2s;
 
 				&.on {
+					a {
+						.cross {
+							span {
+								&.col {
+									width: 0px;
+								}
+							}
+						}
+					}
 					.box {
 						display: flex;
 					}
@@ -46,14 +55,19 @@
 					display: flex;
 					justify-content: center;
 					align-items: center;
-					gap: 230px;
 					padding: 20px 0;
 					color: #222;
 					font: bold 18px 'arial';
 
 					.num {
 						display: inline-block;
-						width: 210px;
+						width: 320px;
+						margin-right: 120px;
+					}
+
+					p {
+						padding-right: 30px;
+						word-break: keep-all;
 					}
 
 					.cross {
@@ -80,11 +94,9 @@
 				.box {
 					display: none;
 					padding: 20px 0 30px;
-					gap: 240px;
+					gap: 120px;
 
 					.img_area {
-						width: 200px;
-
 						img {
 							width: 100%;
 							height: 100%;
@@ -95,20 +107,16 @@
 					.txt {
 						flex: 4;
 						padding-right: 50px;
-
-						p + p {
-							margin-top: 20px;
-						}
 					}
 				}
 
-				// @for $i from 1 to 4 {
-				// 	&:nth-of-type(#{$i}) {
-				// 		opacity: 0;
-				// 		transform: translateY($i * 100px);
-				// 		transition-delay: $i * 0.1s;
-				// 	}
-				// }
+				@for $i from 1 to 4 {
+					&:nth-of-type(#{$i}) {
+						opacity: 0;
+						transform: translateY($i * 100px);
+						transition-delay: $i * 0.1s;
+					}
+				}
 
 				&:last-of-type {
 					border: 0;
@@ -135,32 +143,32 @@
 	}
 }
 
-// #imprv.on {
-// 	.content {
-// 		.title_area {
-// 			transform: translateY(0px);
-// 			opacity: 1;
-// 		}
+#imprv.on {
+	.content {
+		.title_area {
+			transform: translateY(0px);
+			opacity: 1;
+		}
 
-// 		.txt_area {
-// 			transform: translateY(0px);
-// 			opacity: 1;
-// 		}
-// 	}
+		.txt_area {
+			transform: translateY(0px);
+			opacity: 1;
+		}
+	}
 
-// 	.acco_wrap {
-// 		.list {
-// 			li {
-// 				@for $i from 1 to 4 {
-// 					&:nth-of-type(#{$i}) {
-// 						opacity: 1;
-// 						transform: translateY(0px);
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-// }
+	.acco_wrap {
+		.list {
+			li {
+				@for $i from 1 to 4 {
+					&:nth-of-type(#{$i}) {
+						opacity: 1;
+						transform: translateY(0px);
+					}
+				}
+			}
+		}
+	}
+}
 
 @media screen and (max-width: 1200px) {
 	#imprv {
@@ -172,11 +180,13 @@
 			.list {
 				li {
 					a {
-						gap: 120px;
+						.num {
+							margin-right: 130px;
+						}
 					}
 
 					.box {
-						gap: 150px;
+						gap: 130px;
 					}
 				}
 			}
@@ -206,10 +216,9 @@
 			.list {
 				li {
 					a {
-						gap: 5%;
-
 						.num {
 							width: auto;
+							margin-right: 30px;
 						}
 
 						.icon {
@@ -222,6 +231,11 @@
 						gap: 8%;
 						flex-direction: row-reverse;
 						justify-content: space-between;
+
+						.txt {
+							flex: 3;
+							padding-right: 0;
+						}
 					}
 				}
 			}
