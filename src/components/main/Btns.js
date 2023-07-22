@@ -22,8 +22,6 @@ function Btns() {
 
 		pos.current.forEach((pos, idx) => {
 			if (scroll >= pos + base) {
-				console.log(pos);
-
 				for (const btn of btns) btn.classList.remove('on');
 				btns[idx].classList.add('on');
 				boxs[idx].classList.add('on');
@@ -46,7 +44,6 @@ function Btns() {
 		window.addEventListener('scroll', activation);
 		window.addEventListener('load', () => {
 			setTimeout(visualEvt, 500);
-			console.log('load');
 		});
 
 		return () => {
