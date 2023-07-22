@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 
 function News() {
 	const dummy = [
-		{
-			title: 'Lorem ipsum dolor sit amet.',
-			content:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, deserunt!Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, deserunt!',
-		},
+		{ title: 'Hello6', content: 'here comes description in detail.' },
 		{ title: 'Hello5', content: 'here comes description in detail.' },
 		{ title: 'Hello4', content: 'here comes description in detail.' },
 		{ title: 'Hello3', content: 'here comes description in detail.' },
