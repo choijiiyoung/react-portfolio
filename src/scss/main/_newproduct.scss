@@ -17,11 +17,15 @@
 			.item {
 				width: 240px;
 
-				.slide_wrap {
+				.slide_wrap,
+				.img_wrap {
 					width: 100%;
-					height: 240px;
 					margin-bottom: 10px;
 					background: #efefef;
+
+					img {
+						width: 100%;
+					}
 				}
 
 				&.first {
@@ -39,7 +43,11 @@
 
 					.slide_wrap {
 						width: 100%;
-						height: 410px;
+
+						.swiper-button-next,
+						.swiper-button-prev {
+							color: #999;
+						}
 					}
 				}
 
@@ -113,10 +121,6 @@
 						margin-left: 0;
 						flex: none;
 						width: 360px;
-
-						.slide_wrap {
-							height: 360px;
-						}
 					}
 
 					&.last {
@@ -141,10 +145,6 @@
 				.item {
 					&.center {
 						flex: 1;
-
-						.slide_wrap {
-							height: 240px;
-						}
 					}
 				}
 			}
