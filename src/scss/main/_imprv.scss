@@ -37,6 +37,15 @@
 				transition: 1.2s;
 
 				&.on {
+					a {
+						.cross {
+							span {
+								&.col {
+									width: 0px;
+								}
+							}
+						}
+					}
 					.box {
 						display: flex;
 					}
@@ -46,14 +55,19 @@
 					display: flex;
 					justify-content: center;
 					align-items: center;
-					gap: 230px;
 					padding: 20px 0;
 					color: #222;
 					font: bold 18px 'arial';
 
 					.num {
 						display: inline-block;
-						width: 210px;
+						width: 200px;
+						margin-right: 240px;
+					}
+
+					p {
+						padding-right: 30px;
+						word-break: keep-all;
 					}
 
 					.cross {
@@ -172,11 +186,13 @@
 			.list {
 				li {
 					a {
-						gap: 120px;
+						.num {
+							margin-right: 130px;
+						}
 					}
 
 					.box {
-						gap: 150px;
+						gap: 130px;
 					}
 				}
 			}
@@ -206,10 +222,9 @@
 			.list {
 				li {
 					a {
-						gap: 5%;
-
 						.num {
 							width: auto;
+							margin-right: 30px;
 						}
 
 						.icon {
