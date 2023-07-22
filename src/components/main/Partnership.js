@@ -9,7 +9,7 @@ function Partnership() {
 					<div className='prs_wrap'>
 						<div className='item'>
 							<div className='name'>
-								<p>Lorem ipsum</p>
+								<p>Automatic integration</p>
 								<div className='cross'>
 									<span className='bar row'></span>
 									<span className='bar col'></span>
@@ -21,7 +21,7 @@ function Partnership() {
 						</div>
 						<div className='item'>
 							<div className='name'>
-								<p>Lorem ipsum</p>
+								<p>Consumer electronics</p>
 								<div className='cross'>
 									<span className='bar row'></span>
 									<span className='bar col'></span>
