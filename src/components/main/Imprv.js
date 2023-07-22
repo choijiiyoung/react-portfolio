@@ -47,8 +47,8 @@ function Imprv() {
 											</article>
 											<div className='txt'>
 												<p>
-													{vid.snippet.description.length > 400
-														? vid.snippet.description.substr(0, 400) + '...'
+													{vid.snippet.description.length > 300
+														? vid.snippet.description.substr(0, 300) + '...'
 														: vid.snippet.description}
 												</p>
 											</div>
