@@ -10,7 +10,6 @@ function Btns() {
 		pos.current = [];
 		const secs = btnRef.current.parentElement.querySelectorAll('.my_scroll');
 		for (const sec of secs) pos.current.push(sec.offsetTop);
-
 		setNum(pos.current.length);
 	};
 
@@ -65,7 +64,6 @@ function Btns() {
 							key={idx}
 							className={defaultCalss}
 							onClick={() => {
-								console.log(idx);
 								new Anime(window, {
 									prop: 'scroll',
 									value: pos.current[idx],
