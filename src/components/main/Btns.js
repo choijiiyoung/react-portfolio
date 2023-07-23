@@ -65,7 +65,6 @@ function Btns() {
 							key={idx}
 							className={defaultCalss}
 							onClick={() => {
-								console.log(idx);
 								new Anime(window, {
 									prop: 'scroll',
 									value: pos.current[idx],
