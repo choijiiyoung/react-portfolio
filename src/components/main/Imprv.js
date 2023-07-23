@@ -1,7 +1,11 @@
-import { memo } from 'react';
 import { Link } from 'react-router-dom';
+import { memo, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function Imprv() {
+	const youtube = useSelector((store) => store.youtubeReducer.youtube);
+	const [Index, setIndex] = useState(0);
+
 	return (
 		<>
 			<section id='imprv' className='my_scroll'>
@@ -25,74 +29,33 @@ function Imprv() {
 					</div>
 					<div className='acco_wrap'>
 						<ul className='list'>
-							<li className='on'>
-								<Link to='#'>
-									<span className='num'>01</span>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<div className='cross'>
-										<span className='bar row'></span>
-										<span className='bar col'></span>
-									</div>
-								</Link>
-								<div className='box'>
-									<article className='img_area'>
-										<img src={`${process.env.PUBLIC_URL}/img/main/imprv1.jpg`} alt={'img'} />
-									</article>
-									<div className='txt'>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi distinctio porro nihil. Debitis
-											dicta minus maxime ratione iusto facilis dignissimos.adipisicing elit. Nisi distinctio porro
-											nihil. Debitis dicta minus maxime ratione iusto facilis dignissimos
-										</p>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi distinctio porro nihil. Debitis
-											dicta minus maxime ratione iusto facilis dignissimos.
-										</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<Link to='#'>
-									<span className='num'>02</span>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<div className='cross'>
-										<span className='bar row'></span>
-										<span className='bar col'></span>
-									</div>
-								</Link>
-								<div className='box'>
-									<article className='img_area'>
-										<img src={`${process.env.PUBLIC_URL}/img/main/imprv1.jpg`} alt={'img'} />
-									</article>
-									<div className='txt'>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi distinctio porro nihil. Debitis
-											dicta minus maxime ratione iusto facilis dignissimos.
-										</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<Link to='#'>
-									<span className='num'>03</span>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<div className='cross'>
-										<span className='bar row'></span>
-										<span className='bar col'></span>
-									</div>
-								</Link>
-								<div className='box'>
-									<article className='img_area'>
-										<img src={`${process.env.PUBLIC_URL}/img/main/imprv1.jpg`} alt={'img'} />
-									</article>
-									<div className='txt'>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi distinctio porro nihil. Debitis
-											dicta minus maxime ratione iusto facilis dignissimos.
-										</p>
-									</div>
-								</div>
-							</li>
+							{youtube.map((vid, idx) => {
+								if (idx >= 3) return null;
+								return (
+									<li onClick={() => setIndex(idx)} className={idx === Index ? 'on' : ''} key={idx}>
+										<Link to='#'>
+											<span className='num'>0{idx + 1}</span>
+											<p>{vid.snippet.title}</p>
+											<div className='cross'>
+												<span className='bar row'></span>
+												<span className='bar col'></span>
+											</div>
+										</Link>
+										<div className='box'>
+											<article className='img_area'>
+												<img src={vid.snippet.thumbnails.medium.url} alt={vid.snippet.title} />
+											</article>
+											<div className='txt'>
+												<p>
+													{vid.snippet.description.length > 300
+														? vid.snippet.description.substr(0, 300) + '...'
+														: vid.snippet.description}
+												</p>
+											</div>
+										</div>
+									</li>
+								);
+							})}
 						</ul>
 					</div>
 					<div className='btn_wrap'>
