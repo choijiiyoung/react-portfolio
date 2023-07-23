@@ -84,6 +84,7 @@ function Department() {
 								<h2>Directors</h2>
 								<div className='cont_area'>
 									{Members.map((member, idx) => {
+										if (idx >= 6) return null;
 										return (
 											<article key={idx}>
 												<div className='pic'>
