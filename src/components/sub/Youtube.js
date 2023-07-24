@@ -47,7 +47,7 @@ function Youtube() {
 
 	return (
 		<>
-			<Layout name={'Youtube'}>
+			<Layout name={'Youtube'} bg={'Youtube.jpg'}>
 				<section>
 					<div className='inner'>
 						<div className='ytb_wrap'>

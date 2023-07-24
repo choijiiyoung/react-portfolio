@@ -81,6 +81,9 @@ main {
 		height: 300px;
 		margin-bottom: 100px;
 		background: gray;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
 		opacity: 0;
 		transition: 1s 0.2s;
 

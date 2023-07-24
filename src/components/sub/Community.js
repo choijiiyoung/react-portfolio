@@ -80,7 +80,7 @@ function Community() {
 	}, [Posts]);
 
 	return (
-		<Layout name={'Community'}>
+		<Layout name={'Community'} bg={'Community.jpg'}>
 			<section>
 				<div className='inner'>
 					<div className='input_box'>

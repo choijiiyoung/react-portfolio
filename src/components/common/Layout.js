@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 
-function Layout({ name, children }) {
+function Layout({ name, children, bg }) {
 	const frame = useRef(null);
 
 	useEffect(() => {
@@ -10,7 +10,7 @@ function Layout({ name, children }) {
 	return (
 		<div className='container' ref={frame}>
 			<div className={`content ${name}`}>
-				<figure className='sub_visual'>
+				<figure className='sub_visual' style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/img/sub/${bg})` }}>
 					<h1>{name}</h1>
 				</figure>
 				{children}

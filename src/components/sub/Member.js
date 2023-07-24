@@ -114,7 +114,7 @@ function Member() {
 	}, [Val]);
 
 	return (
-		<Layout name={'Member'}>
+		<Layout name={'Member'} bg={'Members.jpg'}>
 			<section>
 				<div className='inner'>
 					<button onClick={() => history.goBack()}>뒤로 가기</button>

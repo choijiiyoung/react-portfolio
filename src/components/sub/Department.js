@@ -7,7 +7,7 @@ function Department() {
 	const Schedules = useSelector((store) => store.schedules.data);
 
 	return (
-		<Layout name={'Department'}>
+		<Layout name={'Department'} bg={'Department.jpg'}>
 			<section className='section first'>
 				<div className='inner'>
 					<div className='cont_wrap'>

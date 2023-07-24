@@ -86,7 +86,7 @@ function Gallery() {
 
 	return (
 		<>
-			<Layout name={'Gallery'}>
+			<Layout name={'Gallery'} bg={'Gallery.jpg'}>
 				<section>
 					<div className='inner'>
 						<div className='top_wrap'>
