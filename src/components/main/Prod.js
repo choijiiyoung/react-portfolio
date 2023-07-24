@@ -7,7 +7,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 function Prod() {
 	const Schedules = useSelector((store) => store.schedules.data);
 	const [Index, setIndex] = useState(0);
-	console.log(Schedules);
+
 	return (
 		<>
 			<section id='prod'>
