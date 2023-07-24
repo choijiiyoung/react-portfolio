@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import Header from '../common/Header';
 import Collabo from './Collabo';
 import Imprv from './Imprv';
@@ -7,11 +6,12 @@ import News from './News';
 import Partnership from './Partnership';
 import Prod from './Prod';
 import Visual from './Visual';
+import Btns from './Btns';
 
-function Main() {
+function Main({ menu }) {
 	return (
 		<main>
-			<Header type={'main'} />
+			<Header type={'main'} menu={menu} />
 			<Visual />
 			<NewProduct />
 			<Imprv />
@@ -19,8 +19,9 @@ function Main() {
 			<Collabo />
 			<Partnership />
 			<News />
+			<Btns />
 		</main>
 	);
 }
 
-export default memo(Main);
+export default Main;

@@ -27,11 +27,12 @@ import { fetchYoutubeThumb } from './redux/youtubeThumbSlice';
 import { fetchDepartment } from './redux/departmentSlice';
 import { fetchSchedule } from './redux/scheduleSlice';
 import { fetchFlickr } from './redux/flickrSlice';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 function App() {
 	const dispatch = useDispatch();
+	const menu = useRef(null);
 
 	useEffect(() => {
 		dispatch(fetchYoutube());
@@ -44,8 +45,8 @@ function App() {
 	return (
 		<>
 			<Switch>
-				<Route exact path='/' render={() => <Main />} />
-				<Route path='/' render={() => <Header type={'sub'} />} />
+				<Route exact path='/' render={() => <Main menu={menu} />} />
+				<Route path='/' render={() => <Header type={'sub'} menu={menu} />} />
 			</Switch>
 
 			<Route path='/department' component={Department} />
@@ -60,7 +61,7 @@ function App() {
 
 			<Footer />
 
-			<Menu />
+			<Menu ref={menu} />
 		</>
 	);
 }
