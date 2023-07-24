@@ -10,7 +10,6 @@ function Btns() {
 		pos.current = [];
 		const secs = btnRef.current.parentElement.querySelectorAll('.my_scroll');
 		for (const sec of secs) pos.current.push(sec.offsetTop);
-
 		setNum(pos.current.length);
 	};
 
