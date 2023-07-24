@@ -2,7 +2,6 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 function Visual() {
-	console.log('visual');
 	return (
 		<>
 			<figure id='visual' className='my_scroll on'>
