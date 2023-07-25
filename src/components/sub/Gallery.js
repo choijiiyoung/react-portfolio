@@ -53,13 +53,13 @@ function Gallery() {
 
 			//만약 imgs에 받아지는 값이 없으면 밑에 반복문이 실행안되도록 return으로 강제 종료
 			if (!imgs) return;
-			imgs.forEach((img) => {
+			imgs?.forEach((img) => {
 				img.onload = () => {
 					++counter;
 
 					if (counter === imgs.length - 2) {
 						setLoader(false);
-						frame.current.classList.add('on');
+						frame.current?.classList.add('on');
 						enableEvent.current = true;
 					}
 				};

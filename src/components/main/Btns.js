@@ -34,21 +34,22 @@ function Btns() {
 
 	const visualEvt = useCallback(() => {
 		const visual = btnRef.current?.parentElement.querySelector('#visual');
-		if (!visual) return;
-
-		Mounted && visual.classList.add('active');
+		if (Mounted) {
+			visual?.classList.add('active');
+		}
 	}, [Mounted]);
 
 	useEffect(() => {
+		setTimeout(() => {
+			visualEvt();
+		}, 500);
+
 		setTimeout(() => {
 			getPos();
 		}, 1000);
 
 		window.addEventListener('resize', getPos);
 		window.addEventListener('scroll', activation);
-		window.addEventListener('load', () => {
-			setTimeout(visualEvt, 500);
-		});
 
 		return () => {
 			setMounted(false);
