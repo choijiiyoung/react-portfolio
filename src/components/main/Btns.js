@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, memo } from 'react';
 import Anime from '../../asset/anime';
 import { useCallback } from 'react';
 
@@ -85,4 +85,4 @@ function Btns() {
 	);
 }
 
-export default Btns;
+export default memo(Btns);
