@@ -11,12 +11,10 @@ const departmentReducer = (state = { members: [], schedules: [] }, action) => {
 	}
 };
 
-const youtubeReducer = (state = { youtube: [], youtubetxt: [] }, action) => {
+const youtubeReducer = (state = { youtube: [] }, action) => {
 	switch (action.type) {
 		case 'SET_YOUTUBE':
 			return { ...state, youtube: action.payload };
-		case 'SET_YOUTUBETXT':
-			return { ...state, youtubetxt: action.payload };
 		default:
 			return state;
 	}

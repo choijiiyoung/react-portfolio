@@ -19,13 +19,6 @@ export const setYoutube = (data) => {
 	};
 };
 
-export const setYoutubeTxt = (data) => {
-	return {
-		type: 'SET_YOUTUBETXT',
-		payload: data,
-	};
-};
-
 export const setYoutubeThumb = (data) => {
 	return {
 		type: 'SET_YOUTUBETHUMB',

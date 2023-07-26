@@ -33,14 +33,13 @@ function App() {
 	const key = 'AIzaSyAuF0TpI6-3VX54rC1jnTjptdGcBXybDGU';
 	const menu = useRef(null);
 
-	//유튜브 슬라이드 fetch
+	//유튜브 fetch
 	const fetchYoutubeSlide = useCallback(async () => {
 		const num = 5;
 		const list = 'PLFAS7kFpzjoPZEvZ5LcpGZkgyn_FOx9Qg';
 		const url = `${baseURL}&playlistId=${list}&key=${key}&maxResults=${num}`;
 		const result = await axios.get(url);
 		dispatch(setYoutube(result.data.items));
-		dispatch(setYoutubeTxt(result.data.items));
 	}, [dispatch, baseURL]);
 
 	//유트브 리스트 fetch
