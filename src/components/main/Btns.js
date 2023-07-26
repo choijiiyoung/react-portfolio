@@ -18,7 +18,7 @@ function Btns() {
 	}, [Mounted]);
 
 	const activation = () => {
-		const base = -window.innerHeight / 2;
+		const base = -350;
 		const scroll = window.scrollY;
 		const btns = btnRef.current?.children;
 		const boxs = btnRef.current?.parentElement.querySelectorAll('.my_scroll');
