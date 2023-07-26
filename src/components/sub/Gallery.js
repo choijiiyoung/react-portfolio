@@ -83,13 +83,13 @@ function Gallery() {
 		const imgs = frame.current?.querySelectorAll('img');
 
 		if (!imgs) return;
-		imgs.forEach((img) => {
+		imgs?.forEach((img) => {
 			img.onload = () => {
 				++counter.current;
 
 				if (counter.current === imgs.length - 2) {
 					setLoader(false);
-					frame.current.classList.add('on');
+					frame.current?.classList.add('on');
 					enableEvent.current = true;
 				}
 			};
