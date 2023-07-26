@@ -66,6 +66,7 @@
 					}
 
 					p {
+						width: calc(100% - 450px);
 						padding-right: 30px;
 						word-break: keep-all;
 					}
@@ -219,6 +220,9 @@
 						.num {
 							width: auto;
 							margin-right: 30px;
+						}
+						p {
+							width: auto;
 						}
 
 						.icon {
