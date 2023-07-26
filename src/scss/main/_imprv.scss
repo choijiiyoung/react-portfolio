@@ -66,6 +66,7 @@
 					}
 
 					p {
+						width: calc(100% - 450px);
 						padding-right: 30px;
 						word-break: keep-all;
 					}
@@ -182,6 +183,9 @@
 					a {
 						.num {
 							margin-right: 130px;
+						}
+						p {
+							width: auto;
 						}
 					}
 
