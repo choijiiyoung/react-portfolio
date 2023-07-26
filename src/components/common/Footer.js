@@ -2,8 +2,11 @@ import { faEnvira, faFacebookF, faInstagram, faTwitter, faYoutube } from '@forta
 import { faBlog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Footer() {
+	const Schedules = useSelector((store) => store.scheduleReducer.schedule);
+
 	return (
 		<footer>
 			<div className='footer_inner'>
@@ -12,74 +15,24 @@ function Footer() {
 						<FontAwesomeIcon icon={faEnvira} />
 					</h1>
 					<ul className='list'>
-						<li>
-							<Link to='#'>Catalog</Link>
-							<ul>
-								<li>
-									<Link to='#'>Speakers</Link>
+						{Schedules.map((_, idx) => {
+							if (idx >= 4) return null;
+							return (
+								<li key={idx}>
+									<Link to='#'>Catalog</Link>
+									<ul>
+										{Schedules.map((schedule, idx) => {
+											if (idx >= 4) return null;
+											return (
+												<li key={idx}>
+													<Link to='#'>{schedule.subj}</Link>
+												</li>
+											);
+										})}
+									</ul>
 								</li>
-								<li>
-									<Link to='#'>Headphones</Link>
-								</li>
-								<li>
-									<Link to='#'>Televisions</Link>
-								</li>
-								<li>
-									<Link to='#'>Accessories</Link>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<Link to='#'>Catalog</Link>
-							<ul>
-								<li>
-									<Link to='#'>Speakers</Link>
-								</li>
-								<li>
-									<Link to='#'>Headphones</Link>
-								</li>
-								<li>
-									<Link to='#'>Televisions</Link>
-								</li>
-								<li>
-									<Link to='#'>Accessories</Link>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<Link to='#'>Catalog</Link>
-							<ul>
-								<li>
-									<Link to='#'>Speakers</Link>
-								</li>
-								<li>
-									<Link to='#'>Headphones</Link>
-								</li>
-								<li>
-									<Link to='#'>Televisions</Link>
-								</li>
-								<li>
-									<Link to='#'>Accessories</Link>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<Link to='#'>Catalog</Link>
-							<ul>
-								<li>
-									<Link to='#'>Speakers</Link>
-								</li>
-								<li>
-									<Link to='#'>Headphones</Link>
-								</li>
-								<li>
-									<Link to='#'>Televisions</Link>
-								</li>
-								<li>
-									<Link to='#'>Accessories</Link>
-								</li>
-							</ul>
-						</li>
+							);
+						})}
 					</ul>
 
 					<div className='util_wrap'>
