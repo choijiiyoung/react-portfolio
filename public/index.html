@@ -7,11 +7,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>React App</title>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7a32a6d97db0b87ccc8c8bdbf26ff67f"></script>
+  <style>
+    .defaults {
+      position: absolute;
+      top: -99999px;
+    }
+
+    .mask {
+      width: 100%;
+      height: 100vh;
+      background: #111;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      opacity: 1;
+      transition: opacity 2s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font: 20px/1 'arial';
+      color: #fff;
+    }
+
+    .mask.off {
+      opacity: 0;
+    }
+  </style>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
+  <div class="defaults">검색봇이 SEO를 위해 읽어야 되는 중요한 텍스트 데이터</div>
+  <div class="mask">Loading...</div>
+
+  <script>
+    const defaults = document.querySelector('.defaults');
+    const mask = document.querySelector('.mask');
+    let tags = '';
+    const baseURL = 'https://choijiiyoung.github.io/react-portfolio';
+    const imgs = [
+      baseURL + '/img/sub/Community.jpg',
+      baseURL + '/img/sub/Department.jpg',
+      baseURL + '/img/sub/Gallery.jpg',
+      baseURL + '/img/sub/Location.jpg',
+      baseURL + '/img/sub/Youtube.jpg',
+      baseURL + '/img/sub/Members.jpg',
+    ];
+    const lenImg = imgs.length;
+
+    createDOM();
+
+    // 동적으로 이미지 돔 생성 함수
+    function createDOM() {
+      imgs.forEach(src => {
+        tags += `<img src= ${src} />`;
+        defaults.innerHTML = tags;
+      })
+    }
+
+    // 이미지소스 로딩완료 검사 함수
+    function loadImg() {
+      return new Promise((res, rej) => {
+        let countImg = 0;
+        const imgDOM = defaults.querySelectorAll('img');
+
+        imgDOM.forEach(img => {
+          img.onload = () => {
+            countImg++;
+            console.log('img loaded..', countImg);
+
+            if (countImg === lenImg) {
+              res(true)
+            }
+          }
+        })
+      })
+    }
+
+    // 이미지 캐싱 여부 promise.all을 통해서 확인
+    // promise.all()로 loadImg함수가 모두 프로미스 객체를 반환할때까지 기다린후 동기화 처리
+    Promise.all([loadImg()]).then(result => {
+      console.log(result);
+      mask.classList.add('off');
+
+      setTimeout(() => {
+        mask.remove();
+        defaults.remove();
+      }, 2000);
+    })
+  </script>
 </body>
 
 </html>
