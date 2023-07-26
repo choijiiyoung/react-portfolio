@@ -57,7 +57,6 @@ function Gallery() {
 	};
 
 	useEffect(() => {
-		console.log(Items);
 		counter.current = 0;
 		if (Items.length === 0 && !firstLoaded.current) {
 			setLoader(false);
