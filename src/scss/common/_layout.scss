@@ -58,10 +58,18 @@ main {
 		padding-bottom: 60px;
 
 		section {
-			padding-top: 90px;
+			padding-top: 100px;
 		}
 		.inner {
 			padding: 0 30px;
+		}
+	}
+}
+
+@media screen and (max-width: $mobile) {
+	main {
+		section {
+			padding-top: 50px;
 		}
 	}
 }
