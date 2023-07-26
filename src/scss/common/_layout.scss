@@ -1,14 +1,8 @@
 //main
 main {
-	padding-bottom: 200px;
-
+	padding-bottom: 150px;
 	section {
-		padding-top: 50px;
-		margin-bottom: 100px;
-
-		&:last-of-type {
-			margin-bottom: 0;
-		}
+		padding-top: 150px;
 	}
 
 	.inner {
@@ -61,13 +55,21 @@ main {
 
 @media screen and (max-width: $tablet) {
 	main {
-		padding-bottom: 50px;
+		padding-bottom: 60px;
 
 		section {
-			margin-bottom: 60px;
+			padding-top: 100px;
 		}
 		.inner {
 			padding: 0 30px;
+		}
+	}
+}
+
+@media screen and (max-width: $mobile) {
+	main {
+		section {
+			padding-top: 60px;
 		}
 	}
 }
