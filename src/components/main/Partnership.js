@@ -2,7 +2,8 @@ import { memo } from 'react';
 import { useSelector } from 'react-redux';
 
 function Partnership() {
-	const { flickr } = useSelector((store) => store.flickrReducer);
+	// const { flickr } = useSelector((store) => store.flickrReducer);
+	const { flickr: pics } = useSelector((store) => store.flickrReducer);
 
 	return (
 		<>
@@ -10,7 +11,7 @@ function Partnership() {
 				<div className='inner'>
 					<h1>Partnership</h1>
 					<div className='prs_wrap'>
-						{flickr.map((pic, idx) => {
+						{pics.map((pic, idx) => {
 							if (idx >= 2) return null;
 							return (
 								<div className='item' key={pic.id}>
