@@ -34,7 +34,7 @@ function NewProduct() {
 							</div>
 							<div className='item center'>
 								<div className='slide_wrap'>
-									<Swiper modules={[Navigation]} loop={true} navigation={true}>
+									<Swiper modules={[Navigation]} loop={true} navigation={true} initialSlide={1}>
 										{Pics.map((_, idx) => {
 											if (idx >= 3) return null;
 											return (
