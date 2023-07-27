@@ -4,8 +4,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { useSelector } from 'react-redux';
 
 function NewProduct() {
+	const Pics = useSelector((store) => store.flickr.data);
+	console.log(Pics);
 	return (
 		<>
 			<section id='newProduct' className='my_scroll'>
@@ -21,8 +24,8 @@ function NewProduct() {
 								</div>
 								<Link to='#'>
 									<div className='info'>
-										<p className='name'>Lorem ipsum</p>
-										<p className='txt'>Lorem ipsum dolor sit amet</p>
+										<p className='name'>BEOSOUND A1 2ND GEN</p>
+										<p className='txt'>Waterproof Bluetooth speaker</p>
 									</div>
 									<div className='price'>
 										<span>$529</span>
@@ -32,24 +35,28 @@ function NewProduct() {
 							<div className='item center'>
 								<div className='slide_wrap'>
 									<Swiper modules={[Navigation]} loop={true} navigation={true}>
-										<SwiperSlide>
-											<img src={`${process.env.PUBLIC_URL}/img/main/slide1.png`} alt='slide' />
-										</SwiperSlide>
-										<SwiperSlide>
-											<img src={`${process.env.PUBLIC_URL}/img/main/slide2.png`} alt='slide' />
-										</SwiperSlide>
-										<SwiperSlide>
-											<img src={`${process.env.PUBLIC_URL}/img/main/slide3.png`} alt='slide' />
-										</SwiperSlide>
+										{Pics.map((_, idx) => {
+											if (idx >= 3) return null;
+											return (
+												<SwiperSlide key={idx}>
+													<img
+														src={`https://live.staticflickr.com/${Pics[idx + 2].server}/${Pics[idx + 2].id}_${
+															Pics[idx + 2].secret
+														}_b.png`}
+														alt={Pics[idx + 2].title}
+													/>
+												</SwiperSlide>
+											);
+										})}
 									</Swiper>
 								</div>
 								<Link to='#'>
 									<div className='info'>
-										<p className='name'>Lorem ipsum</p>
-										<p className='txt'>Lorem ipsum dolor sit amet</p>
+										<p className='name'>{Pics[2]?.title}</p>
+										<p className='txt'>Comfortable, do-it-all headphones</p>
 									</div>
 									<div className='price'>
-										<span>$529</span>
+										<span>$499</span>
 									</div>
 								</Link>
 							</div>
@@ -59,8 +66,8 @@ function NewProduct() {
 								</div>
 								<Link to='#'>
 									<div className='info'>
-										<p className='name'>Lorem ipsum</p>
-										<p className='txt'>Lorem ipsum dolor sit amet</p>
+										<p className='name'>BEOPLAY EQ</p>
+										<p className='txt'>Adaptive noise cancelling wireless earphones</p>
 									</div>
 									<div className='price'>
 										<span>$529</span>

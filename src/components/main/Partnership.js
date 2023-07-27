@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 function Partnership() {
 	const Flickr = useSelector((store) => store.flickr.data);
-	console.log(Flickr, 'Flickr');
 	return (
 		<>
 			<section id='partnership' className='my_scroll'>
