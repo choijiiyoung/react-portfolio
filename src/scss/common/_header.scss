@@ -1,17 +1,21 @@
 header {
 	position: absolute;
 	width: 100%;
-	height: 70px;
+	height: 80px;
 
 	.header_inner {
 		position: relative;
 		display: flex;
 		width: 1200px;
 		margin: 0 auto;
-		padding: 21px 0 0;
+		padding: 25px 0 0;
 
 		h1 {
-			margin-top: -9px;
+			width: 32px;
+			margin-top: -8px;
+			img {
+				width: 100%;
+			}
 		}
 
 		nav {
@@ -64,10 +68,6 @@ header.main {
 	z-index: 2;
 
 	.header_inner {
-		// h1 a {
-		// 	color: #000;
-		// }
-
 		nav #gnb li a {
 			color: #000;
 		}
@@ -86,7 +86,7 @@ header.main {
 	header {
 		.header_inner {
 			width: 100%;
-			padding: 21px 4% 0;
+			padding: 24px 30px 0;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-import { faEnvira, faFacebookF, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faBlog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ function Footer() {
 			<div className='footer_inner'>
 				<div className='upper'>
 					<h1 className='logo'>
-						<FontAwesomeIcon icon={faEnvira} />
+						<img src={`${process.env.PUBLIC_URL}/img/common/logo.png`} alt='Bang & Olufsen' />
 					</h1>
 					<ul className='list'>
 						{Schedules.map((_, idx) => {
@@ -76,7 +76,7 @@ function Footer() {
 					</div>
 				</div>
 				<div className='lower'>
-					<p>© Lorem ipsum 2023</p>
+					<p>© Bang & Olufsen 2023</p>
 					<address>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</address>
 				</div>
 			</div>

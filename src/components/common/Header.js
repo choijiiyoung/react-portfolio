@@ -1,4 +1,3 @@
-import { faEnvira } from '@fortawesome/free-brands-svg-icons';
 import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faBagShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,7 +16,7 @@ function Header({ type }) {
 				<div className='header_inner'>
 					<h1 className='logo'>
 						<Link to='/'>
-							<FontAwesomeIcon icon={faEnvira} />
+							<img src={`${process.env.PUBLIC_URL}/img/common/logo.png`} alt='Bang & Olufsen' />
 						</Link>
 					</h1>
 
