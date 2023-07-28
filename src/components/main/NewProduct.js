@@ -16,7 +16,6 @@ function NewProduct() {
 		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
 		if (Slide) {
 			Slide.slideTo(1);
-			console.log(Slide.activeIndex, 'Slide.activeIndex');
 		}
 	}, [dispatch, Slide]);
 
