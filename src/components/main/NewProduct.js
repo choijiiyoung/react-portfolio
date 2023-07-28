@@ -1,14 +1,21 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchFlickr } from '../../redux/flickrSlice';
 
 function NewProduct() {
+	const dispatch = useDispatch();
 	const Pics = useSelector((store) => store.flickr.data);
 	console.log(Pics);
+
+	useEffect(() => {
+		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
+	}, [dispatch]);
+
 	return (
 		<>
 			<section id='newProduct' className='my_scroll'>
