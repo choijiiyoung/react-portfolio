@@ -11,8 +11,8 @@ function Btns() {
 	const getPos = useCallback(() => {
 		pos.current = [];
 		const secs = btnRef.current?.parentElement.querySelectorAll('.my_scroll');
-		if (!secs) return;
 
+		if (!secs) return;
 		for (const sec of secs) pos.current?.push(sec.offsetTop);
 		Mounted && setNum(pos.current?.length);
 	}, [Mounted]);
@@ -23,6 +23,7 @@ function Btns() {
 		const btns = btnRef.current?.children;
 		const boxs = btnRef.current?.parentElement.querySelectorAll('.my_scroll');
 
+		if (!pos) return;
 		pos.current?.forEach((pos, idx) => {
 			if (scroll >= pos + base) {
 				for (const btn of btns) btn.classList.remove('on');

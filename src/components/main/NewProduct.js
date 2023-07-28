@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
@@ -9,12 +9,16 @@ import { fetchFlickr } from '../../redux/flickrSlice';
 
 function NewProduct() {
 	const dispatch = useDispatch();
+	const [Slide, setSlide] = useState(null);
 	const Pics = useSelector((store) => store.flickr.data);
-	console.log(Pics);
 
 	useEffect(() => {
 		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
-	}, [dispatch]);
+		if (Slide) {
+			Slide.slideTo(1);
+			console.log(Slide.activeIndex, 'Slide.activeIndex');
+		}
+	}, [dispatch, Slide]);
 
 	return (
 		<>
@@ -41,7 +45,7 @@ function NewProduct() {
 							</div>
 							<div className='item center'>
 								<div className='slide_wrap'>
-									<Swiper modules={[Navigation]} loop={true} navigation={true} initialSlide={1}>
+									<Swiper modules={[Navigation]} loop={true} navigation={true} onSwiper={setSlide}>
 										{Pics.map((_, idx) => {
 											if (idx >= 3) return null;
 											return (
