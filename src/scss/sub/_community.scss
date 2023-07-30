@@ -8,7 +8,7 @@
 
 			input[type='text'],
 			textarea {
-				width: 50%;
+				width: 100%;
 				padding: 8px 10px;
 				border: 1px solid #aaa;
 				resize: none;
@@ -19,13 +19,14 @@
 			.btn_wrap {
 				button {
 					width: 150px;
-					height: 30px;
+					height: 40px;
 					display: inline-block;
-					border: none;
-					background: #555;
+					background: #fff;
+					border: 2px solid #000;
 					margin-right: 20px;
-					color: #fff;
+					color: #000;
 					cursor: pointer;
+					font-weight: bold;
 				}
 			}
 		}
@@ -36,7 +37,7 @@
 			padding: 50px;
 
 			article {
-				background: #fff;
+				background: #fafafa;
 				padding: 30px;
 				margin-bottom: 40px;
 				display: flex;
@@ -44,7 +45,7 @@
 				align-content: center;
 				flex-wrap: wrap;
 
-				.txt {
+				.txt_wrap {
 					width: 70%;
 					h2 {
 						margin-bottom: 10px;
@@ -72,12 +73,13 @@
 						border: none;
 						background: transparent;
 						cursor: pointer;
-						&:nth-of-type(1) {
-							color: orange;
-						}
-						&:nth-of-type(2) {
-							color: orangered;
-						}
+						font-weight: bold;
+						// &:nth-of-type(1) {
+						// 	color: orange;
+						// }
+						// &:nth-of-type(2) {
+						// 	color: orangered;
+						// }
 					}
 				}
 			}
@@ -89,10 +91,10 @@
 	.Community {
 		.inner {
 			.input_box {
-				input[type='text'],
-				textarea {
-					width: 100%;
-				}
+				// input[type='text'],
+				// textarea {
+				// 	width: 100%;
+				// }
 				.btn_wrap {
 					display: flex;
 					flex-wrap: wrap;
