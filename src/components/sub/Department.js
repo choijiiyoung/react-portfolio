@@ -1,10 +1,10 @@
 import Layout from '../common/Layout';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useDepartmentQuery } from '../../hooks/useDepartmentQuery';
+import { useScheduleQuery } from '../../hooks/useScheduleQuery';
 
 function Department() {
-	const Members = useSelector((store) => store.department.data);
-	const Schedules = useSelector((store) => store.schedules.data);
+	const { data: Members, isSuccess } = useDepartmentQuery();
 
 	return (
 		<Layout name={'Department'} bg={'Department.jpg'}>
@@ -83,29 +83,30 @@ function Department() {
 							<div className='box line'>
 								<h2>Directors</h2>
 								<div className='cont_area'>
-									{Members.map((member, idx) => {
-										if (idx >= 6) return null;
-										return (
-											<article key={idx}>
-												<div className='pic'>
-													<img src={`${process.env.PUBLIC_URL}/img/department/${member.pic}`} alt={member.name} />
-													<img src={`${process.env.PUBLIC_URL}/img/department/${member.pic}`} alt={member.name} />
-												</div>
-												<div className='info'>
-													<p className='name'>{member.name}</p>
-													<p className='pos'>{member.position}</p>
-													<span className='dept'>{member.dept}</span>
-												</div>
-											</article>
-										);
-									})}
+									{isSuccess &&
+										Members.map((member, idx) => {
+											if (idx >= 6) return null;
+											return (
+												<article key={idx}>
+													<div className='pic'>
+														<img src={`${process.env.PUBLIC_URL}/img/department/${member.pic}`} alt={member.name} />
+														<img src={`${process.env.PUBLIC_URL}/img/department/${member.pic}`} alt={member.name} />
+													</div>
+													<div className='info'>
+														<p className='name'>{member.name}</p>
+														<p className='pos'>{member.position}</p>
+														<span className='dept'>{member.dept}</span>
+													</div>
+												</article>
+											);
+										})}
 								</div>
 							</div>
 							<div className='box line'>
 								<h2>Selected Publications</h2>
 								<div className='list_area'>
 									<ul>
-										{Schedules.map((schedule, idx) => {
+										{/* {Schedules.map((schedule, idx) => {
 											return (
 												<li key={idx}>
 													<p className='title'>{schedule.subj}</p>
@@ -114,7 +115,7 @@ function Department() {
 													</div>
 												</li>
 											);
-										})}
+										})} */}
 									</ul>
 								</div>
 							</div>
