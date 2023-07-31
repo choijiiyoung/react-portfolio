@@ -1,12 +1,11 @@
 import { faFacebookF, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faBlog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useScheduleQuery } from '../../hooks/useScheduleQuery';
 
 function Footer() {
-	const Schedules = useSelector((store) => store.schedules.data);
-
+	const { data: Schedules, isSuccess } = useScheduleQuery();
 	return (
 		<footer>
 			<div className='footer_inner'>
@@ -15,24 +14,26 @@ function Footer() {
 						<img src={`${process.env.PUBLIC_URL}/img/common/logo.png`} alt='Bang & Olufsen' />
 					</h1>
 					<ul className='list'>
-						{Schedules.map((_, idx) => {
-							if (idx >= 4) return null;
-							return (
-								<li key={idx}>
-									<Link to='#'>Catalog</Link>
-									<ul>
-										{Schedules.map((schedule, idx) => {
-											if (idx >= 4) return null;
-											return (
-												<li key={idx}>
-													<Link to='#'>{schedule.subj}</Link>
-												</li>
-											);
-										})}
-									</ul>
-								</li>
-							);
-						})}
+						{isSuccess &&
+							Schedules.map((_, idx) => {
+								if (idx >= 4) return null;
+								return (
+									<li key={idx}>
+										<Link to='#'>Catalog</Link>
+										<ul>
+											{isSuccess &&
+												Schedules.map((schedule, idx) => {
+													if (idx >= 4) return null;
+													return (
+														<li key={idx}>
+															<Link to='#'>{schedule.subj}</Link>
+														</li>
+													);
+												})}
+										</ul>
+									</li>
+								);
+							})}
 					</ul>
 
 					<div className='util_wrap'>
