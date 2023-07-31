@@ -20,7 +20,6 @@ import './scss/style.scss';
 
 import { fetchDepartment } from './redux/departmentSlice';
 import { fetchSchedule } from './redux/scheduleSlice';
-import { fetchFlickr } from './redux/flickrSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -33,7 +32,6 @@ function App() {
 	useEffect(() => {
 		dispatch(fetchDepartment());
 		dispatch(fetchSchedule());
-		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
 	}, [dispatch]);
 
 	return (

@@ -4,20 +4,19 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchFlickr } from '../../redux/flickrSlice';
+import { useFlickrQuery } from '../../hooks/useFlickerQuery';
 
 function NewProduct() {
-	const dispatch = useDispatch();
+	const [Opt, setOpt] = useState({ type: 'user', user: '198483448@N02' });
+	const { data: Pics, isSuccess } = useFlickrQuery(Opt);
 	const [Slide, setSlide] = useState(null);
-	const Pics = useSelector((store) => store.flickr.data);
 
 	useEffect(() => {
-		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
+		setOpt({ type: 'user', user: '198483448@N02' });
 		if (Slide) {
 			Slide.slideTo(1);
 		}
-	}, [dispatch, Slide]);
+	}, [Slide]);
 
 	return (
 		<>
@@ -45,24 +44,25 @@ function NewProduct() {
 							<div className='item center'>
 								<div className='slide_wrap'>
 									<Swiper modules={[Navigation]} loop={true} navigation={true} onSwiper={setSlide}>
-										{Pics.map((_, idx) => {
-											if (idx >= 3) return null;
-											return (
-												<SwiperSlide key={idx}>
-													<img
-														src={`https://live.staticflickr.com/${Pics[idx + 2].server}/${Pics[idx + 2].id}_${
-															Pics[idx + 2].secret
-														}_b.png`}
-														alt={Pics[idx + 2].title}
-													/>
-												</SwiperSlide>
-											);
-										})}
+										{isSuccess &&
+											Pics.map((_, idx) => {
+												if (idx >= 3) return null;
+												return (
+													<SwiperSlide key={idx}>
+														<img
+															src={`https://live.staticflickr.com/${Pics[idx + 2].server}/${Pics[idx + 2].id}_${
+																Pics[idx + 2].secret
+															}_b.png`}
+															alt={Pics[idx + 2].title}
+														/>
+													</SwiperSlide>
+												);
+											})}
 									</Swiper>
 								</div>
 								<Link to='#'>
 									<div className='info'>
-										<p className='name'>{Pics[2]?.title}</p>
+										<p className='name'>{isSuccess && Pics[2]?.title}</p>
 										<p className='txt'>Comfortable, do-it-all headphones</p>
 									</div>
 									<div className='price'>
