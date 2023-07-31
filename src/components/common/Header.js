@@ -3,11 +3,10 @@ import { faBagShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { memo } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { toggle } from '../../redux/menuSlice';
-import { useDispatch } from 'react-redux';
+import { useGlobalData } from '../../hooks/useGlobalContext';
 
 function Header({ type }) {
-	const dispatch = useDispatch();
+	const { MenuOpen, setMenuOpen } = useGlobalData();
 	const active = 'on';
 	return (
 		<>
@@ -76,7 +75,7 @@ function Header({ type }) {
 					<FontAwesomeIcon
 						icon={faBars}
 						onClick={() => {
-							dispatch(toggle());
+							setMenuOpen(!MenuOpen);
 						}}
 					/>
 				</div>
