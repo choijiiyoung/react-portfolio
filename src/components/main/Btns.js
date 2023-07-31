@@ -1,6 +1,6 @@
-import { useRef, useEffect, useState, memo } from 'react';
+import { useRef, useEffect, useState, useCallback, memo } from 'react';
 import Anime from '../../asset/anime';
-import { useCallback } from 'react';
+import { useThrottle } from '../../hooks/useThrottle';
 
 function Btns() {
 	const btnRef = useRef(null);
@@ -40,6 +40,9 @@ function Btns() {
 		}
 	}, [Mounted]);
 
+	const getPos2 = useThrottle(getPos);
+	const activation2 = useThrottle(activation);
+
 	useEffect(() => {
 		setTimeout(() => {
 			visualEvt();
@@ -49,17 +52,17 @@ function Btns() {
 			getPos();
 		}, 1000);
 
-		window.addEventListener('resize', getPos);
-		window.addEventListener('scroll', activation);
+		window.addEventListener('resize', getPos2);
+		window.addEventListener('scroll', activation2);
 
 		return () => {
 			setMounted(false);
 
-			window.removeEventListener('resize', getPos);
-			window.removeEventListener('scroll', activation);
+			window.removeEventListener('resize', getPos2);
+			window.removeEventListener('scroll', activation2);
 			window.removeEventListener('load', visualEvt);
 		};
-	}, [getPos, visualEvt]);
+	}, [getPos, visualEvt, getPos2, activation2]);
 
 	return (
 		<ul className='btn_navi' ref={btnRef}>
