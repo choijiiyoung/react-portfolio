@@ -18,7 +18,6 @@ import Member from './components/sub/Member';
 
 import './scss/style.scss';
 
-import { fetchYoutubeThumb } from './redux/youtubeThumbSlice';
 import { fetchDepartment } from './redux/departmentSlice';
 import { fetchSchedule } from './redux/scheduleSlice';
 import { fetchFlickr } from './redux/flickrSlice';
@@ -32,7 +31,6 @@ function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchYoutubeThumb());
 		dispatch(fetchDepartment());
 		dispatch(fetchSchedule());
 		dispatch(fetchFlickr({ type: 'user', user: '198483448@N02' }));
