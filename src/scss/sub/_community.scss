@@ -17,6 +17,9 @@
 			}
 
 			.btn_wrap {
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
 				button {
 					width: 150px;
 					height: 40px;
@@ -27,6 +30,10 @@
 					color: #000;
 					cursor: pointer;
 					font-weight: bold;
+
+					&:last-of-type {
+						margin-right: 0;
+					}
 				}
 			}
 		}
@@ -56,10 +63,13 @@
 						width: 100%;
 						padding: 8px 10px;
 						border: 1px solid lightblue;
-						margin-bottom: 20px;
 						background: #f4ffff;
 						resize: none;
 						outline: none;
+					}
+
+					input {
+						margin-bottom: 20px;
 					}
 				}
 				.btn_wrap {
@@ -70,16 +80,11 @@
 					gap: 20px;
 
 					button {
-						border: none;
-						background: transparent;
+						padding: 10px 20px;
 						cursor: pointer;
 						font-weight: bold;
-						// &:nth-of-type(1) {
-						// 	color: orange;
-						// }
-						// &:nth-of-type(2) {
-						// 	color: orangered;
-						// }
+						background: #fff;
+						border: 1px solid #000;
 					}
 				}
 			}
@@ -91,10 +96,6 @@
 	.Community {
 		.inner {
 			.input_box {
-				// input[type='text'],
-				// textarea {
-				// 	width: 100%;
-				// }
 				.btn_wrap {
 					display: flex;
 					flex-wrap: wrap;
@@ -109,10 +110,36 @@
 
 			.show_box {
 				article {
-					.txt,
+					.txt_wrap,
 					.btn_wrap {
 						width: 100%;
+					}
+
+					.btn_wrap {
+						justify-content: flex-start;
 						margin-top: 20px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $mobile) {
+	.Community {
+		.inner {
+			.input_box {
+				padding: 20px;
+			}
+
+			.show_box {
+				padding: 20px;
+				article {
+					padding: 20px;
+					.btn_wrap {
+						button {
+							width: 50%;
+						}
 					}
 				}
 			}
