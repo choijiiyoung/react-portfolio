@@ -1,6 +1,7 @@
 import Layout from '../common/Layout';
-import { useRef, useEffect, useState, useMemo } from 'react';
+import { useRef, useEffect, useState, useMemo, useCallback } from 'react';
 import emailjs from '@emailjs/browser';
+import { useThrottle } from '../../hooks/useThrottle';
 
 function Contact() {
 	//form
@@ -80,6 +81,12 @@ function Contact() {
 		);
 	};
 
+	const setCenter = useCallback(() => {
+		Location?.setCenter(info.current[Index].latlng);
+	}, [Index, Location]);
+
+	const setCenter2 = useThrottle(setCenter);
+
 	useEffect(() => {
 		container.current.innerHTML = '';
 		const mapInstance = new kakao.maps.Map(container.current, { center: info.current[Index].latlng, level: 3 });
@@ -89,14 +96,12 @@ function Contact() {
 
 		//지도영역에 휠 기능 비활성화
 		mapInstance.setZoomable(false);
-
-		const setCenter = () => {
-			mapInstance.setCenter(info.current[Index].latlng);
-		};
-
-		window.addEventListener('resize', setCenter);
-		return () => window.removeEventListener('resize', setCenter);
 	}, [Index, kakao, marker]);
+
+	useEffect(() => {
+		window.addEventListener('resize', setCenter2);
+		return () => window.removeEventListener('resize', setCenter2);
+	}, [setCenter2]);
 
 	useEffect(() => {
 		Traffic
