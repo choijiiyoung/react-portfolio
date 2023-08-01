@@ -1,15 +1,23 @@
 import { memo } from 'react';
 import { useFlickrQuery } from '../../hooks/useFlickerQuery';
+import { useState, useEffect } from 'react';
 
 function Partnership() {
+	const [Mounted, setMounted] = useState(true);
 	const { data: Flickr, isSuccess } = useFlickrQuery({ type: 'user', user: '198483448@N02' });
+
+	useEffect(() => {
+		return () => setMounted(false);
+	}, []);
+
 	return (
 		<>
 			<section id='partnership' className='my_scroll'>
 				<div className='inner'>
 					<h1>Partnership</h1>
 					<div className='prs_wrap'>
-						{isSuccess &&
+						{Mounted &&
+							isSuccess &&
 							Flickr.map((pic, idx) => {
 								if (idx >= 2) return null;
 								return (

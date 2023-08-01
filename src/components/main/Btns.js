@@ -17,7 +17,7 @@ function Btns() {
 		Mounted && setNum(pos.current?.length);
 	}, [Mounted]);
 
-	const activation = () => {
+	const activation = useCallback(() => {
 		const base = -350;
 		const scroll = window.scrollY;
 		const btns = btnRef.current?.children;
@@ -31,7 +31,7 @@ function Btns() {
 				boxs[idx].classList.add('on');
 			}
 		});
-	};
+	}, []);
 
 	const visualEvt = useCallback(() => {
 		const visual = btnRef.current?.parentElement.querySelector('#visual');

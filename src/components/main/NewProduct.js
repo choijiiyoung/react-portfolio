@@ -7,16 +7,21 @@ import 'swiper/css/navigation';
 import { useFlickrQuery } from '../../hooks/useFlickerQuery';
 
 function NewProduct() {
+	const [Mounted, setMounted] = useState(true);
 	const [Opt, setOpt] = useState({ type: 'user', user: '198483448@N02' });
 	const { data: Pics, isSuccess } = useFlickrQuery(Opt);
 	const [Slide, setSlide] = useState(null);
 
 	useEffect(() => {
-		setOpt({ type: 'user', user: '198483448@N02' });
+		Mounted && setOpt({ type: 'user', user: '198483448@N02' });
 		if (Slide) {
 			Slide.slideTo(1);
 		}
-	}, [Slide]);
+	}, [Slide, Mounted]);
+
+	useEffect(() => {
+		return () => setMounted(false);
+	}, []);
 
 	return (
 		<>
