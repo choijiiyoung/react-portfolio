@@ -27,9 +27,9 @@ function Visual() {
 						<div className='txt'>
 							<div className='desc'>
 								<p>
-									Lorem, ipsum dolor sit amet consectetur <span>adipisicing elit.</span>
+									Bang & Olufsen has been designing the future <span>since 1925.</span>
 								</p>
-								<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+								<p>We have never been afraid to the edge of possibility.</p>
 							</div>
 							<div className='cross'>
 								<span className='bar row'></span>
