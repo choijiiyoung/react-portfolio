@@ -8,7 +8,7 @@ import { useYoutubeThumbQuery } from '../../hooks/useYoutubeThumbQuery';
 
 function Youtube() {
 	const { data: Vids, isSuccess } = useYoutubeQuery();
-	const { data: Thumbs, isSuccess2 } = useYoutubeThumbQuery();
+	const { data: Thumbs, isSuccess: isYoutube } = useYoutubeThumbQuery();
 
 	//슬라이드
 	const frame = useRef(null);
@@ -144,7 +144,7 @@ function Youtube() {
 					<div className='inner'>
 						<h2>Lorem ipsum dolor sit amet.</h2>
 						<ul className='ytb_list'>
-							{isSuccess2 &&
+							{isYoutube &&
 								Thumbs.map((thumb, idx) => {
 									return (
 										<li key={idx}>
@@ -192,7 +192,7 @@ function Youtube() {
 					src={
 						!State
 							? `https://www.youtube.com/embed/${isSuccess && Vids[Index]?.snippet.resourceId.videoId}`
-							: `https://www.youtube.com/embed/${isSuccess2 && Thumbs[Index]?.snippet.resourceId.videoId}`
+							: `https://www.youtube.com/embed/${isYoutube && Thumbs[Index]?.snippet.resourceId.videoId}`
 					}
 				></iframe>
 			</Modal>

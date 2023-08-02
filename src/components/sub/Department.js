@@ -5,6 +5,7 @@ import { useScheduleQuery } from '../../hooks/useScheduleQuery';
 
 function Department() {
 	const { data: Members, isSuccess } = useDepartmentQuery();
+	const { data: Schedules, isSuccess: isSchedules } = useScheduleQuery();
 
 	return (
 		<Layout name={'Department'} bg={'Department.jpg'}>
@@ -106,16 +107,17 @@ function Department() {
 								<h2>Selected Publications</h2>
 								<div className='list_area'>
 									<ul>
-										{/* {Schedules.map((schedule, idx) => {
-											return (
-												<li key={idx}>
-													<p className='title'>{schedule.subj}</p>
-													<div className='place'>
-														<p>{schedule.date}</p>
-													</div>
-												</li>
-											);
-										})} */}
+										{isSchedules &&
+											Schedules.map((schedule, idx) => {
+												return (
+													<li key={idx}>
+														<p className='title'>{schedule.subj}</p>
+														<div className='place'>
+															<p>{schedule.date}</p>
+														</div>
+													</li>
+												);
+											})}
 									</ul>
 								</div>
 							</div>
