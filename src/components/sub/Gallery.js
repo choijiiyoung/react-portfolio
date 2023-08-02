@@ -68,7 +68,7 @@ function Gallery() {
 			return alert('이미지 결과값이 없습니다.');
 		}
 		firstLoaded.current = false;
-		const imgs = frame.current.querySelectorAll('img');
+		const imgs = frame.current?.querySelectorAll('img');
 
 		imgs.forEach((img) => {
 			img.onload = () => {
