@@ -56,7 +56,7 @@ function Header({ type }) {
 
 					<ul className='util'>
 						<li>
-							<Link to='/youtube'>
+							<Link to='/gallery'>
 								<FontAwesomeIcon icon={faHeart} />
 							</Link>
 						</li>
