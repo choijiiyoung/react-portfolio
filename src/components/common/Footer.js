@@ -44,7 +44,7 @@ function Footer() {
 							</div>
 							<div className='chk_wrap'>
 								<input type='checkbox' id='chk' />
-								<label htmlFor='chk'>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</label>
+								<label htmlFor='chk'>By clicking on the button, you consent to the processing</label>
 							</div>
 						</div>
 						<ul className='sns_list'>
@@ -78,7 +78,7 @@ function Footer() {
 				</div>
 				<div className='lower'>
 					<p>© Bang & Olufsen 2023</p>
-					<address>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</address>
+					<address>Choose country: United Kingdom</address>
 				</div>
 			</div>
 		</footer>

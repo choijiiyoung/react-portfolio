@@ -16,13 +16,14 @@ function Imprv() {
 					<div className='txt_area'>
 						<p>
 							<b>
-								Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate magnam deleniti quas harum alias,
-								corporis ipsum
+								Our 1960s brand slogan, ‘We think differently’, remains inspiring - rooting us in an approach to design
+								that embraces risk and experimentation.
 							</b>
 						</p>
 						<p>
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore explicabo sequi tenetur debitis esse
-							blanditiis accusantium quibusdam. Ducimus, necessitatibus aspernatur.
+							This spirit of innovation has led to many of our products being celebrated and collected by leading art
+							and design museums, including MoMA’s permanent collection. But these aren’t museum pieces: we constantly
+							strive to improve.
 						</p>
 					</div>
 				</div>
