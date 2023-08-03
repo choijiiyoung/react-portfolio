@@ -11,7 +11,7 @@ function Menu() {
 
 	useEffect(() => {
 		window.addEventListener('resize', () => {
-			if (window.innerWidth >= 1200) dispatch(close());
+			if (window.innerWidth >= 1000) dispatch(close());
 		});
 	}, [dispatch]);
 
