@@ -1,10 +1,17 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { NavLink, Link } from 'react-router-dom';
 import { useGlobalData } from '../../hooks/useGlobalContext';
+import { useEffect } from 'react';
 
 function Menu() {
 	const active = { color: 'aqua' };
 	const { MenuOpen, setMenuOpen } = useGlobalData();
+
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			if (window.innerWidth >= 1000) setMenuOpen(false);
+		});
+	}, [setMenuOpen]);
 
 	return (
 		<AnimatePresence>
@@ -17,7 +24,9 @@ function Menu() {
 					onClick={() => setMenuOpen(false)}
 				>
 					<h1>
-						<Link to='/'>LOGO</Link>
+						<Link to='/'>
+							<img src={`${process.env.PUBLIC_URL}/img/common/logo_mo.jpg`} alt='Bang & Olufsen' />
+						</Link>
 					</h1>
 
 					<ul id='gnb'>
