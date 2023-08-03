@@ -26,7 +26,9 @@ function Menu() {
 					onClick={() => dispatch(close())}
 				>
 					<h1>
-						<Link to='/'>LOGO</Link>
+						<Link to='/'>
+							<img src={`${process.env.PUBLIC_URL}/img/common/logo_mo.jpg`} alt='Bang & Olufsen' />
+						</Link>
 					</h1>
 
 					<ul id='gnb'>
