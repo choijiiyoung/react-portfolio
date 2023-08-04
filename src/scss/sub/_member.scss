@@ -1,5 +1,9 @@
 .Member {
 	.inner {
+		> button {
+			margin-bottom: 10px;
+		}
+
 		table {
 			width: 100%;
 			border: none;
