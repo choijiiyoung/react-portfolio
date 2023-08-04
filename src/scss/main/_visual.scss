@@ -168,6 +168,9 @@
 
 @media screen and (max-width: $mobile) {
 	#visual {
+		.title_wrap {
+			margin-bottom: 20px;
+		}
 		h1 {
 			overflow: visible;
 			font-size: 7vw;
@@ -180,6 +183,9 @@
 					font-size: 12px;
 
 					span {
+						&:nth-of-type(2) {
+							margin-top: 0;
+						}
 						&.line {
 							height: 1px;
 							margin-top: 5px;
