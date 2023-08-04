@@ -86,6 +86,10 @@ main {
 		background-position: center;
 		opacity: 0;
 		transition: 1s 0.2s;
+		padding-top: 90px;
+		text-align: center;
+		font-family: 'Manrope';
+		font-size: 32px;
 
 		+ section {
 			opacity: 0;
