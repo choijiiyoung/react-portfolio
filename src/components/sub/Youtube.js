@@ -7,6 +7,7 @@ import { useYoutubeQuery } from '../../hooks/useYoutubeQuery';
 import { useYoutubeThumbQuery } from '../../hooks/useYoutubeThumbQuery';
 
 function Youtube() {
+	const [Mounted, setMounted] = useState(true);
 	const { data: Vids, isSuccess } = useYoutubeQuery();
 	const { data: Thumbs, isSuccess: isYoutube } = useYoutubeThumbQuery();
 
@@ -44,6 +45,8 @@ function Youtube() {
 	useEffect(() => {
 		frame.current.append(frame.current.firstElementChild);
 		frame.current.append(frame.current.firstElementChild);
+
+		return () => setMounted(false);
 	}, []);
 
 	return (
@@ -57,6 +60,7 @@ function Youtube() {
 									<div className='slide_wrap'>
 										<div className='slide_area' ref={frame}>
 											{isSuccess &&
+												Mounted &&
 												Vids.map((vid, idx) => {
 													return (
 														<article key={idx} className={idx === ActiveNum ? 'on' : ''}>
@@ -89,6 +93,7 @@ function Youtube() {
 								<div className='info_wrap'>
 									<div className='txt_wrap' ref={panel}>
 										{isSuccess &&
+											Mounted &&
 											Vids.map((txt, idx) => {
 												return (
 													<div key={idx} className={idx === ActiveNum ? 'panel on' : 'panel'}>
@@ -145,6 +150,7 @@ function Youtube() {
 						<h2>Lorem ipsum dolor sit amet.</h2>
 						<ul className='ytb_list'>
 							{isYoutube &&
+								Mounted &&
 								Thumbs.map((thumb, idx) => {
 									return (
 										<li key={idx}>
