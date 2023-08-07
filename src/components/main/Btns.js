@@ -17,21 +17,22 @@ function Btns() {
 		Mounted && setNum(pos.current?.length);
 	}, [Mounted]);
 
-	const activation = () => {
+	const activation = useCallback(() => {
 		const base = -350;
 		const scroll = window.scrollY;
 		const btns = btnRef.current?.children;
 		const boxs = btnRef.current?.parentElement.querySelectorAll('.my_scroll');
 
 		if (!pos) return;
-		pos.current?.forEach((pos, idx) => {
-			if (scroll >= pos + base) {
-				for (const btn of btns) btn.classList.remove('on');
-				btns[idx].classList.add('on');
-				boxs[idx].classList.add('on');
-			}
-		});
-	};
+		Mounted &&
+			pos.current?.forEach((pos, idx) => {
+				if (scroll >= pos + base) {
+					for (const btn of btns) btn.classList.remove('on');
+					btns[idx].classList.add('on');
+					boxs[idx].classList.add('on');
+				}
+			});
+	}, [Mounted]);
 
 	const visualEvt = useCallback(() => {
 		const visual = btnRef.current?.parentElement.querySelector('#visual');
