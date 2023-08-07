@@ -30,11 +30,6 @@ function Member() {
 		setVal({ ...Val, [name]: value });
 	};
 
-	const handleRadio = (e) => {
-		const { name, value } = e.target;
-		setVal({ ...Val, [name]: value });
-	};
-
 	const handleCheck = (e) => {
 		const { name } = e.target;
 		const inputs = e.target.parentElement.querySelectorAll('input');
@@ -45,11 +40,6 @@ function Member() {
 			if (el.checked) checkArr.push(el.value);
 		});
 		setVal({ ...Val, [name]: checkArr });
-	};
-
-	const handleSelect = (e) => {
-		const { name, value } = e.target;
-		setVal({ ...Val, [name]: value });
 	};
 
 	const handleSubmit = (e) => {
@@ -203,10 +193,10 @@ function Member() {
 									<tr>
 										<th>GENDER</th>
 										<td ref={radioGroup}>
-											<input type='radio' name='gender' value='male' id='mail' onChange={handleRadio} />
+											<input type='radio' name='gender' value='male' id='mail' onChange={handleChange} />
 											<label htmlFor='male'>Male</label>
 
-											<input type='radio' name='gender' value='female' id='femail' onChange={handleRadio} />
+											<input type='radio' name='gender' value='female' id='femail' onChange={handleChange} />
 											<label htmlFor='female'>FeMale</label>
 											<br />
 											{Err.gender && <p>{Err.gender}</p>}
@@ -236,7 +226,7 @@ function Member() {
 											<label htmlFor='edu'>EDUCATION</label>
 										</th>
 										<td>
-											<select name='edu' id='edu' onChange={handleSelect} ref={selectEl}>
+											<select name='edu' id='edu' onChange={handleChange} ref={selectEl}>
 												<option value=''>최종학력을 선택하세요</option>
 												<option value='elementary-school'>초등학교 졸업</option>
 												<option value='middle-school'>중학교 졸업</option>
