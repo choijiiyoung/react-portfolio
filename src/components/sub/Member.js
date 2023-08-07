@@ -90,18 +90,6 @@ function Member() {
 		return errs;
 	};
 
-	/*
-	const resetForm = useCallback(() => {
-		const select = selectEl.current.options[0];
-		const checks = checkGroup.current.querySelectorAll('input');
-		const radios = radioGroup.current.querySelectorAll('input');
-		select.selected = true;
-		checks.forEach((el) => (el.checked = false));
-		radios.forEach((el) => (el.checked = false));
-		setVal(initVal.current);
-	}, []);
-	*/
-
 	useEffect(() => {
 		const len = Object.keys(Err).length;
 		if (len === 0 && Submit) {
