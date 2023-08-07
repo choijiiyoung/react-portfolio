@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import Layout from '../common/Layout';
 import { useHistory } from 'react-router-dom';
+import { useDebounce } from '../../hooks/useDebounce';
 
 function Member() {
 	//initVal값을 useRef로 담아놓으면 해당 값은 컴포넌트가 재랜더링되더라도 값을 기억
@@ -23,6 +24,8 @@ function Member() {
 	const [Err, setErr] = useState({});
 	const [Submit, setSubmit] = useState(false);
 
+	const DebouncdeVal = useDebounce(Val);
+
 	const handleChange = (e) => {
 		//현재 입력하고 있는 input요소의 name,value값을 비구조화할당으로 뽑아서 출력
 		const { name, value } = e.target;
@@ -41,6 +44,12 @@ function Member() {
 		});
 		setVal({ ...Val, [name]: checkArr });
 	};
+
+	const showErr = useCallback(() => {
+		console.log('showErr');
+		setSubmit(false);
+		setErr(check(DebouncdeVal));
+	}, [DebouncdeVal]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -102,8 +111,8 @@ function Member() {
 	}, [Err, Submit, history]);
 
 	useEffect(() => {
-		console.log(Val);
-	}, [Val]);
+		showErr();
+	}, [DebouncdeVal, showErr]);
 
 	return (
 		<Layout name={'Member'} bg={'Members.jpg'}>
