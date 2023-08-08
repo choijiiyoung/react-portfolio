@@ -41,8 +41,9 @@ function Youtube() {
 	};
 
 	useEffect(() => {
-		frame.current.append(frame.current.firstElementChild);
-		frame.current.append(frame.current.firstElementChild);
+		const slideState = frame.current.firstElementChild;
+		slideState && frame.current.append(frame.current.firstElementChild);
+		slideState && frame.current.append(frame.current.firstElementChild);
 	}, []);
 
 	return (
