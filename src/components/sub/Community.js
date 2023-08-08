@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 function Community() {
 	const getLocalData = () => {
 		const data = localStorage.getItem('post');
-		if (data) return JSON.parse(data);
+		return JSON.parse(data);
 	};
 
 	const input = useRef(null);
