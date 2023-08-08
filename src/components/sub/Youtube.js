@@ -3,11 +3,12 @@ import Modal from '../common/Modal';
 import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
+import { useYoutubeQuery } from '../../hooks/useYoutubeQuery';
+import { useYoutubeThumbQuery } from '../../hooks/useYoutubeThumbQuery';
 
 function Youtube() {
-	const Vids = useSelector((store) => store.youtube.data);
-	const Thumbs = useSelector((store) => store.youtubeThumb.data);
+	const { data: Vids, isSuccess } = useYoutubeQuery();
+	const { data: Thumbs, isSuccess: isYoutube } = useYoutubeThumbQuery();
 
 	//슬라이드
 	const frame = useRef(null);
@@ -55,59 +56,61 @@ function Youtube() {
 								<div className='slide_frame'>
 									<div className='slide_wrap'>
 										<div className='slide_area' ref={frame}>
-											{Vids.map((vid, idx) => {
-												return (
-													<article key={idx} className={idx === ActiveNum ? 'on' : ''}>
-														<div
-															className='pic'
-															onClick={() => {
-																modal.current.open();
-																setState(0);
-																setIndex(idx);
-															}}
-														>
-															<img
-																className='thumb'
-																src={vid.snippet.thumbnails.standard.url}
-																alt={vid.snippet.title}
-															/>
-															<span className='num'>0{idx + 1}</span>
-														</div>
+											{isSuccess &&
+												Vids.map((vid, idx) => {
+													return (
+														<article key={idx} className={idx === ActiveNum ? 'on' : ''}>
+															<div
+																className='pic'
+																onClick={() => {
+																	modal.current.open();
+																	setState(0);
+																	setIndex(idx);
+																}}
+															>
+																<img
+																	className='thumb'
+																	src={vid.snippet.thumbnails.standard.url}
+																	alt={vid.snippet.title}
+																/>
+																<span className='num'>0{idx + 1}</span>
+															</div>
 
-														<div className='txt'>
-															<p>{vid.snippet.publishedAt.split('T')[0].split('-').join('.')}</p>
-														</div>
-													</article>
-												);
-											})}
+															<div className='txt'>
+																<p>{vid.snippet.publishedAt.split('T')[0].split('-').join('.')}</p>
+															</div>
+														</article>
+													);
+												})}
 										</div>
 									</div>
 								</div>
 
 								<div className='info_wrap'>
 									<div className='txt_wrap' ref={panel}>
-										{Vids.map((txt, idx) => {
-											return (
-												<div key={idx} className={idx === ActiveNum ? 'panel on' : 'panel'}>
-													<div className='num'>
-														<span>0{idx + 1}</span>
-													</div>
+										{isSuccess &&
+											Vids.map((txt, idx) => {
+												return (
+													<div key={idx} className={idx === ActiveNum ? 'panel on' : 'panel'}>
+														<div className='num'>
+															<span>0{idx + 1}</span>
+														</div>
 
-													<div className='txt'>
-														<h2>
-															{txt.snippet.title.length > 30
-																? txt.snippet.title.substr(0, 30) + '...'
-																: txt.snippet.title}
-														</h2>
-														<p>
-															{txt.snippet.description.length > 80
-																? txt.snippet.description.substr(0, 80) + '...'
-																: txt.snippet.description}
-														</p>
+														<div className='txt'>
+															<h2>
+																{txt.snippet.title.length > 30
+																	? txt.snippet.title.substr(0, 30) + '...'
+																	: txt.snippet.title}
+															</h2>
+															<p>
+																{txt.snippet.description.length > 80
+																	? txt.snippet.description.substr(0, 80) + '...'
+																	: txt.snippet.description}
+															</p>
+														</div>
 													</div>
-												</div>
-											);
-										})}
+												);
+											})}
 									</div>
 									<div className='btn_wrap'>
 										<button
@@ -141,38 +144,43 @@ function Youtube() {
 					<div className='inner'>
 						<h2>Lorem ipsum dolor sit amet.</h2>
 						<ul className='ytb_list'>
-							{Thumbs.map((thumb, idx) => {
-								return (
-									<li key={idx}>
-										<article>
-											<div
-												className='pic'
-												onClick={() => {
-													modal.current.open();
-													setState(1);
-													setIndex(idx);
-												}}
-											>
-												<img src={thumb.snippet.thumbnails.standard.url} alt={thumb.snippet.title} className='thumb' />
-											</div>
+							{isYoutube &&
+								Thumbs.map((thumb, idx) => {
+									return (
+										<li key={idx}>
+											<article>
+												<div
+													className='pic'
+													onClick={() => {
+														modal.current.open();
+														setState(1);
+														setIndex(idx);
+													}}
+												>
+													<img
+														src={thumb.snippet.thumbnails.standard.url}
+														alt={thumb.snippet.title}
+														className='thumb'
+													/>
+												</div>
 
-											<div className='title'>
-												<h3>
-													{thumb.snippet.title.length > 30
-														? thumb.snippet.title.substr(0, 30) + '...'
-														: thumb.snippet.title}
-												</h3>
-												<p>{thumb.snippet.publishedAt.split('T')[0].split('-').join('.')}</p>
-											</div>
-											<p className='txt'>
-												{thumb.snippet.description.length > 100
-													? thumb.snippet.description.substr(0, 100) + '...'
-													: thumb.snippet.description}
-											</p>
-										</article>
-									</li>
-								);
-							})}
+												<div className='title'>
+													<h3>
+														{thumb.snippet.title.length > 30
+															? thumb.snippet.title.substr(0, 30) + '...'
+															: thumb.snippet.title}
+													</h3>
+													<p>{thumb.snippet.publishedAt.split('T')[0].split('-').join('.')}</p>
+												</div>
+												<p className='txt'>
+													{thumb.snippet.description.length > 100
+														? thumb.snippet.description.substr(0, 100) + '...'
+														: thumb.snippet.description}
+												</p>
+											</article>
+										</li>
+									);
+								})}
 						</ul>
 					</div>
 				</section>
@@ -183,8 +191,8 @@ function Youtube() {
 					title={modal.title}
 					src={
 						!State
-							? `https://www.youtube.com/embed/${Vids[Index]?.snippet.resourceId.videoId}`
-							: `https://www.youtube.com/embed/${Thumbs[Index]?.snippet.resourceId.videoId}`
+							? `https://www.youtube.com/embed/${isSuccess && Vids[Index]?.snippet.resourceId.videoId}`
+							: `https://www.youtube.com/embed/${isYoutube && Thumbs[Index]?.snippet.resourceId.videoId}`
 					}
 				></iframe>
 			</Modal>

@@ -60,7 +60,7 @@ function Btns() {
 			window.removeEventListener('scroll', activation);
 			window.removeEventListener('load', visualEvt);
 		};
-	}, [getPos, visualEvt]);
+	}, [getPos, visualEvt, activation]);
 
 	return (
 		<ul className='btn_navi' ref={btnRef}>
