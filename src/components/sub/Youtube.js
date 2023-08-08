@@ -42,8 +42,9 @@ function Youtube() {
 
 	//App.js에서 유튜브 데이터를 불러오고 있으므르 메인에서 유튜브 페이지로 가면 index값 잘 적용되서 나옴
 	useEffect(() => {
-		frame.current.append(frame.current.firstElementChild);
-		frame.current.append(frame.current.firstElementChild);
+		const slideState = frame.current.firstElementChild;
+		slideState && frame.current.append(frame.current.firstElementChild);
+		slideState && frame.current.append(frame.current.firstElementChild);
 	}, []);
 
 	return (
