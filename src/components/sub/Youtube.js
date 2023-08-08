@@ -41,6 +41,7 @@ function Youtube() {
 	};
 
 	useEffect(() => {
+		// 새로고침시 slide안에 생기는 null값 안나오도록 slideState변수 추가
 		const slideState = frame.current.firstElementChild;
 		slideState && frame.current.append(frame.current.firstElementChild);
 		slideState && frame.current.append(frame.current.firstElementChild);
