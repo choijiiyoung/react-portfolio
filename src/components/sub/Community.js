@@ -85,7 +85,12 @@ function Community() {
 				<div className='inner'>
 					<div className='input_wrap'>
 						<div className='text_box'>
-							<p>Feedback</p>
+							<h2>Feedback</h2>
+							<p>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas itaque eum, explicabo cumque non
+								asperiores odio tenetur quasi vitae tempore tempora cupiditate. Quam cumque enim libero minus incidunt
+								consectetur debitis.
+							</p>
 						</div>
 						<div className='input_box'>
 							<div className='item'>
