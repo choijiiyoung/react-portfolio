@@ -7,13 +7,12 @@
 	li {
 		width: 10px;
 		height: 10px;
-		background: #efefef;
-		border: 1px solid #000;
+		background: #e6e6e6;
 		cursor: pointer;
 		transition: 0.5s;
 
 		+ li {
-			margin-top: 20px;
+			margin-top: 15px;
 		}
 
 		&.on {
