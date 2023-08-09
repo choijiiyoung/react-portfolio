@@ -59,7 +59,7 @@ function Gallery() {
 
 	useEffect(() => {
 		counter.current = 0;
-		if (Mounted && isSuccess && Items.length === 0 && !firstLoaded.current) {
+		if (isSuccess && Items.length === 0 && !firstLoaded.current) {
 			setLoader(false);
 			frame.current.classList.add('on');
 			const btnMine = btnSet.current.children;
