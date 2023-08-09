@@ -83,14 +83,24 @@ function Community() {
 		<Layout name={'Community'} bg={'Community.jpg'}>
 			<section>
 				<div className='inner'>
-					<div className='input_box'>
-						<input type='text' placeholder='제목을 입력하세요.' ref={input} />
-						<br />
-						<textarea cols='30' rows='3' placeholder='본문을 입력하세요.' ref={textarea}></textarea>
+					<div className='input_wrap'>
+						<div className='text_box'>
+							<p>Feedback</p>
+						</div>
+						<div className='input_box'>
+							<div className='item'>
+								<label htmlFor='subject'>Subject</label>
+								<input type='text' id='subject' ref={input} />
+							</div>
+							<div className='item'>
+								<p>Description</p>
+								<textarea cols='30' rows='3' ref={textarea}></textarea>
+							</div>
 
-						<div className='btn_wrap'>
-							<button onClick={resetForm}>CANCLE</button>
-							<button onClick={createPost}>WRITE</button>
+							<div className='btn_wrap'>
+								<button onClick={resetForm}>CANCLE</button>
+								<button onClick={createPost}>WRITE</button>
+							</div>
 						</div>
 					</div>
 
