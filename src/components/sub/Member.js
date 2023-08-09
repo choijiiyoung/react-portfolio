@@ -240,7 +240,7 @@ function Member() {
 												<option value=''>최종학력을 선택하세요</option>
 												<option value='elementary-school'>초등학교 졸업</option>
 												<option value='middle-school'>중학교 졸업</option>
-												<option value='hight-schoolr'>고등학교 졸업</option>
+												<option value='high-school'>고등학교 졸업</option>
 												<option value='collage'>대학교 졸업</option>
 											</select>
 											{Err.edu && <p>{Err.edu}</p>}
