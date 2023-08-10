@@ -35,3 +35,9 @@
 		cursor: pointer;
 	}
 }
+
+@media screen and (max-width: $mobile) {
+	.modal {
+		padding: 230px 5vw;
+	}
+}
