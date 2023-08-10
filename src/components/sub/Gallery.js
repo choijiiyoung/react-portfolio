@@ -5,7 +5,6 @@ import Modal from '../common/Modal';
 import { useFlickrQuery } from '../../hooks/useFlickerQuery';
 
 function Gallery() {
-	const [Mounted, setMounted] = useState(true);
 	const [Opt, setOpt] = useState({ type: 'user', user: '198483448@N02' });
 	const { data: Items, isSuccess } = useFlickrQuery(Opt);
 	const openModal = useRef(null);
@@ -82,9 +81,7 @@ function Gallery() {
 				}
 			};
 		});
-
-		return () => setMounted(false);
-	}, [Items, isSuccess, Mounted]);
+	}, [Items, isSuccess]);
 
 	return (
 		<>
