@@ -52,12 +52,13 @@
 				}
 
 				a {
-					display: flex;
-					justify-content: center;
 					align-items: center;
-					padding: 20px 0;
 					color: #222;
-					font: bold 18px 'arial';
+					display: flex;
+					font-size: 18px;
+					font-weight: 700;
+					justify-content: center;
+					padding: 20px 0;
 
 					.num {
 						display: inline-block;
