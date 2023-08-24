@@ -89,9 +89,13 @@ function Contact() {
 
 	useEffect(() => {
 		container.current.innerHTML = '';
+
+		//인스턴스 호출구문은 컴포넌트 처음 마운트시 호출
 		const mapInstance = new kakao.maps.Map(container.current, { center: info.current[Index].latlng, level: 3 });
 
 		marker.setMap(mapInstance);
+
+		//지역변수인 mapInstance값을 다른 함수에서도 활용해야 되므로 Location state에 해당 인스턴스 값 저장
 		setLocation(mapInstance);
 
 		//지도영역에 휠 기능 비활성화
@@ -104,6 +108,8 @@ function Contact() {
 	}, [setCenter2]);
 
 	useEffect(() => {
+		//Location state에 담겨있는 맵 인스턴스로부터 Traffic레이어 호출 구문 처리(Traffic state가 변경될 때마다)
+		//첫 렌더링 사이클에서는 Location값이 null이므로 Optional Chaining을 활용해서 해당 값이 담기는 두번째 랜더링 사이클부터 동작하도록 처리
 		Traffic
 			? Location?.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC)
 			: Location?.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
@@ -115,6 +121,7 @@ function Contact() {
 			<section>
 				<article className='inner place'>
 					<ul className='branch_list'>
+						{/* 배열정보값을 토대로 동적으로 li버튼 생성하고 해당 버튼 클릭할때 순서값 State를 변경하면서 지도화면이 갱신되도록 수정 */}
 						{info.current.map((el, idx) => {
 							return (
 								<li key={idx} onClick={() => setIndex(idx)} className={idx === Index ? 'on' : ''}>
