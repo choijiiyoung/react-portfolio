@@ -37,7 +37,6 @@ function Member() {
 		const { name } = e.target;
 		const inputs = e.target.parentElement.querySelectorAll('input');
 
-		//모든 체크박스를 반복돌면서 하나라도 체크되어 있는게 있으면 true값 반환
 		let checkArr = [];
 		inputs.forEach((el) => {
 			if (el.checked) checkArr.push(el.value);
