@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDebounce } from '../../hooks/useDebounce';
 
 function Member() {
-	//initVal값을 useRef로 담아놓으면 해당 값은 컴포넌트가 재랜더링되더라도 값을 기억
+	//initVal값을 useRef로 담아놓으면 해당 값은 컴포넌트가 재렌더링되더라도 값을 기억
 	const initVal = useRef({
 		userid: '',
 		pwd1: '',
@@ -46,14 +46,15 @@ function Member() {
 	};
 
 	const showErr = useCallback(() => {
-		console.log('showErr');
 		setSubmit(false);
 		setErr(check(DebouncdeVal));
 	}, [DebouncdeVal]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		//check가 반환하는 인증 메세지가 있으면 해당 메세지를 화면에 출력하고 전송중지
 		setErr(check(Val));
+		//그렇지 않으면 인증 성공
 		setSubmit(true);
 	};
 
@@ -94,6 +95,7 @@ function Member() {
 		const len = Object.keys(Err).length;
 		if (len === 0 && Submit) {
 			alert('모든 인증을 통과했습니다.');
+			//모든 인증 통과시 메인페이지 이동
 			history.push('/');
 		}
 	}, [Err, Submit, history]);
