@@ -22,7 +22,7 @@ function Community() {
 		textarea.current.value = '';
 	};
 
-	//Create - 데이터 저장 (개시글 저장)
+	//Create - 데이터 저장 (게시글 저장)
 	const createPost = () => {
 		if (!input.current.value.trim() || !textarea.current.value.trim()) {
 			resetForm();
