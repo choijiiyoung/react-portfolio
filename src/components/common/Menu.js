@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { close } from '../../redux/menuSlice';
+import { close } from '../../redux/menuSlice'; //menuSlice로 부터 전역 state값을 변경해주는 close함수를 import
 import { AnimatePresence, motion } from 'framer-motion';
 import { NavLink, Link } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -23,6 +23,7 @@ function Menu() {
 					initial={{ opacity: 0, x: -280 }}
 					animate={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
 					exit={{ opacity: 0, x: -280, transition: { duration: 0.5 } }}
+					// 닫기버튼 클릭시 전역state를 변경하는 close함수를 호출해서 그 결과값인 action객체를 dispatch로 전달
 					onClick={() => dispatch(close())}
 				>
 					<h1>
